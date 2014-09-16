@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>k_img0.jpg</string>
+			<key>name</key>
+			<string>食器用洗剤</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>f_img0.jpg</string>
+			<key>name</key>
+			<string>シャンプー</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>t_img0.jpg</string>
+			<key>name</key>
+			<string>トイレットペーパー</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>s_img0.jpg</string>
+			<key>name</key>
+			<string>歯ブラシ</string>
+		</dict>
+		<dict>
+			<key>image</key>
+			<string>s_img1.jpg</string>
+			<key>name</key>
+			<string>歯磨き粉</string>
+		</dict>
+	</array>
+</array>
+</plist>
