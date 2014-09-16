@@ -16,6 +16,7 @@
 @implementation CategoryTableController{
     //NSArray * arrayList;
     //NSDictionary * dic;
+    AppDelegate * app;
 
 }
 
@@ -31,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // AppDelegateをインスタンス化
+    app = [[UIApplication sharedApplication] delegate];
     //NSLog(@"viewDidLoad executed");表示時に毎回は実行されない
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,15 +62,8 @@
         {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:j];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            
-            AppDelegate *app = [[UIApplication sharedApplication] delegate];
-            // テキストラベルがチェックアレイ内のものと一致していたら、チェックマークをつける
-            if ([app.checkArray containsObject:cell.textLabel.text]) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            }
-            else { // 一致していなければチェックマークを外す
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
+            // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
+            [self checkOnOffContainedInCheckArray:cell];
             //[cells addObject:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]]];
         }
     }
@@ -121,16 +117,8 @@
     // テキストラベルをセット
     cell.textLabel.text = [listDict objectForKey:@"name"];
     
-    
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
-    // テキストラベルがチェックアレイ内のものと一致していたら、チェックマークをつける
-    if ([app.checkArray containsObject:cell.textLabel.text]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else { // 一致していなければチェックマークを外す
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
+    [self checkOnOffContainedInCheckArray:cell];
     
     
     // 表示する文字
@@ -145,18 +133,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 選択されたセルを取得
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
-    // テキストラベルがチェックアレイ内のものと一致していたら、チェックマークをつける
-    if (cell.accessoryType == UITableViewCellAccessoryNone){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [app.checkArray addObject:cell.textLabel.text];
-    }
-    else{ // 一致していなければチェックマークを外す
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [app.checkArray removeObject:cell.textLabel.text];
-    }
+    // チェックマークのオン・オフ
+    [self checkOnOffSelectedCell:cell];
     NSLog(@"%lu", (unsigned long)app.checkArray.count);
 }
 
@@ -164,19 +142,35 @@
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 選択がはずれたセルを取得
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
+    // チェックマークのオン・オフ
+    [self checkOnOffSelectedCell:cell];
+    NSLog(@"%lu", (unsigned long)app.checkArray.count);
+}
+
+// checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
+- (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell
+{
     // テキストラベルがチェックアレイ内のものと一致していたら、チェックマークをつける
+    if ([app.checkArray containsObject:cell.textLabel.text]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else { // 一致していなければチェックマークを外す
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+
+// セルを選択した時にチェックマークをつける。もしくは消す。
+- (void)checkOnOffSelectedCell:(UITableViewCell *)cell
+{
+    // チェックマークがなければ、チェックマークをつける
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [app.checkArray addObject:cell.textLabel.text];
     }
-    else{ // 一致していなければチェックマークを外す
+    else{ // チェックマークがあれば、チェックマークを消す
         cell.accessoryType = UITableViewCellAccessoryNone;
         [app.checkArray removeObject:cell.textLabel.text];
     }
-    NSLog(@"%lu", (unsigned long)app.checkArray.count);
 }
 
 //-- セクションのタイトル文字を設定

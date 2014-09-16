@@ -5,8 +5,8 @@
 //  Created by kanta on 2014/09/14.
 //  Copyright (c) 2014年 kanta. All rights reserved.
 //
-
 #import "PageController.h"
+#import "AppDelegate.h"
 #import "CategoryTableController.h"
 
 @interface PageController ()
@@ -16,6 +16,7 @@
 @implementation PageController{
     NSMutableArray * catItemArray;
     NSMutableArray * catNameArray;
+    AppDelegate * app;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,6 +34,13 @@
     // Do any additional setup after loading the view.
     self.dataSource = self;
     self.delegate = self;
+    // AppDelegateをインスタンス化
+    app = [[UIApplication sharedApplication] delegate];
+    // ナビゲーションバーに編集ボタンを設置
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // toolbarの表示をONにする
+    //[self.navigationController setToolbarHidden:NO animated:NO];
     
     // ファイルから配列にデータを読み込む
     // カテゴリ別のアイテムリストを読み込む
@@ -80,6 +88,7 @@
     //contentViewController.labelText = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
     return categoryTableController;
 }
+
 
 /*
 #pragma mark - Navigation

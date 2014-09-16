@@ -22,7 +22,6 @@
 		B7B4CD0619C495A80067EB59 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD0419C495A80067EB59 /* InfoPlist.strings */; };
 		B7B4CD0819C495A80067EB59 /* JoymemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD0719C495A80067EB59 /* JoymemoTests.m */; };
 		B7B4CD1319C496490067EB59 /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1219C496490067EB59 /* PageController.m */; };
-		B7B4CD1919C497BE0067EB59 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1819C497BE0067EB59 /* ContentViewController.m */; };
 		B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */; };
 		B7B4CD2119C49A5E0067EB59 /* s_img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD1D19C49A5E0067EB59 /* s_img1.jpg */; };
 		B7B4CD2219C49A5E0067EB59 /* k_img0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD1E19C49A5E0067EB59 /* k_img0.jpg */; };
@@ -68,8 +67,6 @@
 		B7B4CD0719C495A80067EB59 /* JoymemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoymemoTests.m; sourceTree = "<group>"; };
 		B7B4CD1119C496490067EB59 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		B7B4CD1219C496490067EB59 /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
-		B7B4CD1719C497BE0067EB59 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		B7B4CD1819C497BE0067EB59 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableController.h; sourceTree = "<group>"; };
 		B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableController.m; sourceTree = "<group>"; };
 		B7B4CD1D19C49A5E0067EB59 /* s_img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s_img1.jpg; sourceTree = "<group>"; };
@@ -148,11 +145,9 @@
 				B7B4CCEE19C495A80067EB59 /* Main.storyboard */,
 				B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */,
 				B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */,
-				B7B4CCF119C495A80067EB59 /* ViewController.h */,
-				B7B4CD1719C497BE0067EB59 /* ContentViewController.h */,
-				B7B4CD1819C497BE0067EB59 /* ContentViewController.m */,
 				B7B4CD1119C496490067EB59 /* PageController.h */,
 				B7B4CD1219C496490067EB59 /* PageController.m */,
+				B7B4CCF119C495A80067EB59 /* ViewController.h */,
 				B7B4CCF219C495A80067EB59 /* ViewController.m */,
 				B7B4CD2519C49A650067EB59 /* DataList.plist */,
 				B7B4CD2B19C7C4370067EB59 /* CatNameList.plist */,
@@ -338,7 +333,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
-				B7B4CD1919C497BE0067EB59 /* ContentViewController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B7B4CCF319C495A80067EB59 /* ViewController.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
