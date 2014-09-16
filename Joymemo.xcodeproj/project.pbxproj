@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B730169F19C81EB6009AA201 /* ItemInCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B730169E19C81EB6009AA201 /* ItemInCategory.m */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B730169D19C81EB6009AA201 /* ItemInCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemInCategory.h; sourceTree = "<group>"; };
+		B730169E19C81EB6009AA201 /* ItemInCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemInCategory.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				B7B4CD1219C496490067EB59 /* PageController.m */,
 				B7B4CCF119C495A80067EB59 /* ViewController.h */,
 				B7B4CCF219C495A80067EB59 /* ViewController.m */,
+				B730169D19C81EB6009AA201 /* ItemInCategory.h */,
+				B730169E19C81EB6009AA201 /* ItemInCategory.m */,
 				B7B4CD2519C49A650067EB59 /* DataList.plist */,
 				B7B4CD2B19C7C4370067EB59 /* CatNameList.plist */,
 				B7B4CD2919C7BD070067EB59 /* s_img0.jpg */,
@@ -335,6 +340,7 @@
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B7B4CCF319C495A80067EB59 /* ViewController.m in Sources */,
+				B730169F19C81EB6009AA201 /* ItemInCategory.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
 				B7B4CCE919C495A80067EB59 /* main.m in Sources */,
 			);

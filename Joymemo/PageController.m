@@ -16,7 +16,7 @@
 @implementation PageController{
     NSMutableArray * catItemArray;
     NSMutableArray * catNameArray;
-    AppDelegate * app;
+    //AppDelegate * app;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,7 +35,7 @@
     self.dataSource = self;
     self.delegate = self;
     // AppDelegateをインスタンス化
-    app = [[UIApplication sharedApplication] delegate];
+    //app = [[UIApplication sharedApplication] delegate];
     // ナビゲーションバーに編集ボタンを設置
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
