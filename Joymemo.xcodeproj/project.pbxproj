@@ -20,7 +20,7 @@
 		B7B4CCFD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCFE19C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
 		B7B4CD0619C495A80067EB59 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD0419C495A80067EB59 /* InfoPlist.strings */; };
-		B7B4CD0819C495A80067EB59 /* PagerTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD0719C495A80067EB59 /* PagerTestTests.m */; };
+		B7B4CD0819C495A80067EB59 /* JoymemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD0719C495A80067EB59 /* JoymemoTests.m */; };
 		B7B4CD1319C496490067EB59 /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1219C496490067EB59 /* PageController.m */; };
 		B7B4CD1919C497BE0067EB59 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1819C497BE0067EB59 /* ContentViewController.m */; };
 		B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */; };
@@ -47,25 +47,25 @@
 
 /* Begin PBXFileReference section */
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		B7B4CCD919C495A80067EB59 /* PagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B7B4CCE019C495A80067EB59 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B7B4CCE419C495A80067EB59 /* PagerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PagerTest-Info.plist"; sourceTree = "<group>"; };
+		B7B4CCE419C495A80067EB59 /* Joymemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Joymemo-Info.plist"; sourceTree = "<group>"; };
 		B7B4CCE619C495A80067EB59 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B7B4CCE819C495A80067EB59 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B7B4CCEA19C495A80067EB59 /* PagerTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PagerTest-Prefix.pch"; sourceTree = "<group>"; };
+		B7B4CCEA19C495A80067EB59 /* Joymemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Joymemo-Prefix.pch"; sourceTree = "<group>"; };
 		B7B4CCEB19C495A80067EB59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7B4CCEC19C495A80067EB59 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B7B4CCEF19C495A80067EB59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7B4CCF119C495A80067EB59 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B7B4CCF219C495A80067EB59 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B7B4CCF419C495A80067EB59 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B7B4CCFA19C495A80067EB59 /* PagerTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PagerTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B4CCFA19C495A80067EB59 /* JoymemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoymemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCFB19C495A80067EB59 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B7B4CD0319C495A80067EB59 /* PagerTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PagerTestTests-Info.plist"; sourceTree = "<group>"; };
+		B7B4CD0319C495A80067EB59 /* JoymemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoymemoTests-Info.plist"; sourceTree = "<group>"; };
 		B7B4CD0519C495A80067EB59 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B7B4CD0719C495A80067EB59 /* PagerTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagerTestTests.m; sourceTree = "<group>"; };
+		B7B4CD0719C495A80067EB59 /* JoymemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoymemoTests.m; sourceTree = "<group>"; };
 		B7B4CD1119C496490067EB59 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		B7B4CD1219C496490067EB59 /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
 		B7B4CD1719C497BE0067EB59 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
@@ -111,8 +111,8 @@
 		B7B4CCD019C495A80067EB59 = {
 			isa = PBXGroup;
 			children = (
-				B7B4CCE219C495A80067EB59 /* PagerTest */,
-				B7B4CD0119C495A80067EB59 /* PagerTestTests */,
+				B7B4CCE219C495A80067EB59 /* Joymemo */,
+				B7B4CD0119C495A80067EB59 /* JoymemoTests */,
 				B7B4CCDB19C495A80067EB59 /* Frameworks */,
 				B7B4CCDA19C495A80067EB59 /* Products */,
 				B73D848F67454023B9B7554E /* Pods.xcconfig */,
@@ -122,8 +122,8 @@
 		B7B4CCDA19C495A80067EB59 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B7B4CCD919C495A80067EB59 /* PagerTest.app */,
-				B7B4CCFA19C495A80067EB59 /* PagerTestTests.xctest */,
+				B7B4CCD919C495A80067EB59 /* Joymemo.app */,
+				B7B4CCFA19C495A80067EB59 /* JoymemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B7B4CCE219C495A80067EB59 /* PagerTest */ = {
+		B7B4CCE219C495A80067EB59 /* Joymemo */ = {
 			isa = PBXGroup;
 			children = (
 				B7B4CCEB19C495A80067EB59 /* AppDelegate.h */,
@@ -165,33 +165,33 @@
 				B7B4CCF419C495A80067EB59 /* Images.xcassets */,
 				B7B4CCE319C495A80067EB59 /* Supporting Files */,
 			);
-			path = PagerTest;
+			path = Joymemo;
 			sourceTree = "<group>";
 		};
 		B7B4CCE319C495A80067EB59 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B7B4CCE419C495A80067EB59 /* PagerTest-Info.plist */,
+				B7B4CCE419C495A80067EB59 /* Joymemo-Info.plist */,
 				B7B4CCE519C495A80067EB59 /* InfoPlist.strings */,
 				B7B4CCE819C495A80067EB59 /* main.m */,
-				B7B4CCEA19C495A80067EB59 /* PagerTest-Prefix.pch */,
+				B7B4CCEA19C495A80067EB59 /* Joymemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B7B4CD0119C495A80067EB59 /* PagerTestTests */ = {
+		B7B4CD0119C495A80067EB59 /* JoymemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				B7B4CD0719C495A80067EB59 /* PagerTestTests.m */,
+				B7B4CD0719C495A80067EB59 /* JoymemoTests.m */,
 				B7B4CD0219C495A80067EB59 /* Supporting Files */,
 			);
-			path = PagerTestTests;
+			path = JoymemoTests;
 			sourceTree = "<group>";
 		};
 		B7B4CD0219C495A80067EB59 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B7B4CD0319C495A80067EB59 /* PagerTestTests-Info.plist */,
+				B7B4CD0319C495A80067EB59 /* JoymemoTests-Info.plist */,
 				B7B4CD0419C495A80067EB59 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -200,9 +200,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B7B4CCD819C495A80067EB59 /* PagerTest */ = {
+		B7B4CCD819C495A80067EB59 /* Joymemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7B4CD0B19C495A80067EB59 /* Build configuration list for PBXNativeTarget "PagerTest" */;
+			buildConfigurationList = B7B4CD0B19C495A80067EB59 /* Build configuration list for PBXNativeTarget "Joymemo" */;
 			buildPhases = (
 				5EA479C22BC14A529F87FA0C /* Check Pods Manifest.lock */,
 				B7B4CCD519C495A80067EB59 /* Sources */,
@@ -214,14 +214,14 @@
 			);
 			dependencies = (
 			);
-			name = PagerTest;
+			name = Joymemo;
 			productName = PagerTest;
-			productReference = B7B4CCD919C495A80067EB59 /* PagerTest.app */;
+			productReference = B7B4CCD919C495A80067EB59 /* Joymemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B7B4CCF919C495A80067EB59 /* PagerTestTests */ = {
+		B7B4CCF919C495A80067EB59 /* JoymemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7B4CD0E19C495A80067EB59 /* Build configuration list for PBXNativeTarget "PagerTestTests" */;
+			buildConfigurationList = B7B4CD0E19C495A80067EB59 /* Build configuration list for PBXNativeTarget "JoymemoTests" */;
 			buildPhases = (
 				B7B4CCF619C495A80067EB59 /* Sources */,
 				B7B4CCF719C495A80067EB59 /* Frameworks */,
@@ -232,9 +232,9 @@
 			dependencies = (
 				B7B4CD0019C495A80067EB59 /* PBXTargetDependency */,
 			);
-			name = PagerTestTests;
+			name = JoymemoTests;
 			productName = PagerTestTests;
-			productReference = B7B4CCFA19C495A80067EB59 /* PagerTestTests.xctest */;
+			productReference = B7B4CCFA19C495A80067EB59 /* JoymemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -251,7 +251,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B7B4CCD419C495A80067EB59 /* Build configuration list for PBXProject "PagerTest" */;
+			buildConfigurationList = B7B4CCD419C495A80067EB59 /* Build configuration list for PBXProject "Joymemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -264,8 +264,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B7B4CCD819C495A80067EB59 /* PagerTest */,
-				B7B4CCF919C495A80067EB59 /* PagerTestTests */,
+				B7B4CCD819C495A80067EB59 /* Joymemo */,
+				B7B4CCF919C495A80067EB59 /* JoymemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -350,7 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7B4CD0819C495A80067EB59 /* PagerTestTests.m in Sources */,
+				B7B4CD0819C495A80067EB59 /* JoymemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +359,7 @@
 /* Begin PBXTargetDependency section */
 		B7B4CD0019C495A80067EB59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B7B4CCD819C495A80067EB59 /* PagerTest */;
+			target = B7B4CCD819C495A80067EB59 /* Joymemo */;
 			targetProxy = B7B4CCFF19C495A80067EB59 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -469,9 +469,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PagerTest/PagerTest-Prefix.pch";
-				INFOPLIST_FILE = "PagerTest/PagerTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Joymemo/Joymemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Joymemo/Joymemo-Info.plist";
+				PRODUCT_NAME = Joymemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -483,9 +483,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PagerTest/PagerTest-Prefix.pch";
-				INFOPLIST_FILE = "PagerTest/PagerTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Joymemo/Joymemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Joymemo/Joymemo-Info.plist";
+				PRODUCT_NAME = Joymemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -505,8 +505,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "PagerTestTests/PagerTestTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PagerTestTests/JoymemoTests-Info.plist";
+				PRODUCT_NAME = JoymemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -523,8 +523,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PagerTest/PagerTest-Prefix.pch";
-				INFOPLIST_FILE = "PagerTestTests/PagerTestTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PagerTestTests/JoymemoTests-Info.plist";
+				PRODUCT_NAME = JoymemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B7B4CCD419C495A80067EB59 /* Build configuration list for PBXProject "PagerTest" */ = {
+		B7B4CCD419C495A80067EB59 /* Build configuration list for PBXProject "Joymemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7B4CD0919C495A80067EB59 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7B4CD0B19C495A80067EB59 /* Build configuration list for PBXNativeTarget "PagerTest" */ = {
+		B7B4CD0B19C495A80067EB59 /* Build configuration list for PBXNativeTarget "Joymemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7B4CD0C19C495A80067EB59 /* Debug */,
@@ -551,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7B4CD0E19C495A80067EB59 /* Build configuration list for PBXNativeTarget "PagerTestTests" */ = {
+		B7B4CD0E19C495A80067EB59 /* Build configuration list for PBXNativeTarget "JoymemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7B4CD0F19C495A80067EB59 /* Debug */,
