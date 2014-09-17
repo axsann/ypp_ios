@@ -11,6 +11,7 @@
 		B73016A319C82A0C009AA201 /* ItemInCat.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* ItemInCat.json */; };
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
 		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
+		B73016B219C9B1DF009AA201 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016B119C9B1DF009AA201 /* TabBarController.m */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -56,6 +57,8 @@
 		B73016A519C84FF0009AA201 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		B73016A719C95550009AA201 /* BuyTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyTableController.h; sourceTree = "<group>"; };
 		B73016A819C95550009AA201 /* BuyTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableController.m; sourceTree = "<group>"; };
+		B73016B019C9B1DF009AA201 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		B73016B119C9B1DF009AA201 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -171,6 +174,8 @@
 				B7B4CD1F19C49A5E0067EB59 /* f_img0.jpg */,
 				B7B4CD2019C49A5E0067EB59 /* t_img0.jpg */,
 				B7B4CD2719C7BA6B0067EB59 /* DataList_old.plist */,
+				B73016B019C9B1DF009AA201 /* TabBarController.h */,
+				B73016B119C9B1DF009AA201 /* TabBarController.m */,
 				B73016A419C84FF0009AA201 /* Item.h */,
 				B73016A519C84FF0009AA201 /* Item.m */,
 				B7B4CCF119C495A80067EB59 /* ViewController.h */,
@@ -354,6 +359,7 @@
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B7B4CCF319C495A80067EB59 /* ViewController.m in Sources */,
+				B73016B219C9B1DF009AA201 /* TabBarController.m in Sources */,
 				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
 				B730169F19C81EB6009AA201 /* Categories.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,

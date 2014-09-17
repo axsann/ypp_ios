@@ -35,7 +35,6 @@
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
 
-    NSLog(@"viewdid");
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
     // ナビゲーションバーに編集ボタンを設置
@@ -56,6 +55,11 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // タブバーでビューを切り替えたときにチェックモードをオフにする
+    [self checkModeOff];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -144,6 +148,18 @@
 - (void)doSomething
 {
     NSLog(@"test");
+}
+
+// チェックと同時にタブバーを押した場合はチェックモードをオフにする
+- (void)checkModeOff
+{
+    // チェックアレイから全てのオブジェクトを削除
+    [app.checkArray removeAllObjects];
+    UITabBar *tabbar = self.tabBarController.tabBar;
+    float screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    float tabbarHeight = tabbar.frame.size.height;
+    // ツールバーを非表示にしてタブバーを再表示させる
+    app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
 }
 
 /*

@@ -170,6 +170,7 @@
 {
     
     UITabBar *tabbar = self.tabBarController.tabBar;
+
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
     float tabbarHeight = tabbar.frame.size.height;
     if (app.checkArray.count>0){ // チェックアレイにアイテムが入っていればツールバーを表示
@@ -182,6 +183,7 @@
                          animations:^{
                              app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
                          }];
+
     }
 }
 
