@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B730169F19C81EB6009AA201 /* ItemInCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B730169E19C81EB6009AA201 /* ItemInCategory.m */; };
+		B730169F19C81EB6009AA201 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B730169E19C81EB6009AA201 /* Categories.m */; };
+		B73016A319C82A0C009AA201 /* ItemInCat.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* ItemInCat.json */; };
+		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
+		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -46,8 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B730169D19C81EB6009AA201 /* ItemInCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemInCategory.h; sourceTree = "<group>"; };
-		B730169E19C81EB6009AA201 /* ItemInCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemInCategory.m; sourceTree = "<group>"; };
+		B730169D19C81EB6009AA201 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		B730169E19C81EB6009AA201 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		B73016A219C82A0C009AA201 /* ItemInCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItemInCat.json; sourceTree = "<group>"; };
+		B73016A419C84FF0009AA201 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		B73016A519C84FF0009AA201 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		B73016A719C95550009AA201 /* BuyTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyTableController.h; sourceTree = "<group>"; };
+		B73016A819C95550009AA201 /* BuyTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableController.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,14 +154,15 @@
 				B7B4CCEB19C495A80067EB59 /* AppDelegate.h */,
 				B7B4CCEC19C495A80067EB59 /* AppDelegate.m */,
 				B7B4CCEE19C495A80067EB59 /* Main.storyboard */,
+				B73016A719C95550009AA201 /* BuyTableController.h */,
+				B73016A819C95550009AA201 /* BuyTableController.m */,
 				B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */,
 				B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */,
 				B7B4CD1119C496490067EB59 /* PageController.h */,
 				B7B4CD1219C496490067EB59 /* PageController.m */,
-				B7B4CCF119C495A80067EB59 /* ViewController.h */,
-				B7B4CCF219C495A80067EB59 /* ViewController.m */,
-				B730169D19C81EB6009AA201 /* ItemInCategory.h */,
-				B730169E19C81EB6009AA201 /* ItemInCategory.m */,
+				B730169D19C81EB6009AA201 /* Categories.h */,
+				B730169E19C81EB6009AA201 /* Categories.m */,
+				B73016A219C82A0C009AA201 /* ItemInCat.json */,
 				B7B4CD2519C49A650067EB59 /* DataList.plist */,
 				B7B4CD2B19C7C4370067EB59 /* CatNameList.plist */,
 				B7B4CD2919C7BD070067EB59 /* s_img0.jpg */,
@@ -162,6 +171,10 @@
 				B7B4CD1F19C49A5E0067EB59 /* f_img0.jpg */,
 				B7B4CD2019C49A5E0067EB59 /* t_img0.jpg */,
 				B7B4CD2719C7BA6B0067EB59 /* DataList_old.plist */,
+				B73016A419C84FF0009AA201 /* Item.h */,
+				B73016A519C84FF0009AA201 /* Item.m */,
+				B7B4CCF119C495A80067EB59 /* ViewController.h */,
+				B7B4CCF219C495A80067EB59 /* ViewController.m */,
 				B7B4CCF419C495A80067EB59 /* Images.xcassets */,
 				B7B4CCE319C495A80067EB59 /* Supporting Files */,
 			);
@@ -275,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73016A319C82A0C009AA201 /* ItemInCat.json in Resources */,
 				B7B4CD2119C49A5E0067EB59 /* s_img1.jpg in Resources */,
 				B7B4CD2219C49A5E0067EB59 /* k_img0.jpg in Resources */,
 				B7B4CCF519C495A80067EB59 /* Images.xcassets in Resources */,
@@ -340,8 +354,10 @@
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B7B4CCF319C495A80067EB59 /* ViewController.m in Sources */,
-				B730169F19C81EB6009AA201 /* ItemInCategory.m in Sources */,
+				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
+				B730169F19C81EB6009AA201 /* Categories.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
+				B73016A619C84FF0009AA201 /* Item.m in Sources */,
 				B7B4CCE919C495A80067EB59 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

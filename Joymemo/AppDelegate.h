@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Categories.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray * checkArray;
-
+@property (strong, nonatomic) Categories * cats;
+@property (strong, nonatomic) UIToolbar * toolbar;
 @end

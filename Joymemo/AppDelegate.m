@@ -17,7 +17,10 @@
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f]};
     // checkArrayを初期化
     self.checkArray = [[NSMutableArray alloc]init];
-    
+    // categoriesを初期化
+    self.cats = [[Categories alloc]init];
+    // JSONファイルを読み込む
+    [self.cats loadJSON:@"ItemInCat"];
     
     return YES;
 }
