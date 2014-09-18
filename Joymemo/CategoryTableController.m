@@ -51,10 +51,8 @@
     [self addButtonToToolbar];
     
     // すべてのセルを見て、checkArray内のものと一致するものにチェックをつける
-    for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
-    {
-        for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-        {
+    for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+        for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:j];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
             // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
@@ -142,38 +140,6 @@
     NSLog(@"%lu", (unsigned long)app.checkArray.count);
     
 }
-/*
-// checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
-- (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary * itemDict = [self.itemArray objectAtIndex:indexPath.row];
-    // アイテムIDがチェックアレイ内のものと一致していたら、チェックマークをつける
-    if ([app.checkArray containsObject:[itemDict objectForKey:@"item_id"]]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else { // 一致していなければチェックマークを外す
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-}
-*/
-/*
-// セルを選択した時にチェックマークをつける。もしくは消す。
-- (void)checkOnOffSelectedCell:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary * itemDict = [self.itemArray objectAtIndex:indexPath.row];
-    // チェックマークがなければ、チェックマークをつける
-    if (cell.accessoryType == UITableViewCellAccessoryNone){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [app.checkArray addObject:[itemDict objectForKey:@"item_id"]];
-    }
-    else{ // チェックマークがあれば、チェックマークを消す
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [app.checkArray removeObject:[itemDict objectForKey:@"item_id"]];
-    }
-    // 選択モードのオン・オフを行う
-    [self checkModeOnOff];
-}
-*/
 
 // checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
 - (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,7 +147,7 @@
     Item * item = [[Item alloc]init];
     item = self.itemArray[indexPath.row];
     // アイテムIDがチェックアレイ内のものと一致していたら、チェックマークをつける
-    if ([app.checkArray containsObject:item.itemId]){
+    if ([app.checkArray containsObject:item]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else { // 一致していなければチェックマークを外す
@@ -196,11 +162,11 @@
     // チェックマークがなければ、チェックマークをつける
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [app.checkArray addObject:item.itemId];
+        [app.checkArray addObject:item];
     }
     else{ // チェックマークがあれば、チェックマークを消す
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [app.checkArray removeObject:item.itemId];
+        [app.checkArray removeObject:item];
     }
     // 選択モードのオン・オフを行う
     [self checkModeOnOff];
@@ -252,7 +218,7 @@
 {
     app.buyArray = [app.checkArray mutableCopy];
     [self checkModeOff];
-    NSLog(@"%@", app.buyArray);
+    NSLog(@"%lu", (unsigned long)app.buyArray.count);
 }
 
 // チェックと同時にタブバーを押した場合はチェックモードをオフにする
@@ -280,7 +246,7 @@
 
 //-- セクションのタイトル文字を設定
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.catName;
+    return self.cateName;
 }
 
 //-- セクションのタイトルの高さを設定

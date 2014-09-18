@@ -30,7 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    // AppDelegateをインスタンス化
+    app = [[UIApplication sharedApplication] delegate];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -38,29 +40,20 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    // すべてのアイテムを確認
-    for (int i=0; i<app.cate.cateNameArray.count; i++){
-        NSMutableArray * itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:app.cate.cateNameArray[i]]];
-        for (int j=0; j<itemArray.count; j++){
-            Item * item = itemArray[j];
-            //NSLog(@"%@", item.itemName);
-            if ([app.buyArray containsObject:item.itemId]) {
-                
-            }
-        }
-    }
- 
+    // テーブルを更新
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     [super viewWillAppear:animated];
-}*/
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 
@@ -73,8 +66,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 10;
+    return app.buyArray.count;
 }
+
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"BuyCell";
@@ -84,7 +78,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    
+    // buyArrayからアイテムを読み込む
+    Item * item = app.buyArray[indexPath.row];
     
     // 境界線を左端から表示
     cell.separatorInset = UIEdgeInsetsZero;
@@ -92,23 +87,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // テキストラベルをセット
-    cell.textLabel.text = @"test";
+    cell.textLabel.text = item.itemName;
     
-    /*
-    for (int i=0; i<app.cats.catNameArray.count; i++) {
-        NSString * catName = [NSString stringWithString:app.cats.catNameArray[i]];
-        NSMutableArray * itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:catName]];
-        for (int j= 0; j<itemArray.count; j++){
-            NSMutableDictionary * itemDict = [NSMutableDictionary dictionaryWithDictionary:itemArray[j]];
-            Item * item = [[Item alloc]init];
-            [item setItemId:[itemDict objectForKey:@"item_id"]
-                setItemName:[itemDict objectForKey:@"item_name"]
-             setItemImgName:[itemDict objectForKey:@"thumb"]];
-            NSMutableArray * allItemArray = [NSMutableArray array];
-            [allItemArray addObject:item];
-        }
-    }
-    */
+    // 画像をセット
+    cell.imageView.image = [UIImage imageNamed:item.itemImgName];
     
     return cell;
 }

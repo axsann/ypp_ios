@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		B71C985B19CB8DBB00804BEB /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B71C985A19CB8DBB00804BEB /* NetworkManager.m */; };
 		B726114719CB174300F65AA8 /* Cate.m in Sources */ = {isa = PBXBuildFile; fileRef = B726114619CB174300F65AA8 /* Cate.m */; };
-		B730169F19C81EB6009AA201 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = B730169E19C81EB6009AA201 /* Categories.m */; };
 		B73016A319C82A0C009AA201 /* CateData.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* CateData.json */; };
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
 		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
-		B73016B219C9B1DF009AA201 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016B119C9B1DF009AA201 /* TabBarController.m */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -52,15 +50,11 @@
 		B71C985A19CB8DBB00804BEB /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B726114519CB174300F65AA8 /* Cate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cate.h; sourceTree = "<group>"; };
 		B726114619CB174300F65AA8 /* Cate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cate.m; sourceTree = "<group>"; };
-		B730169D19C81EB6009AA201 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
-		B730169E19C81EB6009AA201 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
 		B73016A219C82A0C009AA201 /* CateData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CateData.json; sourceTree = "<group>"; };
 		B73016A419C84FF0009AA201 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		B73016A519C84FF0009AA201 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		B73016A719C95550009AA201 /* BuyTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyTableController.h; sourceTree = "<group>"; };
 		B73016A819C95550009AA201 /* BuyTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableController.m; sourceTree = "<group>"; };
-		B73016B019C9B1DF009AA201 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
-		B73016B119C9B1DF009AA201 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -161,21 +155,17 @@
 				B7B4CD1119C496490067EB59 /* PageController.h */,
 				B7B4CD1219C496490067EB59 /* PageController.m */,
 				B726114519CB174300F65AA8 /* Cate.h */,
+				B73016A419C84FF0009AA201 /* Item.h */,
+				B73016A519C84FF0009AA201 /* Item.m */,
+				B726114619CB174300F65AA8 /* Cate.m */,
 				B71C985919CB8DBB00804BEB /* NetworkManager.h */,
 				B71C985A19CB8DBB00804BEB /* NetworkManager.m */,
-				B726114619CB174300F65AA8 /* Cate.m */,
 				B73016A219C82A0C009AA201 /* CateData.json */,
 				B7B4CD2919C7BD070067EB59 /* s_img0.jpg */,
 				B7B4CD1D19C49A5E0067EB59 /* s_img1.jpg */,
 				B7B4CD1E19C49A5E0067EB59 /* k_img0.jpg */,
 				B7B4CD1F19C49A5E0067EB59 /* f_img0.jpg */,
 				B7B4CD2019C49A5E0067EB59 /* t_img0.jpg */,
-				B730169D19C81EB6009AA201 /* Categories.h */,
-				B730169E19C81EB6009AA201 /* Categories.m */,
-				B73016B019C9B1DF009AA201 /* TabBarController.h */,
-				B73016B119C9B1DF009AA201 /* TabBarController.m */,
-				B73016A419C84FF0009AA201 /* Item.h */,
-				B73016A519C84FF0009AA201 /* Item.m */,
 				B7B4CCF419C495A80067EB59 /* Images.xcassets */,
 				B7B4CCE319C495A80067EB59 /* Supporting Files */,
 			);
@@ -351,9 +341,7 @@
 			files = (
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
-				B73016B219C9B1DF009AA201 /* TabBarController.m in Sources */,
 				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
-				B730169F19C81EB6009AA201 /* Categories.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
 				B726114719CB174300F65AA8 /* Cate.m in Sources */,
 				B73016A619C84FF0009AA201 /* Item.m in Sources */,

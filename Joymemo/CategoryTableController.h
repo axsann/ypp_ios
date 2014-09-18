@@ -10,6 +10,6 @@
 
 @interface CategoryTableController : UITableViewController
 @property (strong, nonatomic) NSMutableArray * itemArray;
-@property (strong, nonatomic) NSString * catName;
+@property (strong, nonatomic) NSString * cateName;
 
 @end

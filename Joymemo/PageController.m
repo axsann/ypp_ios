@@ -95,7 +95,7 @@
     //categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:cateName]];
     categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
-    categoryTableController.catName = [NSString stringWithString:cateName];
+    categoryTableController.cateName = [NSString stringWithString:cateName];
     return categoryTableController;
 }
 
