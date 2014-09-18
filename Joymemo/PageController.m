@@ -15,6 +15,7 @@
 
 @implementation PageController{
     AppDelegate * app;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,15 +38,13 @@
 
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
+    
     // ナビゲーションバーに編集ボタンを設置
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 
     // toolbarの表示をONにする
     //[self.navigationController setToolbarHidden:NO animated:NO];
-    
-    // Tabbarを移動
-    //self.tabBarController.tabBar.frame = CGRectMake(0.0f, self.view.frame.size.height-self.tabBarController.tabBar.frame.size.height, self.view.frame.size.width, self.tabBarController.tabBar.frame.size.height);
     
 }
 
@@ -71,7 +70,7 @@
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager
 {
     // タブの数
-    return app.cats.catNameArray.count;
+    return app.cate.cateNameArray.count;
 }
 
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
@@ -80,7 +79,8 @@
     UILabel* label = [UILabel new];
     //label.text = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
     //label.text = [NSString stringWithString:catNameArray[index]];
-    label.text = [NSString stringWithString:app.cats.catNameArray[index]];
+    //label.textColor = [UIColor redColor];
+    label.text = [NSString stringWithString:app.cate.cateNameArray[index]];
     [label sizeToFit];
     return label;
 }
@@ -89,11 +89,13 @@
 {
     // タブ番号に対応するUIViewControllerを返す
     CategoryTableController * categoryTableController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryTableController"];
-    
+    // index番号のカテゴリ名を取得
+    NSString * cateName = [NSString stringWithString:app.cate.cateNameArray[index]];
     // アイテムをテーブルビューにコピー
-    categoryTableController.itemsArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:app.cats.catNameArray[index]]];
+    //categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:cateName]];
+    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
-    categoryTableController.catName = [NSString stringWithString:app.cats.catNameArray[index]];
+    categoryTableController.catName = [NSString stringWithString:cateName];
     return categoryTableController;
 }
 
@@ -133,21 +135,14 @@
     }
 }
 
+// タブバーにツールバーを作成する
 - (void)makeToolbarAboveTabbar{
     UITabBar *tabbar = self.tabBarController.tabBar;
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
     float tabbarHeight = tabbar.frame.size.height;
     app.toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight)];
-    NSMutableArray * toolbarItems = [NSMutableArray array];
-    UIBarButtonItem * addToBuyButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(doSomething)];
-    [toolbarItems addObject:addToBuyButton];
-    [app.toolbar setItems:toolbarItems];
+    
     [self.tabBarController.view addSubview:app.toolbar];
-}
-
-- (void)doSomething
-{
-    NSLog(@"test");
 }
 
 // チェックと同時にタブバーを押した場合はチェックモードをオフにする
@@ -160,7 +155,9 @@
     float tabbarHeight = tabbar.frame.size.height;
     // ツールバーを非表示にしてタブバーを再表示させる
     app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
+    
 }
+
 
 /*
 #pragma mark - Navigation

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Item.h"
 
 @implementation AppDelegate
 
@@ -15,16 +16,20 @@
     // Override point for customization after application launch.
     // ナビゲーションバーのタイトルの色を変更
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f]};
+    // buyArrayを初期化
+    self.buyArray = [[NSMutableArray alloc]init];
     // checkArrayを初期化
     self.checkArray = [[NSMutableArray alloc]init];
-    // categoriesを初期化
-    self.cats = [[Categories alloc]init];
+
+    // cateを初期化
+    self.cate = [[Cate alloc]init];
     // JSONファイルを読み込む
-    [self.cats loadJSON:@"ItemInCat"];
+    [self.cate loadJSON:@"CateData"];
+
     
     return YES;
 }
-							
+						
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

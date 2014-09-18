@@ -7,12 +7,16 @@
 //
 
 #import "BuyTableController.h"
+#import "AppDelegate.h"
+#import "Item.h"
 
 @interface BuyTableController ()
 
 @end
 
-@implementation BuyTableController
+@implementation BuyTableController{
+    AppDelegate * app;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +37,24 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+/*
+- (void)viewWillAppear:(BOOL)animated
+{
+    // すべてのアイテムを確認
+    for (int i=0; i<app.cate.cateNameArray.count; i++){
+        NSMutableArray * itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:app.cate.cateNameArray[i]]];
+        for (int j=0; j<itemArray.count; j++){
+            Item * item = itemArray[j];
+            //NSLog(@"%@", item.itemName);
+            if ([app.buyArray containsObject:item.itemId]) {
+                
+            }
+        }
+    }
+ 
+    [super viewWillAppear:animated];
+}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -55,12 +77,14 @@
 }
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = @"BuyCell";
     // セルを準備する
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
+    
     
     // 境界線を左端から表示
     cell.separatorInset = UIEdgeInsetsZero;
@@ -70,23 +94,25 @@
     // テキストラベルをセット
     cell.textLabel.text = @"test";
     
-   
+    /*
+    for (int i=0; i<app.cats.catNameArray.count; i++) {
+        NSString * catName = [NSString stringWithString:app.cats.catNameArray[i]];
+        NSMutableArray * itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:catName]];
+        for (int j= 0; j<itemArray.count; j++){
+            NSMutableDictionary * itemDict = [NSMutableDictionary dictionaryWithDictionary:itemArray[j]];
+            Item * item = [[Item alloc]init];
+            [item setItemId:[itemDict objectForKey:@"item_id"]
+                setItemName:[itemDict objectForKey:@"item_name"]
+             setItemImgName:[itemDict objectForKey:@"thumb"]];
+            NSMutableArray * allItemArray = [NSMutableArray array];
+            [allItemArray addObject:item];
+        }
+    }
+    */
     
     return cell;
 }
 
-
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.

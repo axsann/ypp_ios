@@ -15,8 +15,10 @@
 
 -(void)loadJSON:(NSString *)fileName
 {
+    // カテゴリ名は固定なので予め同じものを用意する
     self.catNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"風呂場", @"トイレ", @"洗面所", @"その他", nil];
     self.itemInCategoryDict = [NSMutableDictionary dictionary];
+    //self.itemArray = [NSMutableArray array];
     // JSONファイルを読み込む
     NSString * path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
     NSData * itemInCatFile = [NSData dataWithContentsOfFile:path];
@@ -25,16 +27,14 @@
                                                               options:0
                                                                 error:nil];
     
-    for (id key in [itemDict keyEnumerator]) {
-        // カテゴリ名を配列に読み込む
-        //[self.catNameArray addObject:key];
+    for (int i=0; i<self.catNameArray.count; i++){
         // カテゴリごとのアイテムリストを辞書リストに読み込む
-        [self.itemInCategoryDict setObject:itemDict[key] forKey:key];
+        NSString * catName = [NSString stringWithString:self.catNameArray[i]];
+        [self.itemInCategoryDict setObject:itemDict[catName] forKey:catName];
+        //[self.itemArray addObject:[self.itemInCategoryDict objectForKey:self.catNameArray[i]]];
     }
     
 }
-
-
 
 
 

@@ -1,1 +1,2 @@
 pod 'ICViewPager'
+pod 'AFNetworking'

@@ -15,6 +15,7 @@
 
 @implementation TabBarController{
     AppDelegate * app;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

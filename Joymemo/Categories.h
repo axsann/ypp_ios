@@ -10,5 +10,6 @@
 @interface Categories : NSObject
 @property (strong, nonatomic) NSMutableArray * catNameArray;
 @property (strong, nonatomic) NSMutableDictionary * itemInCategoryDict;
+
 -(void)loadJSON:(NSString *)fileName;
 @end

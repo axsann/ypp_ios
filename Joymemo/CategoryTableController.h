@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryTableController : UITableViewController
-@property (strong, nonatomic) NSMutableArray * itemsArray;
+@property (strong, nonatomic) NSMutableArray * itemArray;
 @property (strong, nonatomic) NSString * catName;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "CategoryTableController.h"
 #import "AppDelegate.h"
+#import "Item.h"
+
 
 @interface CategoryTableController ()
 @end
@@ -30,6 +32,7 @@
     [super viewDidLoad];
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,7 +47,8 @@
     
     // Toolbarの表示をONにする
     //[self.navigationController setToolbarHidden:NO animated:NO];
-
+    [self removeButtonFromToolbar];
+    [self addButtonToToolbar];
     
     // すべてのセルを見て、checkArray内のものと一致するものにチェックをつける
     for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
@@ -77,11 +81,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.itemsArray.count;
+    return self.itemArray.count;
 }
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = @"CategoryCell";
     // セルを準備する
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -93,15 +97,27 @@
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
+    // 配列からアイテムを読み込む
+    Item * item = [[Item alloc]init];
+    item = self.itemArray[indexPath.row];
+    
+    // 画像をセット
+    cell.imageView.image = [UIImage imageNamed:item.itemImgName];
+    
+    // テキストラベルをセット
+    cell.textLabel.text = item.itemName;
+    
+    /*
     // 配列からデータを読み込む
-    NSDictionary * itemDict = [self.itemsArray objectAtIndex:indexPath.row];
+    NSDictionary * itemDict = [self.itemArray objectAtIndex:indexPath.row];
     
     // 画像をセット
     cell.imageView.image = [UIImage imageNamed:[itemDict objectForKey:@"thumb"]];
     
     // テキストラベルをセット
     cell.textLabel.text = [itemDict objectForKey:@"item_name"];
-    
+    */
     // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
     [self checkOnOffContainedInCheckArray:cell didSelectRowAtIndexPath:indexPath];
     
@@ -115,13 +131,6 @@
     // チェックマークのオン・オフ
     [self checkOnOffSelectedCell:cell didSelectRowAtIndexPath:indexPath];
     NSLog(@"%lu", (unsigned long)app.checkArray.count);
-    //if (app.checkArray.count>0){
-        //[self hideTabBar];
-        //[self showToolbar];
-        //[self checkModeOnOff];
-    //} else {
-        //[self showTabBar];
-    //}
 }
 
 // セルの選択がはずれた時に呼び出される
@@ -133,13 +142,12 @@
     NSLog(@"%lu", (unsigned long)app.checkArray.count);
     
 }
-
+/*
 // checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
 - (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * itemDict = [self.itemsArray objectAtIndex:indexPath.row];
-    // テキストラベルがチェックアレイ内のものと一致していたら、チェックマークをつける
-    //if ([app.checkArray containsObject:cell.textLabel.text]) {
+    NSDictionary * itemDict = [self.itemArray objectAtIndex:indexPath.row];
+    // アイテムIDがチェックアレイ内のものと一致していたら、チェックマークをつける
     if ([app.checkArray containsObject:[itemDict objectForKey:@"item_id"]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -147,11 +155,12 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 }
-
+*/
+/*
 // セルを選択した時にチェックマークをつける。もしくは消す。
 - (void)checkOnOffSelectedCell:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * itemDict = [self.itemsArray objectAtIndex:indexPath.row];
+    NSDictionary * itemDict = [self.itemArray objectAtIndex:indexPath.row];
     // チェックマークがなければ、チェックマークをつける
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -160,6 +169,38 @@
     else{ // チェックマークがあれば、チェックマークを消す
         cell.accessoryType = UITableViewCellAccessoryNone;
         [app.checkArray removeObject:[itemDict objectForKey:@"item_id"]];
+    }
+    // 選択モードのオン・オフを行う
+    [self checkModeOnOff];
+}
+*/
+
+// checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
+- (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Item * item = [[Item alloc]init];
+    item = self.itemArray[indexPath.row];
+    // アイテムIDがチェックアレイ内のものと一致していたら、チェックマークをつける
+    if ([app.checkArray containsObject:item.itemId]){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else { // 一致していなければチェックマークを外す
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+
+- (void)checkOnOffSelectedCell:(UITableViewCell *)cell didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Item * item = [[Item alloc]init];
+    item = self.itemArray[indexPath.row];
+    // チェックマークがなければ、チェックマークをつける
+    if (cell.accessoryType == UITableViewCellAccessoryNone){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [app.checkArray addObject:item.itemId];
+    }
+    else{ // チェックマークがあれば、チェックマークを消す
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [app.checkArray removeObject:item.itemId];
     }
     // 選択モードのオン・オフを行う
     [self checkModeOnOff];
@@ -185,6 +226,55 @@
                          }];
 
     }
+}
+
+// ボタンをツールバーに追加する
+- (void)addButtonToToolbar
+{
+    
+    NSMutableArray * toolbarItems = [NSMutableArray array];
+    UIBarButtonItem * addToBuyButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                    target:self
+                                                                                    action:@selector(addItemToBuyArray)
+                                        ];
+    [toolbarItems addObject:addToBuyButton];
+    [app.toolbar setItems:toolbarItems];
+}
+// ボタンをツールバーから削除する
+- (void)removeButtonFromToolbar
+{
+    NSMutableArray * toolbarItems = [NSMutableArray array];
+    [app.toolbar setItems:toolbarItems];
+}
+
+// BuyArrayにアイテムを追加する
+- (void)addItemToBuyArray
+{
+    app.buyArray = [app.checkArray mutableCopy];
+    [self checkModeOff];
+    NSLog(@"%@", app.buyArray);
+}
+
+// チェックと同時にタブバーを押した場合はチェックモードをオフにする
+- (void)checkModeOff
+{
+    // チェックアレイから全てのオブジェクトを削除
+    [app.checkArray removeAllObjects];
+    for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
+    {
+        for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
+        {
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:j];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
+            [self checkOnOffContainedInCheckArray:cell didSelectRowAtIndexPath:indexPath];
+        }
+    }
+    UITabBar *tabbar = self.tabBarController.tabBar;
+    float screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    float tabbarHeight = tabbar.frame.size.height;
+    // ツールバーを非表示にしてタブバーを再表示させる
+    app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
 }
 
 

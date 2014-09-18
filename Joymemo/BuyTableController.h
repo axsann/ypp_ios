@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BuyTableController : UITableViewController
-
+//@property NSMutableArray * buyArray;
 @end
