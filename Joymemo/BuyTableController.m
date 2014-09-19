@@ -92,9 +92,23 @@
     // 画像をセット
     cell.imageView.image = [UIImage imageNamed:item.itemImgName];
     
+    // アクセサリービューにボタンをセット
+    //cell.accessoryView
+    
     return cell;
 }
 
+/*
+- (void) setBoughtButtonOnCell:(UITableViewCell *)cell
+{
+    UIImage * notCheckImage = [UIImage imageNamed:@"circle.png"];
+    UIImageView *notCheckImageView = [[UIImageView alloc] initWithImage:notCheckImage];
+    // 画像が大きい場合にはみ出さないようにViewの大きさを固定化
+    notCheckImageView.frame = CGRectMake(0, 0, 35, 30);
+    // アクセサリービューにイメージを設定
+    cell.accessoryView = notCheckImageView;
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.

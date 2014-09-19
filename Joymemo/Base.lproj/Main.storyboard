@@ -50,11 +50,11 @@
             </objects>
             <point key="canvasLocation" x="1383" y="285"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - ホーム-->
         <scene sceneID="DcN-1A-Yk2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AHV-vG-iFx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hl0-Ds-7Vz"/>
+                    <tabBarItem key="tabBarItem" title="ホーム" id="Hl0-Ds-7Vz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vea-yS-q6n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -117,11 +117,11 @@
             </objects>
             <point key="canvasLocation" x="1011" y="-440"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 買うもの-->
         <scene sceneID="ZX6-1T-x31">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWh-6G-3Up" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Mpc-LH-nea"/>
+                    <tabBarItem key="tabBarItem" title="買うもの" id="Mpc-LH-nea"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwW-lc-Vzf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

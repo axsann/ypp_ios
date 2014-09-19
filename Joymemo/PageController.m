@@ -75,12 +75,13 @@
 
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
 {
+    NSString * cateName = app.cate.cateNameArray[index];
     // タブに表示するView、今回はUILabelを使用
     UILabel* label = [UILabel new];
     //label.text = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
     //label.text = [NSString stringWithString:catNameArray[index]];
     //label.textColor = [UIColor redColor];
-    label.text = [NSString stringWithString:app.cate.cateNameArray[index]];
+    label.text = [NSString stringWithString:cateName];
     [label sizeToFit];
     return label;
 }
@@ -96,6 +97,9 @@
     categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
     categoryTableController.cateName = [NSString stringWithString:cateName];
+    // navigationItemのポインタを渡す
+    categoryTableController.navItem = self.navigationItem;
+    
     return categoryTableController;
 }
 
@@ -106,15 +110,15 @@
         case ViewPagerOptionTabHeight:
             return 44.0;
         case ViewPagerOptionTabOffset:
-            return 56.0;
+            return 1.0;
         case ViewPagerOptionTabWidth:
-            return 94.0;
+            return 106.0;
         case ViewPagerOptionTabLocation:
             return 1.0;
         case ViewPagerOptionStartFromSecondTab:
             return 0.0;
         case ViewPagerOptionCenterCurrentTab:
-            return 0.0;
+            return 1.0;
         case ViewPagerOptionFixFormerTabsPositions:
             return 0.0;
         case ViewPagerOptionFixLatterTabsPositions:
@@ -130,6 +134,7 @@
     switch (component) {
         case ViewPagerIndicator:
             return [[UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f] colorWithAlphaComponent:0.64];
+
         default:
             return color;
     }
@@ -155,6 +160,7 @@
     float tabbarHeight = tabbar.frame.size.height;
     // ツールバーを非表示にしてタブバーを再表示させる
     app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
+    self.navigationItem.rightBarButtonItem = nil;
     
 }
 
