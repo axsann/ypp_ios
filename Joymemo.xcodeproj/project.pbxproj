@@ -11,6 +11,7 @@
 		B73016A319C82A0C009AA201 /* CateData.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* CateData.json */; };
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
 		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
+		B793D6D519CE3E8500FE36EF /* boughtbutton194x60.png in Resources */ = {isa = PBXBuildFile; fileRef = B793D6D419CE3E8500FE36EF /* boughtbutton194x60.png */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -34,7 +35,6 @@
 		B7D7CB7619CD540D00158B2E /* ItemDetailSample.json in Resources */ = {isa = PBXBuildFile; fileRef = B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */; };
 		B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5D819CC13B400575D35 /* circlecheck.png */; };
 		B7ECF5DD19CC169700575D35 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DC19CC169700575D35 /* circle.png */; };
-		B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DE19CC233800575D35 /* boughtbutton.png */; };
 		B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */; };
 		B7ECF5E719CD059F00575D35 /* addtobuybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5E619CD059F00575D35 /* addtobuybutton.png */; };
 		B7ECF5ED19CD132400575D35 /* addtomissionbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */; };
@@ -60,6 +60,7 @@
 		B73016A719C95550009AA201 /* BuyTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyTableController.h; sourceTree = "<group>"; };
 		B73016A819C95550009AA201 /* BuyTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableController.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B793D6D419CE3E8500FE36EF /* boughtbutton194x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbutton194x60.png; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,7 +90,6 @@
 		B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItemDetailSample.json; sourceTree = "<group>"; };
 		B7ECF5D819CC13B400575D35 /* circlecheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circlecheck.png; sourceTree = "<group>"; };
 		B7ECF5DC19CC169700575D35 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
-		B7ECF5DE19CC233800575D35 /* boughtbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbutton.png; sourceTree = "<group>"; };
 		B7ECF5E319CD008000575D35 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		B7ECF5E619CD059F00575D35 /* addtobuybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addtobuybutton.png; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				B73016A219C82A0C009AA201 /* CateData.json */,
 				B7ECF5E619CD059F00575D35 /* addtobuybutton.png */,
 				B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */,
-				B7ECF5DE19CC233800575D35 /* boughtbutton.png */,
+				B793D6D419CE3E8500FE36EF /* boughtbutton194x60.png */,
 				B7ECF5DC19CC169700575D35 /* circle.png */,
 				B7ECF5D819CC13B400575D35 /* circlecheck.png */,
 				B7B4CD2919C7BD070067EB59 /* s_img0.jpg */,
@@ -307,7 +307,7 @@
 				B7ECF5ED19CD132400575D35 /* addtomissionbutton.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
 				B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */,
-				B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */,
+				B793D6D519CE3E8500FE36EF /* boughtbutton194x60.png in Resources */,
 				B7B4CD2319C49A5E0067EB59 /* f_img0.jpg in Resources */,
 				B7D7CB7619CD540D00158B2E /* ItemDetailSample.json in Resources */,
 				B7B4CD2A19C7BD070067EB59 /* s_img0.jpg in Resources */,

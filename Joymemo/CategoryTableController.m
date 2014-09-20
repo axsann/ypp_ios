@@ -43,12 +43,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
-    // Viewを表示するたびに表示データを更新する // ファイルから配列にデータを再読込させる必要あり？
-    //[self.tableView reloadData]; //←よりも→のほうがいい？[(UITableView)tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO]; //http://ebisu.surbiton.jp/sysblog/2012/04/uitableview.htmlを参照
-    
     // Toolbarの表示をONにする
     //[self.navigationController setToolbarHidden:NO animated:NO];
+    // 他のテーブルビューによって追加されたボタンを削除
     [self removeButtonFromToolbar];
+    // ボタンを追加する
     [self addButtonToToolbar];
     
     // すべてのセルを見て、checkArray内のものと一致するものにチェックをつける
@@ -122,7 +121,7 @@
     return cell;
 }
 
-// セルが選択された時に呼び出される
+//-- セルが選択された時に呼び出される
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 選択されたセルを取得
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -131,7 +130,7 @@
     NSLog(@"%lu", (unsigned long)app.checkArray.count);
 }
 
-// セルの選択がはずれた時に呼び出される
+//-- セルの選択がはずれた時に呼び出される
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 選択がはずれたセルを取得
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -141,7 +140,7 @@
     
 }
 
-// checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
+//-- checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
 - (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Item * item = self.itemArray[indexPath.row];
@@ -156,7 +155,7 @@
     }
 }
 
-// セルを選択した時にチェックマークをつける
+//-- セルを選択した時にチェックマークをつける
 - (void)checkOnOffSelectedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Item * item = self.itemArray[indexPath.row];
@@ -177,7 +176,7 @@
     [self showHideCancelButton];
 }
 
-// 選択モード時にキャンセルボタンを表示する
+//-- 選択モード時にキャンセルボタンを表示する
 - (void)showHideCancelButton
 {
     if ([self isCheckModeON]) {
@@ -193,9 +192,7 @@
 
 }
 
-
-
-// 選択モード時にツールバーを表示する
+//-- 選択モード時にツールバーを表示する
 - (void)showHideToolbar
 {
     
@@ -219,7 +216,7 @@
 }
 
 
-// ボタンをツールバーに追加する
+//-- ボタンをツールバーに追加する
 - (void)addButtonToToolbar
 {
     
@@ -232,7 +229,6 @@
     addToBuyButton.frame = CGRectMake(0, 0, 119, 30);
     [addToBuyButton setImage:[UIImage imageNamed:@"addtobuybutton.png"] forState:UIControlStateNormal];
     [addToBuyButton addTarget:self action:@selector(addItemToBuyArray) forControlEvents:UIControlEventTouchUpInside];
-    // UIToolbarのUIBarButtonItemに今作ったカスタム画像のボタンを乗せる
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToBuyBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToBuyButton];
 
@@ -241,7 +237,6 @@
     addToMissionButton.frame = CGRectMake(0, 0, 119, 30);
     [addToMissionButton setImage:[UIImage imageNamed:@"addtomissionbutton.png"] forState:UIControlStateNormal];
     [addToMissionButton addTarget:self action:@selector(addItemToMissionArray) forControlEvents:UIControlEventTouchUpInside];
-    // UIToolbarのUIBarButtonItemに今作ったカスタム画像のボタンを乗せる
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToMissionBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToMissionButton];
     
@@ -254,7 +249,6 @@
     
     // ツールバーに追加するオブジェクトの配列にボタンとスペーサーを追加する
     [toolbarItems addObjectsFromArray:@[flexibleSpacer, addToBuyBarButtonItem, fixedSpacer, addToMissionBarButtonItem, flexibleSpacer]];
-    
     // ツールバーにボタンをセットする
     [app.toolbar setItems:toolbarItems];
 }
@@ -264,7 +258,7 @@
     NSLog(@"addToMission");
 }
 
-// 他のテーブルビューで追加したボタンをツールバーから削除する
+//-- 他のテーブルビューで追加したボタンをツールバーから削除する
 - (void)removeButtonFromToolbar
 {
     NSMutableArray * toolbarItems = [NSMutableArray array];
@@ -272,7 +266,7 @@
     [app.toolbar setItems:toolbarItems];
 }
 
-// BuyArrayにアイテムを追加する
+//-- BuyArrayにアイテムを追加する
 - (void)addItemToBuyArray
 {
     for (int i=0; i<app.checkArray.count; i++) {
@@ -305,7 +299,7 @@
     NSLog(@"%lu", (unsigned long)app.buyArray.count);
 }
 
-// タイマー終了でアラートを閉じる
+//-- タイマー終了でアラートを閉じる
 -(void)closeAlertAtTimerEnd:(NSTimer*)timer
 {
     UIAlertView *alert = [timer userInfo];
@@ -333,12 +327,13 @@
     [self showHideCancelButton];
 }
 
+//-- チェックモードがオンならばYESを返す
 - (BOOL)isCheckModeON
 {
     return app.checkArray.count>0;
 }
 
-// イメージビューをタップしたときに実行する
+//-- セルのイメージビューをタップしたときに実行する
 - (void)imageViewTapped:(UITapGestureRecognizer*)sender
 {
     if (![self isCheckModeON]) {
@@ -352,7 +347,7 @@
     }
 
 }
-// セルのアクセサリービューにカスタムチェックマークを入れる
+//-- セルのアクセサリービューにカスタム「チェックマーク」を入れる
 - (void)setCheckmarkOnCell:(UITableViewCell *)cell
 {
     UIImage * checkImage = [UIImage imageNamed:@"circlecheck.png"];
@@ -367,7 +362,7 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
-// セルのアクセサリービューにカスタムチェックマークなしを入れる
+//-- セルのアクセサリービューにカスタム「チェックマークなし」を入れる
 - (void)setNotCheckmarkOnCell:(UITableViewCell *)cell
 {
     UIImage * notCheckImage = [UIImage imageNamed:@"circle.png"];
@@ -390,7 +385,7 @@
     return 40;
 }
 
-// セルの高さを設定
+//-- セルの高さを設定
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 52;

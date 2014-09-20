@@ -45,8 +45,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // テーブルを更新
+    // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [self buyListNoneModeOnOff];
     [super viewWillAppear:animated];
 }
 
@@ -87,6 +88,8 @@
     cell.separatorInset = UIEdgeInsetsZero;
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    // 空のセルを表示しない
+    self.tableView.tableFooterView = [[UIView alloc] init];
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
     // 画像をセット
@@ -98,25 +101,25 @@
     return cell;
 }
 
-// セルが選択された時に呼び出される
+//-- セルが選択された時に呼び出される
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Item * item = app.buyArray[indexPath.row];
     [self performSegueWithIdentifier:@"BuyTableToDetail" options:item.itemId];
     
 }
-
-// 買ったボタンを設置する
+//-- 買ったボタンを設置する
 - (void) setBoughtButtonOnCell:(UITableViewCell *)cell
 {
     UIButton * boughtButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [boughtButton setFrame:CGRectMake(0, 0, 82, 30)];
-    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton.png"] forState:UIControlStateNormal];
+    [boughtButton setFrame:CGRectMake(cell.contentView.frame.size.width-97, 11, 97, 30)];
+    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton194x60.png"] forState:UIControlStateNormal];
     [boughtButton setBackgroundColor:[UIColor clearColor]];
     [boughtButton addTarget:self action:@selector(boughtButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-    cell.accessoryView = boughtButton;
+    [cell.contentView addSubview:boughtButton];
+    
 }
-
-// 買ったボタンをタップした時の処理(tableView:accessoryButtonTappedForRowWithIndexPathに処理を流す)
+ 
+//-- 買ったボタンをタップした時の処理(tableView:accessoryButtonTappedForRowWithIndexPathに処理を流す)
 - (void)boughtButtonTapped:(UIControl *)button withEvent:(UIEvent *)event
 {
     NSSet *touches = [event allTouches];
@@ -129,19 +132,42 @@
     }
 }
 
-// アクセサリーボタン(買ったボタン)をタップした時の処理
+
+//-- アクセサリーボタン(買ったボタン)をタップした時の処理
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    // buyArrayからアイテムを削除
     [app.buyArray removeObjectAtIndex:indexPath.row];
     NSArray * deleteArray = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:deleteArray withRowAnimation:UITableViewRowAnimationTop];
     NSLog(@"%lu", (unsigned long)app.buyArray.count);
+    [self buyListNoneModeOnOff];
+    
 }
 
-// セルの高さを設定
+//-- セルの高さを設定
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 52;
+}
+
+- (void)buyListNoneModeOnOff
+{
+    // 買う物リストがからの場合は
+    if ([self isBuyListNone]) {
+        // 境界線を透明にする
+        self.tableView.separatorColor = [UIColor clearColor];
+    }
+    else {
+        // 境界線を標準色に戻す
+        self.tableView.separatorColor = [UIColor colorWithRed:200/255.0 green:199/255.0 blue:204/255.0 alpha:1.0];
+
+    }
+}
+
+- (BOOL)isBuyListNone
+{
+    return app.buyArray.count<=0;
 }
 
 /*
