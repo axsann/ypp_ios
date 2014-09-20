@@ -29,7 +29,7 @@
 
     NetworkManager *networkManager =[[NetworkManager alloc]init];
     NSData * data = [networkManager getItemsDetailJson:@"40037207"];
-    //NSData * data = [networkManager getItemsListJson];
+    //NSData * data = [networkManager addBuyListsJson:@"40037207"];
     return YES;
 }
 						

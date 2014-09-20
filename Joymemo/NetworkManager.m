@@ -11,10 +11,11 @@
 @implementation NetworkManager
 
 
--(NSData *)connectServer: (NSString *)dir1 :(NSString*)dir2 :(NSString*)item_id
+-(NSData *)connectServer: (NSString *)dir1 :(NSString*)dir2 item_id:(NSString*)item_id
 {
+    //.jsonを一時的にぬいてます
     NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951&item_id=%@",orign,dir1,dir2,item_id];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@?user_id=367533951&item_id=%@",orign,dir1,dir2,item_id];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     //[request HTTPMethod:@"POST"];
@@ -42,7 +43,7 @@
     NSString * dir2 = @"list";
     NSString * item_id = @"";
     
-    NSData *jsonData = [self connectServer:dir1 :dir2 :item_id];
+    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
     
     return jsonData;
 }
@@ -53,8 +54,32 @@
     NSString * dir1 = @"items";
     NSString * dir2 = @"detail";
     
-    NSData *jsonData = [self connectServer:dir1 :dir2 :item_id];
+    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
     
     return jsonData;
 }
+
+-(NSData *)getBuyListsJson
+{
+    
+    NSString * dir1 = @"buylists";
+    NSString * dir2 = @"list";
+    NSString * item_id = @"";
+    
+    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
+    
+    return jsonData;
+}
+
+
+-(NSData *)addBuyListsJson : (NSString *)item_id
+{
+    
+    NSString * dir1 = @"buylists";
+    NSString * dir2 = @"add_buylist";
+    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
+    
+    return jsonData;
+}
+
 @end
