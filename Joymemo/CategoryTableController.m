@@ -16,7 +16,6 @@
 
 @implementation CategoryTableController{
     AppDelegate * app;
-
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -193,19 +192,20 @@
 - (void)showHideToolbar
 {
     
-    UITabBar *tabbar = self.tabBarController.tabBar;
+    //UITabBar *tabbar = self.tabBarController.tabBar;
 
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    float tabbarHeight = tabbar.frame.size.height;
+    //float tabbarHeight = tabbar.frame.size.height;
+    float toolbarHeight = app.toolbar.frame.size.height;
     if ([self isCheckModeON]){ // チェックアレイにアイテムが入っていればツールバーを表示
         [UIView animateWithDuration:0.3
                          animations:^{
-                             app.toolbar.frame = CGRectMake(0.0f, screenHeight-tabbarHeight, 320.0f, tabbarHeight);
+                             app.toolbar.frame = CGRectMake(0.0f, screenHeight-toolbarHeight, 320.0f, toolbarHeight);
                          }];
     } else{ // チェックアレイにアイテムが入っていなければツールバーを非表示
         [UIView animateWithDuration:0.3
                          animations:^{
-                             app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
+                             app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, toolbarHeight);
                          }];
 
     }
@@ -216,17 +216,51 @@
 {
     
     NSMutableArray * toolbarItems = [NSMutableArray array];
-    UIBarButtonItem * addToBuyButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                    target:self
-                                                                                    action:@selector(addItemToBuyArray)
-                                        ];
-    [toolbarItems addObject:addToBuyButton];
+    //UIBarButtonItem * addToBuyButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    //                                                                                target:self
+    //                                                                                action:@selector(addItemToBuyArray)];
+    // 買う物リストに追加ボタンを作る
+    UIButton *addToBuyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addToBuyButton.frame = CGRectMake(0, 0, 119, 30);
+    [addToBuyButton setImage:[UIImage imageNamed:@"addtobuybutton.png"] forState:UIControlStateNormal];
+    [addToBuyButton addTarget:self action:@selector(addItemToBuyArray) forControlEvents:UIControlEventTouchUpInside];
+    // UIToolbarのUIBarButtonItemに今作ったカスタム画像のボタンを乗せる
+    // 買う物リストに追加ボタンをUIBarButtonItemに変換する
+    UIBarButtonItem *addToBuyBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToBuyButton];
+
+    
+    UIButton *addToMissionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addToMissionButton.frame = CGRectMake(0, 0, 119, 30);
+    [addToMissionButton setImage:[UIImage imageNamed:@"addtomissionbutton.png"] forState:UIControlStateNormal];
+    [addToMissionButton addTarget:self action:@selector(addItemToMissionArray) forControlEvents:UIControlEventTouchUpInside];
+    // UIToolbarのUIBarButtonItemに今作ったカスタム画像のボタンを乗せる
+    // 買う物リストに追加ボタンをUIBarButtonItemに変換する
+    UIBarButtonItem *addToMissionBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToMissionButton];
+    
+    // 固定間隔のスペーサーを作成する
+    UIBarButtonItem * fixedSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpacer.width = 1;
+    // 可変間隔のスペーサーを作成する
+    UIBarButtonItem * flexibleSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    // ツールバーに追加するオブジェクトの配列にボタンとスペーサーを追加する
+    [toolbarItems addObjectsFromArray:@[flexibleSpacer, addToBuyBarButtonItem, fixedSpacer, addToMissionBarButtonItem, flexibleSpacer]];
+    
+    // ツールバーにボタンをセットする
     [app.toolbar setItems:toolbarItems];
 }
-// ボタンをツールバーから削除する
+
+- (void) addItemToMissionArray
+{
+    NSLog(@"addToMission");
+}
+
+// 他のテーブルビューで追加したボタンをツールバーから削除する
 - (void)removeButtonFromToolbar
 {
     NSMutableArray * toolbarItems = [NSMutableArray array];
+    // 空の配列をセットすることでツールバーからボタンを削除する
     [app.toolbar setItems:toolbarItems];
 }
 
@@ -242,6 +276,23 @@
     
     //app.buyArray = [app.checkArray mutableCopy];
     [self checkModeOff];
+    
+    //NSString * addToBuyDoneMessage =
+    /*
+    //アラートの表示
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@""
+                                                     message:@"コピーしました"
+                                                    delegate:self
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:nil
+                           ] autorelease];
+    [alert show];
+    
+    */
+    //アラートを自動的に閉じる
+    //[alert dismissWithClickedButtonIndex:0 animated:NO];
+    
+    
     NSLog(@"%lu", (unsigned long)app.buyArray.count);
 }
 
@@ -296,7 +347,6 @@
     cell.accessoryView = notCheckImageView;
     // accessoryTypeをNoneにする。カスタム画像は維持される。
     cell.accessoryType = UITableViewCellAccessoryNone;
-    
 }
 
 //-- セクションのタイトル文字を設定
@@ -305,8 +355,14 @@
 }
 
 //-- セクションのタイトルの高さを設定
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 40;
+}
+
+// セルの高さを設定
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 52;
 }
 
 @end

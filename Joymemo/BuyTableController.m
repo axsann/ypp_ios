@@ -93,22 +93,49 @@
     cell.imageView.image = [UIImage imageNamed:item.itemImgName];
     
     // アクセサリービューにボタンをセット
-    //cell.accessoryView
+    [self setBoughtButtonOnCell:cell];
     
     return cell;
 }
 
-/*
+
 - (void) setBoughtButtonOnCell:(UITableViewCell *)cell
 {
-    UIImage * notCheckImage = [UIImage imageNamed:@"circle.png"];
-    UIImageView *notCheckImageView = [[UIImageView alloc] initWithImage:notCheckImage];
-    // 画像が大きい場合にはみ出さないようにViewの大きさを固定化
-    notCheckImageView.frame = CGRectMake(0, 0, 35, 30);
-    // アクセサリービューにイメージを設定
-    cell.accessoryView = notCheckImageView;
+    UIButton * boughtButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [boughtButton setFrame:CGRectMake(0, 0, 82, 30)];
+    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton.png"] forState:UIControlStateNormal];
+    [boughtButton setBackgroundColor:[UIColor clearColor]];
+    [boughtButton addTarget:self action:@selector(boughtButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+    cell.accessoryView = boughtButton;
 }
-*/
+
+// 買ったボタンをタップした時の処理(tableView:accessoryButtonTappedForRowWithIndexPathに処理を流す)
+- (void)boughtButtonTapped:(UIControl *)button withEvent:(UIEvent *)event
+{
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
+    if (indexPath != nil)
+    {
+        [self tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    }
+}
+
+// アクセサリーボタン(買ったボタン)をタップした時の処理
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [app.buyArray removeObjectAtIndex:indexPath.row];
+    NSArray * deleteArray = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:deleteArray withRowAnimation:UITableViewRowAnimationTop];
+    NSLog(@"%d", app.buyArray.count);
+}
+
+// セルの高さを設定
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 52;
+}
 
 /*
 // Override to support conditional editing of the table view.

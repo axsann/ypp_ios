@@ -142,10 +142,11 @@
 
 // タブバーにツールバーを作成する
 - (void)makeToolbarAboveTabbar{
-    UITabBar *tabbar = self.tabBarController.tabBar;
+    //UITabBar *tabbar = self.tabBarController.tabBar;
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    float tabbarHeight = tabbar.frame.size.height;
-    app.toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight)];
+    //float tabbarHeight = tabbar.frame.size.height;
+    float toolbarHeight = 60.0f;
+    app.toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0.0f, screenHeight, 320.0f, toolbarHeight)];
     
     [self.tabBarController.view addSubview:app.toolbar];
 }
@@ -155,11 +156,12 @@
 {
     // チェックアレイから全てのオブジェクトを削除
     [app.checkArray removeAllObjects];
-    UITabBar *tabbar = self.tabBarController.tabBar;
+    //UITabBar *tabbar = self.tabBarController.tabBar;
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    float tabbarHeight = tabbar.frame.size.height;
+    //float tabbarHeight = tabbar.frame.size.height;
+    float toolbarHeight = app.toolbar.frame.size.height;
     // ツールバーを非表示にしてタブバーを再表示させる
-    app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, tabbarHeight);
+    app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, toolbarHeight);
     self.navigationItem.rightBarButtonItem = nil;
     
 }

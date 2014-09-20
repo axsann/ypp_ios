@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B71C985B19CB8DBB00804BEB /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B71C985A19CB8DBB00804BEB /* NetworkManager.m */; };
 		B726114719CB174300F65AA8 /* Cate.m in Sources */ = {isa = PBXBuildFile; fileRef = B726114619CB174300F65AA8 /* Cate.m */; };
 		B73016A319C82A0C009AA201 /* CateData.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* CateData.json */; };
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
@@ -35,6 +34,9 @@
 		B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5D819CC13B400575D35 /* circlecheck.png */; };
 		B7ECF5DD19CC169700575D35 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DC19CC169700575D35 /* circle.png */; };
 		B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DE19CC233800575D35 /* boughtbutton.png */; };
+		B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */; };
+		B7ECF5E719CD059F00575D35 /* addtobuybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5E619CD059F00575D35 /* addtobuybutton.png */; };
+		B7ECF5ED19CD132400575D35 /* addtomissionbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */; };
 		DC94B4673F974027BDD7CB50 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E59F913A5FF34914B7C3DBEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B71C985919CB8DBB00804BEB /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
-		B71C985A19CB8DBB00804BEB /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B726114519CB174300F65AA8 /* Cate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cate.h; sourceTree = "<group>"; };
 		B726114619CB174300F65AA8 /* Cate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cate.m; sourceTree = "<group>"; };
 		B73016A219C82A0C009AA201 /* CateData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CateData.json; sourceTree = "<group>"; };
@@ -88,6 +88,10 @@
 		B7ECF5D819CC13B400575D35 /* circlecheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circlecheck.png; sourceTree = "<group>"; };
 		B7ECF5DC19CC169700575D35 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		B7ECF5DE19CC233800575D35 /* boughtbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbutton.png; sourceTree = "<group>"; };
+		B7ECF5E319CD008000575D35 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		B7ECF5E619CD059F00575D35 /* addtobuybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addtobuybutton.png; sourceTree = "<group>"; };
+		B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addtomissionbutton.png; sourceTree = "<group>"; };
 		E59F913A5FF34914B7C3DBEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,13 +164,15 @@
 				B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */,
 				B7B4CD1119C496490067EB59 /* PageController.h */,
 				B7B4CD1219C496490067EB59 /* PageController.m */,
+				B7ECF5E319CD008000575D35 /* ItemDetailViewController.h */,
+				B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */,
 				B726114519CB174300F65AA8 /* Cate.h */,
+				B726114619CB174300F65AA8 /* Cate.m */,
 				B73016A419C84FF0009AA201 /* Item.h */,
 				B73016A519C84FF0009AA201 /* Item.m */,
-				B726114619CB174300F65AA8 /* Cate.m */,
-				B71C985919CB8DBB00804BEB /* NetworkManager.h */,
-				B71C985A19CB8DBB00804BEB /* NetworkManager.m */,
 				B73016A219C82A0C009AA201 /* CateData.json */,
+				B7ECF5E619CD059F00575D35 /* addtobuybutton.png */,
+				B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */,
 				B7ECF5DE19CC233800575D35 /* boughtbutton.png */,
 				B7ECF5DC19CC169700575D35 /* circle.png */,
 				B7ECF5D819CC13B400575D35 /* circlecheck.png */,
@@ -291,9 +297,11 @@
 				B73016A319C82A0C009AA201 /* CateData.json in Resources */,
 				B7B4CD2119C49A5E0067EB59 /* s_img1.jpg in Resources */,
 				B7B4CD2219C49A5E0067EB59 /* k_img0.jpg in Resources */,
+				B7ECF5E719CD059F00575D35 /* addtobuybutton.png in Resources */,
 				B7B4CCF519C495A80067EB59 /* Images.xcassets in Resources */,
 				B7ECF5DD19CC169700575D35 /* circle.png in Resources */,
 				B7B4CD2419C49A5E0067EB59 /* t_img0.jpg in Resources */,
+				B7ECF5ED19CD132400575D35 /* addtomissionbutton.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
 				B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */,
 				B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */,
@@ -352,12 +360,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7B4CD1319C496490067EB59 /* PageController.m in Sources */,
+				B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
 				B726114719CB174300F65AA8 /* Cate.m in Sources */,
 				B73016A619C84FF0009AA201 /* Item.m in Sources */,
-				B71C985B19CB8DBB00804BEB /* NetworkManager.m in Sources */,
 				B7B4CCE919C495A80067EB59 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
