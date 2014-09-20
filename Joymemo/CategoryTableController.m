@@ -8,6 +8,7 @@
 
 #import "CategoryTableController.h"
 #import "AppDelegate.h"
+#import "TKRSegueOptions.h"
 #import "Item.h"
 
 
@@ -105,6 +106,15 @@
     
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
+    
+    
+    // imageView をタップしたときイベントが発生するようにする
+    [cell.imageView setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(imageViewTapped:)];
+    [tap setNumberOfTouchesRequired:1];
+    [tap setNumberOfTapsRequired:1];
+    [cell.imageView addGestureRecognizer:tap];
     
 
     // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
@@ -211,6 +221,7 @@
     }
 }
 
+
 // ボタンをツールバーに追加する
 - (void)addButtonToToolbar
 {
@@ -274,26 +285,35 @@
         }
     }
     
-    //app.buyArray = [app.checkArray mutableCopy];
     [self checkModeOff];
     
-    //NSString * addToBuyDoneMessage =
-    /*
-    //アラートの表示
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@""
-                                                     message:@"コピーしました"
+    // 追加しましたメッセージ
+    NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.buyArray.count];
+ 
+    //アラートを作成
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                     message:addToBuyDoneMessage
                                                     delegate:self
                                            cancelButtonTitle:nil
                                            otherButtonTitles:nil
-                           ] autorelease];
+                          ];
+    
+    
+    // アラートを自動で閉じる秒数をセットするタイマー
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
+
+    // アラートを表示する
     [alert show];
     
-    */
-    //アラートを自動的に閉じる
-    //[alert dismissWithClickedButtonIndex:0 animated:NO];
-    
-    
     NSLog(@"%lu", (unsigned long)app.buyArray.count);
+}
+
+// タイマー終了でアラートを閉じる
+-(void)closeAlertAtTimerEnd:(NSTimer*)timer
+{
+    UIAlertView *alert = [timer userInfo];
+    // アラートを自動で閉じる
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 // チェックと同時にタブバーを押した場合はチェックモードをオフにする
@@ -321,6 +341,21 @@
     return app.checkArray.count>0;
 }
 
+// イメージビューをタップしたときに実行する
+- (void)imageViewTapped:(UITapGestureRecognizer*)sender
+{
+    if (![self isCheckModeON]) {
+        // タップされた位置からセルの indexPath を取得
+        CGPoint point = [sender locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+        Item * item = [[Item alloc]init];
+        item =  self.itemArray[indexPath.row];
+        [self performSegueWithIdentifier:@"CategoryTableToDetail" options:item.itemId];
+        
+        
+    }
+
+}
 // セルのアクセサリービューにカスタムチェックマークを入れる
 - (void)setCheckmarkOnCell:(UITableViewCell *)cell
 {

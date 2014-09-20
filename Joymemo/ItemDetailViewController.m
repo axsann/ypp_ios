@@ -7,8 +7,10 @@
 //
 
 #import "ItemDetailViewController.h"
+#import "TKRSegueOptions.h"
 
 @interface ItemDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *LargeImageView;
 
 @end
 
@@ -27,6 +29,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.itemId = self.segueOptions.stringValue;
+    self.navigationItem.title = self.itemId;
+    NSLog(@"%@", self.itemId);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

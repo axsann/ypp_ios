@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 kanta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface Item : NSObject
 @property (strong, nonatomic) NSString * itemId;

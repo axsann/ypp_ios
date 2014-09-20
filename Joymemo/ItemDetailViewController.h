@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
 
 @interface ItemDetailViewController : UIViewController
+@property (strong, nonatomic) NSString * itemId;
 
 @end

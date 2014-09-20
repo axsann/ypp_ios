@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TKRSegueOptions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3DBB9B4A54424374B9F8F17B</key>
+		<key>48211C465A754A5DAB20A739</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7262D93CD98245D283A27CC1</key>
+		<key>7CA77EFB84EF4048B8DC312F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C165F0A46444562ADB074B0</key>
+		<key>BA77615656094483A6338916</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE2979B03C8A424AA2D4F60A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

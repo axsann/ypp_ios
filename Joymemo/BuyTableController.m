@@ -128,7 +128,7 @@
     [app.buyArray removeObjectAtIndex:indexPath.row];
     NSArray * deleteArray = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:deleteArray withRowAnimation:UITableViewRowAnimationTop];
-    NSLog(@"%d", app.buyArray.count);
+    NSLog(@"%lu", (unsigned long)app.buyArray.count);
 }
 
 // セルの高さを設定

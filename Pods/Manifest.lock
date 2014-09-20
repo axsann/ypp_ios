@@ -21,13 +21,16 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ICViewPager (1.5.1)
+  - TKRSegueOptions (0.1.2)
 
 DEPENDENCIES:
   - AFNetworking
   - ICViewPager
+  - TKRSegueOptions
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   ICViewPager: 213e2d0b69d6ca57e7e5791dedd57cda5321432a
+  TKRSegueOptions: bf1313cfef720137083d4a31bd99233362c63a76
 
 COCOAPODS: 0.33.1
