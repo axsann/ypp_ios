@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
--(NSString *)makeURL: (NSString *)dir1 :(NSString*)dir2 :(NSString*)item_id;
+-(NSData *)connectServer: (NSString *)dir1 :(NSString*)dir2 :(NSString*)item_id;
 -(NSData *)getItemsDetailJson: (NSString*)item_id;
 -(NSData *)getItemsListJson;
 
