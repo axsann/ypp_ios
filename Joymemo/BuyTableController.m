@@ -35,7 +35,6 @@
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
     
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -101,8 +100,7 @@
 
 // セルが選択された時に呼び出される
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Item * item = [[Item alloc]init];
-    item =  app.buyArray[indexPath.row];
+    Item * item = app.buyArray[indexPath.row];
     [self performSegueWithIdentifier:@"BuyTableToDetail" options:item.itemId];
     
 }

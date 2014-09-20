@@ -98,8 +98,7 @@
     
     
     // 配列からアイテムを読み込む
-    Item * item = [[Item alloc]init];
-    item = self.itemArray[indexPath.row];
+    Item * item = self.itemArray[indexPath.row];
     
     // 画像をセット
     cell.imageView.image = [UIImage imageNamed:item.itemImgName];
@@ -145,8 +144,7 @@
 // checkArrayに含まれているアイテムのチェックマークを自動でオン・オフする
 - (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Item * item = [[Item alloc]init];
-    item = self.itemArray[indexPath.row];
+    Item * item = self.itemArray[indexPath.row];
     // アイテムがチェックアレイ内のものと一致していたら、チェックマークをつける
     if ([app.checkArray containsObject:item]){
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -161,8 +159,7 @@
 // セルを選択した時にチェックマークをつける
 - (void)checkOnOffSelectedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Item * item = [[Item alloc]init];
-    item = self.itemArray[indexPath.row];
+    Item * item = self.itemArray[indexPath.row];
     // チェックマークがなければ、チェックマークをつける
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -348,8 +345,7 @@
         // タップされた位置からセルの indexPath を取得
         CGPoint point = [sender locationInView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-        Item * item = [[Item alloc]init];
-        item =  self.itemArray[indexPath.row];
+        Item * item = self.itemArray[indexPath.row];
         [self performSegueWithIdentifier:@"CategoryTableToDetail" options:item.itemId];
         
         
