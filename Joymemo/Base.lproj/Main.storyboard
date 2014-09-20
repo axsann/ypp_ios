@@ -131,9 +131,18 @@
                     <view key="view" contentMode="scaleToFill" id="DAe-US-XBS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="u6X-jr-CV4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="AsV-bm-sNC"/>
+                    <connections>
+                        <outlet property="scrollView" destination="u6X-jr-CV4" id="iHI-23-Rsd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZq-8S-wBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,6 +178,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GSN-Do-NhS"/>
+        <segue reference="z6f-Hc-K1g"/>
     </inferredMetricsTieBreakers>
 </document>

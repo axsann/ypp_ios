@@ -284,12 +284,12 @@
             [app.buyArray addObject:item]; // itemをbuyArrayに追加する
         }
     }
+    // 追加しましたメッセージ
+    NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.checkArray.count];
     
+    // チェックモードをオフにする
     [self checkModeOff];
     
-    // 追加しましたメッセージ
-    NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.buyArray.count];
- 
     //アラートを作成
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                      message:addToBuyDoneMessage
@@ -371,7 +371,7 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
-// セルのアクセサリービューにカスタムノットチェックマークを入れる
+// セルのアクセサリービューにカスタムチェックマークなしを入れる
 - (void)setNotCheckmarkOnCell:(UITableViewCell *)cell
 {
     UIImage * notCheckImage = [UIImage imageNamed:@"circle.png"];

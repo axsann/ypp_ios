@@ -13,4 +13,5 @@
 @property (strong, nonatomic) NSMutableArray * cateNameArray;
 @property (strong, nonatomic) NSMutableDictionary * cateDict;
 - (void)loadJSON:(NSString *)fileName;
+//- (void)loadJSON: (NSData *)jsonData;
 @end

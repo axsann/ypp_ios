@@ -31,6 +31,7 @@
 		B7B4CD2319C49A5E0067EB59 /* f_img0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD1F19C49A5E0067EB59 /* f_img0.jpg */; };
 		B7B4CD2419C49A5E0067EB59 /* t_img0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD2019C49A5E0067EB59 /* t_img0.jpg */; };
 		B7B4CD2A19C7BD070067EB59 /* s_img0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD2919C7BD070067EB59 /* s_img0.jpg */; };
+		B7D7CB7619CD540D00158B2E /* ItemDetailSample.json in Resources */ = {isa = PBXBuildFile; fileRef = B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */; };
 		B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5D819CC13B400575D35 /* circlecheck.png */; };
 		B7ECF5DD19CC169700575D35 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DC19CC169700575D35 /* circle.png */; };
 		B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DE19CC233800575D35 /* boughtbutton.png */; };
@@ -85,6 +86,7 @@
 		B7B4CD1F19C49A5E0067EB59 /* f_img0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = f_img0.jpg; sourceTree = "<group>"; };
 		B7B4CD2019C49A5E0067EB59 /* t_img0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t_img0.jpg; sourceTree = "<group>"; };
 		B7B4CD2919C7BD070067EB59 /* s_img0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s_img0.jpg; sourceTree = "<group>"; };
+		B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItemDetailSample.json; sourceTree = "<group>"; };
 		B7ECF5D819CC13B400575D35 /* circlecheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circlecheck.png; sourceTree = "<group>"; };
 		B7ECF5DC19CC169700575D35 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		B7ECF5DE19CC233800575D35 /* boughtbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbutton.png; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				B726114619CB174300F65AA8 /* Cate.m */,
 				B73016A419C84FF0009AA201 /* Item.h */,
 				B73016A519C84FF0009AA201 /* Item.m */,
+				B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */,
 				B73016A219C82A0C009AA201 /* CateData.json */,
 				B7ECF5E619CD059F00575D35 /* addtobuybutton.png */,
 				B7ECF5EC19CD132400575D35 /* addtomissionbutton.png */,
@@ -306,6 +309,7 @@
 				B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */,
 				B7ECF5DF19CC233800575D35 /* boughtbutton.png in Resources */,
 				B7B4CD2319C49A5E0067EB59 /* f_img0.jpg in Resources */,
+				B7D7CB7619CD540D00158B2E /* ItemDetailSample.json in Resources */,
 				B7B4CD2A19C7BD070067EB59 /* s_img0.jpg in Resources */,
 				B7B4CCF019C495A80067EB59 /* Main.storyboard in Resources */,
 			);

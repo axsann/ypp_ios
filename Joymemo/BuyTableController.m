@@ -8,6 +8,7 @@
 
 #import "BuyTableController.h"
 #import "AppDelegate.h"
+#import "TKRSegueOptions.h"
 #import "Item.h"
 
 @interface BuyTableController ()
@@ -33,6 +34,8 @@
 
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -85,10 +88,8 @@
     cell.separatorInset = UIEdgeInsetsZero;
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
-    
     // 画像をセット
     cell.imageView.image = [UIImage imageNamed:item.itemImgName];
     
@@ -98,7 +99,15 @@
     return cell;
 }
 
+// セルが選択された時に呼び出される
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Item * item = [[Item alloc]init];
+    item =  app.buyArray[indexPath.row];
+    [self performSegueWithIdentifier:@"BuyTableToDetail" options:item.itemId];
+    
+}
 
+// 買ったボタンを設置する
 - (void) setBoughtButtonOnCell:(UITableViewCell *)cell
 {
     UIButton * boughtButton = [UIButton buttonWithType:UIButtonTypeCustom];

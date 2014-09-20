@@ -25,7 +25,9 @@
     self.cate = [[Cate alloc]init];
     // JSONファイルを読み込む
     [self.cate loadJSON:@"CateData"];
-
+    
+    //[self.cate loadJSON:[NetworkManager getListData:@"test"]];
+    
     
     return YES;
 }
