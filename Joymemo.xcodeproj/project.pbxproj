@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0477F33E19CD67800002641D /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0477F33D19CD67800002641D /* NetworkManager.m */; };
 		B726114719CB174300F65AA8 /* Cate.m in Sources */ = {isa = PBXBuildFile; fileRef = B726114619CB174300F65AA8 /* Cate.m */; };
 		B73016A319C82A0C009AA201 /* CateData.json in Resources */ = {isa = PBXBuildFile; fileRef = B73016A219C82A0C009AA201 /* CateData.json */; };
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0477F33C19CD67800002641D /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		0477F33D19CD67800002641D /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B726114519CB174300F65AA8 /* Cate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cate.h; sourceTree = "<group>"; };
 		B726114619CB174300F65AA8 /* Cate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cate.m; sourceTree = "<group>"; };
 		B73016A219C82A0C009AA201 /* CateData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CateData.json; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 		B7B4CCE219C495A80067EB59 /* Joymemo */ = {
 			isa = PBXGroup;
 			children = (
+				0477F33C19CD67800002641D /* NetworkManager.h */,
+				0477F33D19CD67800002641D /* NetworkManager.m */,
 				B7B4CCEB19C495A80067EB59 /* AppDelegate.h */,
 				B7B4CCEC19C495A80067EB59 /* AppDelegate.m */,
 				B7B4CCEE19C495A80067EB59 /* Main.storyboard */,
@@ -366,6 +371,7 @@
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
 				B726114719CB174300F65AA8 /* Cate.m in Sources */,
 				B73016A619C84FF0009AA201 /* Item.m in Sources */,
+				0477F33E19CD67800002641D /* NetworkManager.m in Sources */,
 				B7B4CCE919C495A80067EB59 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

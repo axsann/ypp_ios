@@ -1,0 +1,72 @@
+//
+//  NetworkManager.m
+//  Joymemo
+//
+//  Created by yasutomo shirahama on 2014/09/20.
+//  Copyright (c) 2014年 kanta. All rights reserved.
+//
+
+#import "NetworkManager.h"
+
+@implementation NetworkManager
+
+
+-(NSString *)makeURL: (NSString *)dir1 :(NSString*)dir2 :(NSString*)item_id
+{
+    NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951&item_id=%@",orign,dir1,dir2,item_id];
+    
+    return url;
+}
+
+-(NSData *)getItemsListJson
+{
+    
+    NSString * dir1 = @"items";
+    NSString * dir2 = @"list";
+    NSString * item_id = @"";
+    
+    NSString *url = [self makeURL:dir1 :dir2 :item_id];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //[request HTTPMethod:@"POST"];
+    
+    //サーバーとの通信
+    NSError * errorJson;
+    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&errorJson];
+    NSLog(@"%@", [errorJson localizedDescription]);
+
+    //JSONをパース
+    NSError * errorParse;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorParse];
+    
+    NSLog(@"%@",[errorParse localizedDescription]);
+    NSLog(@"%@",jsonArray);
+    
+    
+    return jsonData;
+}
+-(NSData *)getItemsDetailJson : (NSString *)item_id
+{
+    
+    NSString * dir1 = @"items";
+    NSString * dir2 = @"detail";
+    NSString *url = [self makeURL:dir1 :dir2 :item_id];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //[request HTTPMethod:@"POST"];
+    
+    //サーバーとの通信
+    NSError * errorJson;
+    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&errorJson];
+    //NSLog(@"%@", [errorJson localizedDescription]);
+    
+    //JSONをパース
+    NSError * errorParse;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorParse];
+    
+    NSLog(@"%@",[errorParse localizedDescription]);
+    NSLog(@"%@",jsonArray);
+    
+    
+    return jsonData;
+}
+@end

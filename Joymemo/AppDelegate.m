@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Item.h"
+#import "NetworkManager.h"
 
 @implementation AppDelegate
 
@@ -26,7 +27,9 @@
     // JSONファイルを読み込む
     [self.cate loadJSON:@"CateData"];
 
-    
+    NetworkManager *networkManager =[[NetworkManager alloc]init];
+    NSData * data = [networkManager getItemsDetailJson:@"40037207"];
+    //    NSData * data = [networkManager getItemsListJson:@"40037207"];
     return YES;
 }
 						
