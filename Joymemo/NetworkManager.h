@@ -12,4 +12,5 @@
 -(NSData *)connectServer: (NSString*)dir1 :(NSString*)dir2 item_id:(NSString*)item_id;
 -(NSData *)getItemsDetailJson: (NSString*)item_id;
 -(NSData *)getItemsListJson;
+-(NSData *)addBuyListsJson: (NSString*)item_id;
 @end
