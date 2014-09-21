@@ -111,14 +111,16 @@
 - (void) setBoughtButtonOnCell:(UITableViewCell *)cell
 {
     UIButton * boughtButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [boughtButton setFrame:CGRectMake(cell.contentView.frame.size.width-97, 11, 97, 30)];
-    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton194x60.png"] forState:UIControlStateNormal];
+    float boughtButtonWidth = 97;
+    float boughtButtonHeight = 52;
+    [boughtButton setFrame:CGRectMake(cell.contentView.frame.size.width-97, 0, boughtButtonWidth, boughtButtonHeight)];
+    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton194x104.png"] forState:UIControlStateNormal];
     [boughtButton setBackgroundColor:[UIColor clearColor]];
     [boughtButton addTarget:self action:@selector(boughtButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:boughtButton];
     
 }
- 
+
 //-- 買ったボタンをタップした時の処理(tableView:accessoryButtonTappedForRowWithIndexPathに処理を流す)
 - (void)boughtButtonTapped:(UIControl *)button withEvent:(UIEvent *)event
 {
