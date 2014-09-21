@@ -11,11 +11,11 @@
 @implementation NetworkManager
 
 
--(NSData *)connectServer: (NSString *)dir1 :(NSString*)dir2 item_id:(NSString*)item_id
+/************** データを取得するmain関数 *******************/
+-(NSData *)getData: (NSString *)directory1 :(NSString*)directory2 parameter:(NSString*)param
 {
-    //.jsonを一時的にぬいてます
     NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951&item_id=%@",orign,dir1,dir2,item_id];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951&%@",orign,directory1,directory2,param];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     //[request HTTPMethod:@"POST"];
@@ -35,12 +35,13 @@
     return jsonData;
 }
 
--(NSData *)setData: (NSString *)dir1 :(NSString*)dir2 item_id:(NSString*)item_id
+/************** データを追加するmain関数 *******************/
+-(NSData *)setData: (NSString *)directory1 :(NSString*)directory2 parameter:(NSString*)param
 {
     //リクエスト用のパラメータを設定
-    NSString *param = [NSString stringWithFormat:@"user_id=367533951&item_id=%@",item_id];
+    NSString *postparameter = [NSString stringWithFormat:@"user_id=367533951&%@",param];
     NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",orign,dir1,dir2];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",orign,directory1,directory2];
     
     //リクエストを生成
     NSMutableURLRequest *request;
@@ -50,43 +51,12 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:20];
     [request setHTTPShouldHandleCookies:FALSE];
-    [request setHTTPBody:[param dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[postparameter dataUsingEncoding:NSUTF8StringEncoding]];
     
     //同期通信で送信
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
-    /*
-    // 送信したいURLを作成する
-    NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *stringurl = [NSString stringWithFormat:@"%@/%@/%@",orign,dir1,dir2];
-    NSURL *url = [NSURLURLWithString:stringurl];
-    // Mutableなインスタンスを作成し、インスタンスの内容を変更できるようにする
-    NSMutableURLRequest *request = [[NSMutableURLRequestalloc] initWithURL:url];
-    MethodにPOSTを指定する。
-    request.HTTPMethod = @"POST";
-    
-    
-    
-    //NSString *orign = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *stringurl = [NSString stringWithFormat:@"%@/%@/%@",orign,dir1,dir2];
-    NSURL *url = [NSURL URLWithString:stringurl];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
-    // POSTパラメーターを設定
-    NSString *param = [NSString stringWithFormat:@"user_id=367533951&item_id=%@",item_id];
-    
-    [request requestWithURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[param dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //サーバーとの通信
-    NSError * errorJson;
-    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&errorJson];
-    NSLog(@"%@", [errorJson localizedDescription]);
-    
-    */
     
     //テスト用 JSONをパース
     NSError * errorParse;
@@ -97,49 +67,92 @@
     
     return jsonData;
 }
+
+
+/************** ここから個別のget関数 *******************/
 -(NSData *)getItemsListJson
 {
-    
-    NSString * dir1 = @"items";
-    NSString * dir2 = @"list";
-    NSString * item_id = @"";
-    
-    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
-    
+    NSString * directory1 = @"items";
+    NSString * directory2 = @"list";
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:@""];
     return jsonData;
 }
 
 -(NSData *)getItemsDetailJson : (NSString *)item_id
 {
-    
-    NSString * dir1 = @"items";
-    NSString * dir2 = @"detail";
-    
-    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
-    
+    NSString * directory1 = @"items";
+    NSString * directory2 = @"detail";
+    NSString * param = [NSString stringWithFormat:@"item_id=%@",item_id];
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:param];
     return jsonData;
 }
 
--(NSData *)getBuyListsJson
+-(NSData *)getUsersListJson
 {
-    
-    NSString * dir1 = @"buylists";
-    NSString * dir2 = @"list";
-    NSString * item_id = @"";
-    
-    NSData *jsonData = [self connectServer:dir1 :dir2 item_id:item_id];
-    
+    NSString * directory1 = @"items";
+    NSString * directory2 = @"list";
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:@""];
     return jsonData;
 }
 
-
--(NSData *)addBuyListsJson : (NSString *)item_id
+-(NSData *)getUsersDetailJson
 {
-    
-    NSString * dir1 = @"buylists";
-    NSString * dir2 = @"add_buylist";
-    NSData *jsonData = [self setData :dir1 :dir2 item_id:item_id];
-    
+    NSString * directory1 = @"users";
+    NSString * directory2 = @"detail";
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:@""];
+    return jsonData;
+}
+
+-(NSData *)getMissionsListJson
+{
+    NSString * directory1 = @"missions";
+    NSString * directory2 = @"list";
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:@""];
+    return jsonData;
+}
+
+-(NSData *)getMissionsDetailJson : (NSString *)mission_id
+{
+    NSString * directory1 = @"missions";
+    NSString * directory2 = @"detail";
+    NSString * param = [NSString stringWithFormat:@"mission_id=%@",mission_id];
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:param];
+    return jsonData;
+}
+
+-(NSData *)getBuylistsListJson
+{
+    NSString * directory1 = @"buylists";
+    NSString * directory2 = @"list";
+    NSData *jsonData = [self getData:directory1 :directory2 parameter:@""];
+    return jsonData;
+}
+
+/************** ここから個別のset関数 *******************/
+-(NSData *)addMissionJson:(NSString *)target_id memotxt:(NSString *)memo acceptbool:accepted itemArray:(NSArray *)item_ids
+{
+    NSString * directory1 = @"missions";
+    NSString * directory2 = @"add_mission";
+    NSString * param = [NSString stringWithFormat:@"target_id=%@&memo=%@&accepted=%@&items[]",target_id];
+    NSData *jsonData = [self setData :directory1 :directory2 parameter:@""];
+    return jsonData;
+}
+
+-(NSData *)addMissionAcceptJson : (NSString *)mission_id
+{
+    NSString * directory1 = @"missions";
+    NSString * directory2 = @"accept";
+    NSString * param = [NSString stringWithFormat:@"mission_id=%@",mission_id];
+    NSData *jsonData = [self setData :directory1 :directory2 parameter:param];
+    return jsonData;
+}
+
+-(NSData *)addBuylistJson : (NSString *)item_id
+{
+    NSString * directory1 = @"buylists";
+    NSString * directory2 = @"add_buylist";
+    NSString * param = [NSString stringWithFormat:@"item_id=%@",item_id];
+    NSData *jsonData = [self setData :directory1 :directory2 parameter:param];
     return jsonData;
 }
 

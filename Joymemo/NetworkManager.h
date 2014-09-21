@@ -9,8 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
--(NSData *)connectServer: (NSString*)dir1 :(NSString*)dir2 item_id:(NSString*)item_id;
--(NSData *)getItemsDetailJson: (NSString*)item_id;
+-(NSData *)getData: (NSString*)directory1 :(NSString*)directory2 parameter:(NSString*)param;
+
 -(NSData *)getItemsListJson;
--(NSData *)addBuyListsJson: (NSString*)item_id;
+-(NSData *)getItemsDetailJson: (NSString*)item_id;
+-(NSData *)getUsersListJson;
+-(NSData *)getUsersDetailJson;
+-(NSData *)getMissionsListJson;
+-(NSData *)getMissionsDetailJson: (NSString*)mission_id;
+-(NSData *)getBuylistsListJson;
+
+-(NSData *)addMissionJson:(NSString *)target_id memotxt:(NSString *)memo acceptbool:accepted itemArray:(NSArray *)item_ids;
+-(NSData *)addMissionAcceptJson:(NSString *)mission_id;
+-(NSData *)addBuylistJson: (NSString *)item_id;
+
 @end

@@ -28,9 +28,16 @@
     [self.cate loadJSON:@"CateData"];
 
     NetworkManager *networkManager =[[NetworkManager alloc]init];
+    //NSData * data = [networkManager getItemsListJson];
     //NSData * data = [networkManager getItemsDetailJson:@"40037207"];
-    //NSData * data = [networkManager addBuyListsJson:@"40037207"];
-    NSData * data = [networkManager addBuyListsJson:@"40037207"];
+    //NSData * data = [networkManager getUsersListJson];
+    //NSData * data = [networkManager getUsersDetailJson];
+    //NSData * data = [networkManager getMissionsListJson];
+    //NSData * data = [networkManager getMissionsDetailJson:@"740553924"];
+    //NSData * data = [networkManager getBuylistsListJson];
+    
+    NSData * data = [networkManager addMissionJson];
+    //NSData * data = [networkManager addBuyListsJson:@"26148495"];
     return YES;
 }
 						
