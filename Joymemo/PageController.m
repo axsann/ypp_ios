@@ -10,6 +10,13 @@
 #import "CategoryTableController.h"
 
 @interface PageController ()
+- (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager;
+- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index;
+- (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index;
+- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value;
+- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color;
+- (void)makeToolbarAboveTabbar;
+- (void)checkModeOff;
 
 @end
 
@@ -35,16 +42,8 @@
     self.delegate = self;
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
-
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
-    
-    // ナビゲーションバーに編集ボタンを設置
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-
-    // toolbarの表示をONにする
-    //[self.navigationController setToolbarHidden:NO animated:NO];
     
 }
 
@@ -94,7 +93,7 @@
     NSString * cateName = [NSString stringWithString:app.cate.cateNameArray[index]];
     // アイテムをテーブルビューにコピー
     //categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:cateName]];
-    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.cateDict objectForKey:cateName]];
+    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.itemInCateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
     categoryTableController.cateName = [NSString stringWithString:cateName];
     // navigationItemのポインタを渡す
@@ -129,19 +128,21 @@
 }
 
 // 上部タブのインディケーターの色を変更
-- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color {
+- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color
+{
     
     switch (component) {
         case ViewPagerIndicator:
-            return [[UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f] colorWithAlphaComponent:0.64];
-
+            return [app.joymemoColor colorWithAlphaComponent:0.64];
+        case ViewPagerContent:
+            return app.bgColor; // 背景色を設定
         default:
             return color;
     }
 }
 
 // タブバーにツールバーを作成する
-- (void)makeToolbarAboveTabbar{
+- (void)makeToolbarAboveTabbar {
     //UITabBar *tabbar = self.tabBarController.tabBar;
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
     //float tabbarHeight = tabbar.frame.size.height;

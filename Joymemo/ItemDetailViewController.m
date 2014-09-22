@@ -8,13 +8,17 @@
 
 #import "ItemDetailViewController.h"
 #import "TKRSegueOptions.h"
+#import "AppDelegate.h"
 
 @interface ItemDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+- (void)addItemLargeImageView;
+- (void)addMemoTextView;
 
 @end
 
 @implementation ItemDetailViewController{
+    AppDelegate * app;
     NSDictionary * jsonDict;
     UIImageView * itemLargeImageView;
     UITextView * memoTextView;
@@ -33,7 +37,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    // AppDelegateをインスタンス化
+    app = [[UIApplication sharedApplication] delegate];
+    // 背景色を設定
+    self.view.backgroundColor = app.bgColor;
     // scrollViewのサイズを設定
     [self.scrollView setContentSize:CGSizeMake(320, 700)];
     
@@ -93,7 +100,7 @@
     [[memoTextView layer] setCornerRadius:10.0];
     [memoTextView setClipsToBounds:YES];
     // textView に黒色の枠線を付ける
-    [[memoTextView layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[memoTextView layer] setBorderColor:[app.separatorColor CGColor]];
     [[memoTextView layer] setBorderWidth:1.0];
     
     [self.scrollView addSubview:memoTextView];

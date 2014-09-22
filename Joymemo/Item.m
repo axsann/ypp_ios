@@ -10,11 +10,12 @@
 
 @implementation Item
 
-- (void) setItemId:(NSString *)itemId setItemName:(NSString *)itemName setItemImgName:(NSString *)itemImgName
+- (void) setItemId:(NSString *)itemId setItemName:(NSString *)itemName setThumb:(NSString *)thumb setCategory:(NSString *)category
 {
     self.itemId = itemId;
     self.itemName = itemName;
-    self.itemImgName = itemImgName;
+    self.thumb = thumb;
+    self.category = category;
 }
 
 

@@ -14,20 +14,27 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // ナビゲーションバーのタイトルの色を変更
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f]};
-    // buyArrayを初期化
-    self.buyArray = [[NSMutableArray alloc]init];
-    // checkArrayを初期化
-    self.checkArray = [[NSMutableArray alloc]init];
+    self.netManager = [[NetworkManager alloc]init];
+    
+    
+    self.buyArray = [NSMutableArray array]; // buyArrayを初期化
+    self.checkArray = [NSMutableArray array]; // checkArrayを初期化
+    // joymemoのテーマカラーを格納
+    self.joymemoColor = [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f];
+    // ナビゲーションバーのタイトルの色を設定
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:self.joymemoColor};
+    // 境界線の色を格納
+    self.separatorColor = [UIColor colorWithRed:200/255.0 green:199/255.0 blue:204/255.0 alpha:1.0];
+    // 背景色を格納
+    self.bgColor = [UIColor colorWithRed:246/255.0 green:241/255.0 blue:234/255.0 alpha:1.0];
+    // タブバーの選択時のハイライト色を変更
+    [[UITabBar appearance] setTintColor:self.joymemoColor];
 
     // cateを初期化
     self.cate = [[Cate alloc]init];
     // JSONファイルを読み込む
-    [self.cate loadJSON:@"CateData"];
-    
-    //[self.cate loadJSON:[NetworkManager getListData:@"test"]];
-    
+    //[self.cate loadJson:[self.netManager getItemsListJson]];
+    [self.cate loadJsonWithFileName:@"CateData"];
     
     return YES;
 }

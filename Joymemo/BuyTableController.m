@@ -12,7 +12,15 @@
 #import "Item.h"
 
 @interface BuyTableController ()
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)addBoughtButtonOnCell:(UITableViewCell *)cell;
+- (void)boughtButtonTapped:(UIControl *)button withEvent:(UIEvent *)event;
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)buyListNoneModeOnOff;
+- (BOOL)isBuyListNone;
 @end
 
 @implementation BuyTableController{
@@ -34,6 +42,10 @@
 
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    // 背景色を設定
+    self.tableView.backgroundColor = app.bgColor;
+    // 空のセルを表示しない
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -88,15 +100,13 @@
     cell.separatorInset = UIEdgeInsetsZero;
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    // 空のセルを表示しない
-    self.tableView.tableFooterView = [[UIView alloc] init];
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
     // 画像をセット
-    cell.imageView.image = [UIImage imageNamed:item.itemImgName];
+    cell.imageView.image = [UIImage imageNamed:item.thumb];
     
-    // アクセサリービューにボタンをセット
-    [self setBoughtButtonOnCell:cell];
+    // アクセサリービューにボタンを追加
+    [self addBoughtButtonOnCell:cell];
     
     return cell;
 }
@@ -108,7 +118,7 @@
     
 }
 //-- 買ったボタンを設置する
-- (void) setBoughtButtonOnCell:(UITableViewCell *)cell
+- (void)addBoughtButtonOnCell:(UITableViewCell *)cell
 {
     UIButton * boughtButton = [UIButton buttonWithType:UIButtonTypeCustom];
     float boughtButtonWidth = 97;
@@ -162,8 +172,8 @@
     }
     else {
         // 境界線を標準色に戻す
-        self.tableView.separatorColor = [UIColor colorWithRed:200/255.0 green:199/255.0 blue:204/255.0 alpha:1.0];
-
+        self.tableView.separatorColor = app.separatorColor;
+        
     }
 }
 

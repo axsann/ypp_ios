@@ -11,7 +11,8 @@
 @interface Item : NSObject
 @property (strong, nonatomic) NSString * itemId;
 @property (strong, nonatomic) NSString * itemName;
-@property (strong, nonatomic) NSString * itemImgName;
-- (void) setItemId:(NSString *)itemId setItemName:(NSString *)itemName setItemImgName:(NSString *)itemImgName;
+@property (strong, nonatomic) NSString * thumb;
+@property (strong, nonatomic) NSString * category;
+- (void) setItemId:(NSString *)itemId setItemName:(NSString *)itemName setThumb:(NSString *)thumb setCategory:(NSString *)category;
 
 @end

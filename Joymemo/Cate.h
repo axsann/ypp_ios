@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Item.h"
 
 @interface Cate : NSObject
-@property (strong, nonatomic) NSMutableArray * cateNameArray;
-@property (strong, nonatomic) NSMutableDictionary * cateDict;
-- (void)loadJSON:(NSString *)fileName;
-//- (void)loadJSON: (NSData *)jsonData;
+@property (strong, nonatomic) NSMutableArray * cateNameArray; // カテゴリ名を格納した配列
+@property (strong, nonatomic) NSMutableDictionary * itemInCateDict; // カテゴリ名をKeyとしてアイテムの配列を格納
+-(void)loadJsonWithFileName:(NSString *)fileName; //テスト用
+- (void)loadJson: (NSData *)jsonData;
 @end

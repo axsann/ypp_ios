@@ -13,6 +13,29 @@
 
 
 @interface CategoryTableController ()
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)checkOnOffContainedInCheckArray:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)checkOnOffSelectedCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)showHideCancelButton;
+- (void)showHideToolbar;
+- (void)addButtonToToolbar;
+- (void)addItemToMissionArray;
+- (void)removeButtonFromToolbar;
+- (void)addItemToBuyArray;
+- (void)closeAlertAtTimerEnd:(NSTimer*)timer;
+- (void)checkModeOff;
+- (BOOL)isCheckModeON;
+- (void)imageViewTapped:(UITapGestureRecognizer*)sender;
+- (void)setCheckmarkOnCell:(UITableViewCell *)cell;
+- (void)setNotCheckmarkOnCell:(UITableViewCell *)cell;
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation CategoryTableController{
@@ -33,6 +56,10 @@
     [super viewDidLoad];
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    // 背景色を設定
+    self.tableView.backgroundColor = app.bgColor;
+    // 空のセルを表示しない
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -100,7 +127,7 @@
     Item * item = self.itemArray[indexPath.row];
     
     // 画像をセット
-    cell.imageView.image = [UIImage imageNamed:item.itemImgName];
+    cell.imageView.image = [UIImage imageNamed:item.thumb];
     
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
@@ -253,7 +280,7 @@
     [app.toolbar setItems:toolbarItems];
 }
 
-- (void) addItemToMissionArray
+- (void)addItemToMissionArray
 {
     NSLog(@"addToMission");
 }
@@ -300,7 +327,7 @@
 }
 
 //-- タイマー終了でアラートを閉じる
--(void)closeAlertAtTimerEnd:(NSTimer*)timer
+- (void)closeAlertAtTimerEnd:(NSTimer*)timer
 {
     UIAlertView *alert = [timer userInfo];
     // アラートを自動で閉じる
@@ -377,11 +404,14 @@
 
 //-- セクションのタイトル文字を設定
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.cateName;
+    
+    //return nil; // タイトル名を非表示にする
+    return self.cateName; // タイトル名をカテゴリ名にする
 }
 
 //-- セクションのタイトルの高さを設定
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    //return 0; // セクションのタイトルを非表示にする
     return 40;
 }
 

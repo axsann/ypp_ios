@@ -12,6 +12,7 @@
 		B73016A619C84FF0009AA201 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A519C84FF0009AA201 /* Item.m */; };
 		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
 		B793D6D719CE555A00FE36EF /* boughtbutton194x104.png in Resources */ = {isa = PBXBuildFile; fileRef = B793D6D619CE555A00FE36EF /* boughtbutton194x104.png */; };
+		B793D6DC19CF8E8500FE36EF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B793D6DB19CF8E8500FE36EF /* NetworkManager.m */; };
 		B7B4CCDD19C495A80067EB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDC19C495A80067EB59 /* Foundation.framework */; };
 		B7B4CCDF19C495A80067EB59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */; };
 		B7B4CCE119C495A80067EB59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4CCE019C495A80067EB59 /* UIKit.framework */; };
@@ -61,6 +62,8 @@
 		B73016A819C95550009AA201 /* BuyTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyTableController.m; sourceTree = "<group>"; };
 		B73D848F67454023B9B7554E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B793D6D619CE555A00FE36EF /* boughtbutton194x104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbutton194x104.png; sourceTree = "<group>"; };
+		B793D6D919CF7D5000FE36EF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		B793D6DB19CF8E8500FE36EF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B7B4CCD919C495A80067EB59 /* Joymemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joymemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B4CCDC19C495A80067EB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7B4CCDE19C495A80067EB59 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,6 +175,8 @@
 				B726114619CB174300F65AA8 /* Cate.m */,
 				B73016A419C84FF0009AA201 /* Item.h */,
 				B73016A519C84FF0009AA201 /* Item.m */,
+				B793D6D919CF7D5000FE36EF /* NetworkManager.h */,
+				B793D6DB19CF8E8500FE36EF /* NetworkManager.m */,
 				B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */,
 				B73016A219C82A0C009AA201 /* CateData.json */,
 				B7ECF5E619CD059F00575D35 /* addtobuybutton.png */,
@@ -370,6 +375,7 @@
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
 				B726114719CB174300F65AA8 /* Cate.m in Sources */,
 				B73016A619C84FF0009AA201 /* Item.m in Sources */,
+				B793D6DC19CF8E8500FE36EF /* NetworkManager.m in Sources */,
 				B7B4CCE919C495A80067EB59 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
