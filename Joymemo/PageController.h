@@ -7,7 +7,8 @@
 //
 
 #import "ViewPagerController.h"
+#import "Cate.h"
 
 @interface PageController : ViewPagerController<ViewPagerDelegate, ViewPagerDataSource>
-
+@property (strong, nonatomic) Cate * cate;
 @end

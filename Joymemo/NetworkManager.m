@@ -7,71 +7,90 @@
 //
 
 #import "NetworkManager.h"
+#import "AppDelegate.h"
 @interface NetworkManager ()
--(NSData *)getJsonFromUrlWithSubDirName: (NSString *)subDirName FileName:(NSString*)fileName Parameter:(NSString*)param;
--(NSData *)postDataToUrlWithSubDirName: (NSString *)subDirName SubSubDirName:(NSString*)subSubDirName Parameter:(NSString*)param;
-
+- (NSData *)getJsonFromServerWithSubDirName: (NSString *)subDirName fileName:(NSString*)fileName parameter:(NSString*)param;
+- (NSData *)postDataToServerWithSubDirName: (NSString *)subDirName subSubDirName:(NSString*)subSubDirName parameter:(NSString*)param;
+- (NSData *)removeDataFromServerWithSubDirName: (NSString *)subDirName subSubDirName:(NSString*)subSubDirName parameter:(NSString*)param;
 @end
 
 @implementation NetworkManager
 
+- (id) init {
+    if (self = [super init]) {
+        self.userId = @"3F66970F-C960-4EF9-A499-DE780546AD64";
+        self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
+    }
+    return self;
+}
 
-//---------- データを取得するメソッド ----------
--(NSData *)getJsonFromUrlWithSubDirName: (NSString *)subDirName FileName:(NSString*)fileName Parameter:(NSString*)param
+//---------- 実際にURLからJSONを取得するメソッド ----------
+- (NSData *)getJsonFromServerWithSubDirName: (NSString *)subDirName fileName:(NSString*)fileName parameter:(NSString*)param
 {
-    NSString * rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString * url;
-    if (param!=nil) {
-        url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951&%@", rootUrl, subDirName, fileName, param];
-    }
-    else {
-        url = [NSString stringWithFormat:@"%@/%@/%@.json?user_id=367533951", rootUrl, subDirName, fileName];
-    }
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/%@/%@.json?%@", self.rootUrl, subDirName, fileName, param];
+    NSLog(@"%@", urlStr);
+    NSURL * url = [NSURL URLWithString:urlStr];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     //サーバーからJSONを取得
     NSError * getError;
-    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&getError];
+    NSData * jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&getError];
     NSLog(@"%@", [getError localizedDescription]);
+    
+    //-- テスト用始め JSONをパース
+    //NSError * parseError;
+    //NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&parseError];
+    
+    //NSLog(@"%@",[parseError localizedDescription]);
+    //NSLog(@"%@",jsonArray);
+    //-- テスト用終わり
+    
+    return jsonData;
+}
+
+//---------- 実際にURLにデータをPOSTするメソッド ----------
+- (NSData *)postDataToServerWithSubDirName: (NSString *)subDirName subSubDirName:(NSString*)subSubDirName parameter:(NSString*)param
+{
+    //リクエスト用のパラメータを設定
+    param = [NSString stringWithFormat:@"user_id=%@&%@", self.userId, param]; // paramにuserIdを追加
+    NSString *urlStr = [NSString stringWithFormat:@"%@/%@/%@",self.rootUrl,subDirName,subSubDirName];
+    NSURL * url = [NSURL URLWithString:urlStr];
+    //POSTのHTTPリクエストを作成
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setTimeoutInterval:20];
+    [request setHTTPShouldHandleCookies:FALSE];
+    [request setHTTPBody:[param dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //同期通信で送信
+    NSURLResponse *response;
+    NSError *postError;
+    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&postError];
+    NSLog(@"postError:%@", [postError localizedDescription]);
     
     //-- テスト用始め JSONをパース
     NSError * parseError;
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&parseError];
     
-    NSLog(@"%@",[parseError localizedDescription]);
+    NSLog(@"parseError:%@",[parseError localizedDescription]);
     NSLog(@"%@",jsonArray);
     //-- テスト用終わり
     
     return jsonData;
 }
 
--(NSData *)getJsonFromUrlWithSubDirName: (NSString *)subDirName FileName:(NSString*)fileName
+//---------- 実際にサーバからデータを削除するメソッド ----------
+- (NSData *)removeDataFromServerWithSubDirName: (NSString *)subDirName subSubDirName:(NSString*)subSubDirName parameter:(NSString*)param
 {
-    NSData * jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName Parameter:nil];
-    return jsonData;
-}
-
-//---------- データを追加するメソッド ----------
--(NSData *)postDataToUrlWithSubDirName: (NSString *)subDirName SubSubDirName:(NSString*)subSubDirName Parameter:(NSString*)param
-{
-    //リクエスト用のパラメータを設定
-    NSString *postParam = [NSString stringWithFormat:@"user_id=367533951&%@",param];
-    NSString *rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",rootUrl,subDirName,subSubDirName];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/%@/%@?%@", self.rootUrl, subDirName, subSubDirName, param];
+    NSURL * url = [NSURL URLWithString:urlStr];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
-    //リクエストを生成
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:20];
-    [request setHTTPShouldHandleCookies:FALSE];
-    [request setHTTPBody:[postParam dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //同期通信で送信
-    NSURLResponse *response;
-    NSError *postError;
-    NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&postError];
+    //サーバーからJSONを取得
+    NSError * getError;
+    NSData * jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&getError];
+    NSLog(@"%@", [getError localizedDescription]);
     
     //-- テスト用始め JSONをパース
     NSError * parseError;
@@ -86,67 +105,74 @@
 
 
 //---------- ここから個別のgetメソッド ----------
--(NSData *)getItemsListJson
+// すべてのアイテムリスト(カテゴリ別ページ)を取得するメソッド
+- (NSData *)getItemListJson
 {
     NSString * subDirName = @"items";
     NSString * fileName = @"list";
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getItemsDetailJson : (NSString *)itemId
+// アイテム詳細を取得するメソッド
+- (NSData *)getItemDetailJson : (NSString *)itemId
 {
     NSString * subDirName = @"items";
     NSString * fileName = @"detail";
-    NSString * param = [NSString stringWithFormat:@"item_id=%@",itemId];
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName Parameter:param];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@&item_id=%@", self.userId, itemId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getUsersListJson
+// 同じグループのユーザを取得するメソッド
+- (NSData *)getUserListJson
 {
-    NSString * subDirName = @"items";
+    NSString * subDirName = @"users";
     NSString * fileName = @"list";
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getUsersDetailJson
+// ユーザ詳細を取得するメソッド
+- (NSData *)getUserDetailJson
 {
     NSString * subDirName = @"users";
     NSString * fileName = @"detail";
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getMissionsListJson
+// お使いリストを取得するメソッド
+- (NSData *)getMissionListJson
 {
     NSString * subDirName = @"missions";
     NSString * fileName = @"list";
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getMissionsDetailJson : (NSString *)missionId
+// お使いの詳細を取得するメソッド
+- (NSData *)getMissionDetailJson : (NSString *)missionId
 {
     NSString * subDirName = @"missions";
     NSString * fileName = @"detail";
-    NSString * param = [NSString stringWithFormat:@"mission_id=%@",missionId];
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName Parameter:param];
+    NSString * param = [NSString stringWithFormat:@"mission_id=%@", missionId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
-
--(NSData *)getBuylistsListJson
+// 買う物リストを取得するメソッド
+- (NSData *)getBuyListJson
 {
     NSString * subDirName = @"buylists";
     NSString * fileName = @"list";
-    NSData *jsonData = [self getJsonFromUrlWithSubDirName:subDirName FileName:fileName];
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
+//---------- ここまで個別のgetメソッド ----------
 
 //---------- ここから個別のpostメソッド ----------
 /*
--(NSData *)postMissionData: (NSString *)targetId Memo:(NSString *)memo IsAccepted:(BOOL)isAccepted itemIdArray:(NSArray *)itemIdArray;
+- (NSData *)postMissionData: (NSString *)targetId Memo:(NSString *)memo IsAccepted:(BOOL)isAccepted itemIdArray:(NSArray *)itemIdArray;
 {
     NSString * subDirName = @"missions";
     NSString * subSubDirName = @"add_mission";
@@ -155,22 +181,34 @@
     return jsonData;
 }
 */
--(NSData *)postMissionAcceptData: (NSString *)missionId;
+- (NSData *)postMissionAcceptData: (NSString *)missionId
 {
     NSString * subDirName = @"missions";
     NSString * subSubDirName = @"accept";
     NSString * param = [NSString stringWithFormat:@"mission_id=%@",missionId];
-    NSData *jsonData = [self postDataToUrlWithSubDirName:subDirName SubSubDirName:subSubDirName Parameter:param];
+    NSData *jsonData = [self postDataToServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
     return jsonData;
 }
 
--(NSData *)postBuylistData: (NSString *)itemId;
+- (NSData *)postBuyListData: (NSString *)itemId
 {
     NSString * subDirName = @"buylists";
     NSString * subSubDirName = @"add_buylist";
     NSString * param = [NSString stringWithFormat:@"item_id=%@",itemId];
-    NSData *jsonData = [self postDataToUrlWithSubDirName:subDirName SubSubDirName:subSubDirName Parameter:param];
+    NSData *jsonData = [self postDataToServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
     return jsonData;
 }
+//---------- ここまで個別のpostメソッド ----------
+
+//---------- ここから個別のremoveメソッド ----------
+- (NSData *)removeBuyListItemData: (NSString *)buyListId
+{
+    NSString * subDirName = @"buylists";
+    NSString * subSubDirName = @"remove_buylist";
+    NSString * param = [NSString stringWithFormat:@"buylist_id=%@",buyListId];
+    NSData *jsonData = [self removeDataFromServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
+    return jsonData;
+}
+//---------- ここまで個別のremoveメソッド ----------
 
 @end

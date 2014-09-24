@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "TKRSegueOptions.h"
 #import "Item.h"
+#import "SVProgressHUD.h"
 
 
 @interface CategoryTableController ()
@@ -25,10 +26,10 @@
 - (void)addButtonToToolbar;
 - (void)addItemToMissionArray;
 - (void)removeButtonFromToolbar;
-- (void)addItemToBuyArray;
+- (void)addItemToBuyArray; // 買う物リストへ追加ボタンを押した時に実行されるメソッド
 - (void)closeAlertAtTimerEnd:(NSTimer*)timer;
-- (void)checkModeOff;
-- (BOOL)isCheckModeON;
+- (void)ExitCheckMode;
+- (BOOL)isCheckModeOn;
 - (void)imageViewTapped:(UITapGestureRecognizer*)sender;
 - (void)setCheckmarkOnCell:(UITableViewCell *)cell;
 - (void)setNotCheckmarkOnCell:(UITableViewCell *)cell;
@@ -54,8 +55,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // 再利用するセルを設定
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    
+    // 境界線の色を設定
+    self.tableView.separatorColor = app.tableCellSeparatorColor;
     // 背景色を設定
     self.tableView.backgroundColor = app.bgColor;
     // 空のセルを表示しない
@@ -110,12 +117,9 @@
 }
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"CategoryCell";
+    NSString *cellIdentifier = @"Cell";
     // セルを準備する
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // 境界線を左端から表示
     cell.separatorInset = UIEdgeInsetsZero;
@@ -127,7 +131,9 @@
     Item * item = self.itemArray[indexPath.row];
     
     // 画像をセット
-    cell.imageView.image = [UIImage imageNamed:item.thumb];
+    NSURL * thumbUrl = [NSURL URLWithString:item.thumb];
+    NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
+    cell.imageView.image = [UIImage imageWithData:thumbData];
     
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
@@ -190,12 +196,12 @@
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self setCheckmarkOnCell:cell];
-        [app.checkArray addObject:item];
+        [app.checkArray addObject:item.itemId];
     }
     else { // チェックマークがあれば、チェックマークを消す
         //cell.accessoryType = UITableViewCellAccessoryNone;
         [self setNotCheckmarkOnCell:cell];
-        [app.checkArray removeObject:item];
+        [app.checkArray removeObject:item.itemId];
     }
     // 選択モード時にツールバーを表示する
     [self showHideToolbar];
@@ -206,11 +212,11 @@
 //-- 選択モード時にキャンセルボタンを表示する
 - (void)showHideCancelButton
 {
-    if ([self isCheckModeON]) {
+    if ([self isCheckModeOn]) {
         UIBarButtonItem * cancelButton = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self
-                                                                        action:@selector(checkModeOff)];
+                                                                        action:@selector(ExitCheckMode)];
         self.navItem.rightBarButtonItem = cancelButton;
     }
     else {
@@ -228,7 +234,7 @@
     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
     //float tabbarHeight = tabbar.frame.size.height;
     float toolbarHeight = app.toolbar.frame.size.height;
-    if ([self isCheckModeON]){ // チェックアレイにアイテムが入っていればツールバーを表示
+    if ([self isCheckModeOn]){ // チェックアレイにアイテムが入っていればツールバーを表示
         [UIView animateWithDuration:0.3
                          animations:^{
                              app.toolbar.frame = CGRectMake(0.0f, screenHeight-toolbarHeight, 320.0f, toolbarHeight);
@@ -255,7 +261,7 @@
     UIButton *addToBuyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addToBuyButton.frame = CGRectMake(0, 0, 119, 30);
     [addToBuyButton setImage:[UIImage imageNamed:@"addtobuybutton.png"] forState:UIControlStateNormal];
-    [addToBuyButton addTarget:self action:@selector(addItemToBuyArray) forControlEvents:UIControlEventTouchUpInside];
+    [addToBuyButton addTarget:self action:@selector(addToBuyButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToBuyBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToBuyButton];
 
@@ -293,20 +299,32 @@
     [app.toolbar setItems:toolbarItems];
 }
 
-//-- BuyArrayにアイテムを追加する
+- (void)addToBuyButtonTapped
+{
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(addItemToBuyArray) withObject:nil afterDelay:0.1];
+}
+
+//-- postBuyListArrayにアイテムを追加する
 - (void)addItemToBuyArray
 {
     for (int i=0; i<app.checkArray.count; i++) {
-        Item * item = app.checkArray[i];
-        if (![app.buyArray containsObject:item]) { // buyArrayに追加済みでなければ
-            [app.buyArray addObject:item]; // itemをbuyArrayに追加する
+        NSString * itemId = app.checkArray[i];
+        if (![app.postBuyListArray containsObject:itemId]) { // postBuyListArrayに追加済みでなければ
+            [app.postBuyListArray addObject:itemId]; // itemをpostBuyListArrayに追加する
         }
     }
     // 追加しましたメッセージ
     NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.checkArray.count];
     
     // チェックモードをオフにする
-    [self checkModeOff];
+    [self ExitCheckMode];
+    
+    // postBuyListArrayの中のitemIdをサーバーにPOSTする
+    for (int i=0; i<app.postBuyListArray.count; i++) {
+        [app.netManager postBuyListData:app.postBuyListArray[i]];
+    }
+    [app.postBuyListArray removeAllObjects]; // POSTが完了したので、postBuyListArrayを空にする
     
     //アラートを作成
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
@@ -319,11 +337,10 @@
     
     // アラートを自動で閉じる秒数をセットするタイマー
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
-
+    [SVProgressHUD dismiss];
     // アラートを表示する
     [alert show];
-    
-    NSLog(@"%lu", (unsigned long)app.buyArray.count);
+
 }
 
 //-- タイマー終了でアラートを閉じる
@@ -334,15 +351,13 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-// チェックと同時にタブバーを押した場合はチェックモードをオフにする
-- (void)checkModeOff
+// チェックモードをオフにする
+- (void)ExitCheckMode
 {
     // チェックアレイから全てのオブジェクトを削除
     [app.checkArray removeAllObjects];
-    for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
-    {
-        for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-        {
+    for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+        for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:j];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
             // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
@@ -355,7 +370,7 @@
 }
 
 //-- チェックモードがオンならばYESを返す
-- (BOOL)isCheckModeON
+- (BOOL)isCheckModeOn
 {
     return app.checkArray.count>0;
 }
@@ -363,7 +378,7 @@
 //-- セルのイメージビューをタップしたときに実行する
 - (void)imageViewTapped:(UITapGestureRecognizer*)sender
 {
-    if (![self isCheckModeON]) {
+    if (![self isCheckModeOn]) {
         // タップされた位置からセルの indexPath を取得
         CGPoint point = [sender locationInView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];

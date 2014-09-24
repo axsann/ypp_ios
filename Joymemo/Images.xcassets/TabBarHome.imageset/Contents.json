@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "clipboard_30x30.png"
+      "filename" : "home30x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "clipboard_60x60.png"
+      "filename" : "home60x.png"
     }
   ],
   "info" : {

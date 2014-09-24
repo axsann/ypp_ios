@@ -1,3 +1,3 @@
 pod 'ICViewPager'
-pod 'AFNetworking'
 pod 'TKRSegueOptions'
+pod 'SVProgressHUD'

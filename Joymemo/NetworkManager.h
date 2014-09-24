@@ -9,16 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
--(NSData *)getItemsListJson;
--(NSData *)getItemsDetailJson: (NSString*)itemId;
--(NSData *)getUsersListJson;
--(NSData *)getUsersDetailJson;
--(NSData *)getMissionsListJson;
--(NSData *)getMissionsDetailJson: (NSString*)missionId;
--(NSData *)getBuylistsListJson;
+@property (strong, nonatomic) NSString * userId;
+@property (strong, nonatomic) NSString * rootUrl;
+-(NSData *)getItemListJson;
+-(NSData *)getItemDetailJson: (NSString*)itemId;
+-(NSData *)getUserListJson;
+-(NSData *)getUserDetailJson;
+-(NSData *)getMissionListJson;
+-(NSData *)getMissionDetailJson: (NSString*)missionId;
+-(NSData *)getBuyListJson;
 
 //-(NSData *)postMissionData: (NSString *)targetId Memo:(NSString *)memo IsAccepted:(BOOL)isAccepted itemIdArray:(NSArray *)itemIdArray;
 -(NSData *)postMissionAcceptData: (NSString *)missionId;
--(NSData *)postBuylistData: (NSString *)itemId;
+-(NSData *)postBuyListData: (NSString *)itemId;
+
+-(NSData *)removeBuyListItemData: (NSString *)buyListId;
+
 
 @end

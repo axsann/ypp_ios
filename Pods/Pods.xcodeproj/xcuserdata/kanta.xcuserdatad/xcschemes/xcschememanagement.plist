@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>Pods-ICViewPager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-ICViewPager.xcscheme</key>
+		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>48211C465A754A5DAB20A739</key>
+		<key>154718BEC10D440788C252C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7CA77EFB84EF4048B8DC312F</key>
+		<key>98F36B33EF20479F91F52BEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA77615656094483A6338916</key>
+		<key>9E30BB314FE04D2B9A93784E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE2979B03C8A424AA2D4F60A</key>
+		<key>EF6EAC8D82944B8DAC956F36</key>
 		<dict>
 			<key>primary</key>
 			<true/>

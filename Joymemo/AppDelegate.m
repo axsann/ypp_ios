@@ -8,37 +8,39 @@
 
 #import "AppDelegate.h"
 #import "Item.h"
+#import "SVProgressHUD.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.netManager = [[NetworkManager alloc]init];
     
-    
-    self.buyArray = [NSMutableArray array]; // buyArrayを初期化
+    self.netManager = [[NetworkManager alloc]init]; // netManagerを初期化
+
+    self.postBuyListArray = [NSMutableArray array]; // buyArrayを初期化
     self.checkArray = [NSMutableArray array]; // checkArrayを初期化
     // joymemoのテーマカラーを格納
     self.joymemoColor = [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f];
     // ナビゲーションバーのタイトルの色を設定
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:self.joymemoColor};
-    // 境界線の色を格納
-    self.separatorColor = [UIColor colorWithRed:200/255.0 green:199/255.0 blue:204/255.0 alpha:1.0];
+
     // 背景色を格納
     self.bgColor = [UIColor colorWithRed:246/255.0 green:241/255.0 blue:234/255.0 alpha:1.0];
+    // テーブルビューのセルの境界線の色を格納(背景色と同じ)
+    self.tableCellSeparatorColor = self.bgColor;
+    // テキストビューのボーダーの色を格納
+    self.textViewBorderColor = [UIColor colorWithRed:244/255.0 green:196/255.0 blue:173/255.0 alpha:1.0];
+    
     // タブバーの選択時のハイライト色を変更
     [[UITabBar appearance] setTintColor:self.joymemoColor];
 
-    // cateを初期化
-    self.cate = [[Cate alloc]init];
-    // JSONファイルを読み込む
-    //[self.cate loadJson:[self.netManager getItemsListJson]];
-    [self.cate loadJsonWithFileName:@"CateData"];
-    
+
     return YES;
 }
-						
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

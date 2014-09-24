@@ -19,7 +19,7 @@
 -(void)loadJson:(NSData *)jsonData
 {
     // カテゴリ名は固定なので予め同じものを用意する
-    self.cateNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"風呂場", @"トイレ", @"洗面所", @"その他", nil];
+    self.cateNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"お風呂", @"トイレ", @"洗面所", @"その他", nil];
     self.itemInCateDict = [NSMutableDictionary dictionary];
 
     // JSONを配列に変換する
@@ -51,7 +51,7 @@
 -(void)loadJsonWithFileName:(NSString *)fileName
 {
     // カテゴリ名は固定なので予め同じものを用意する
-    self.cateNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"風呂場", @"トイレ", @"洗面所", @"その他", nil];
+    self.cateNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"お風呂", @"トイレ", @"洗面所", @"その他", nil];
     self.itemInCateDict = [NSMutableDictionary dictionary];
     // JSONファイルを読み込む
     NSString * filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];

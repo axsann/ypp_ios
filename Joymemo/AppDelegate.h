@@ -14,12 +14,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSMutableArray * buyArray;
+@property (strong, nonatomic) NSMutableArray * postBuyListArray;
 @property (strong, nonatomic) NSMutableArray * checkArray;
-@property (strong, nonatomic) Cate * cate; // カテゴリごとのアイテムを格納する
 @property (strong, nonatomic) UIToolbar * toolbar; // タブバーに設置するツールバー
 @property (strong, nonatomic) UIColor * joymemoColor; // joymemoのテーマカラー
-@property (strong, nonatomic) UIColor * separatorColor; // 境界線の色
+@property (strong, nonatomic) UIColor * tableCellSeparatorColor; // テーブルビューのセルの境界線の色
+@property (strong, nonatomic) UIColor * textViewBorderColor; // テキストビューのボーダーの色
 @property (strong, nonatomic) UIColor * bgColor; // 背景色
 @property (strong, nonatomic) NetworkManager * netManager;
 @end

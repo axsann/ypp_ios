@@ -8,6 +8,8 @@
 #import "PageController.h"
 #import "AppDelegate.h"
 #import "CategoryTableController.h"
+#import "SVProgressHUD.h"
+
 
 @interface PageController ()
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager;
@@ -42,6 +44,13 @@
     self.delegate = self;
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    
+    // cateを初期化
+    self.cate = [[Cate alloc]init];
+    [self loadJson];
+
+
+    
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
     
@@ -69,12 +78,12 @@
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager
 {
     // タブの数
-    return app.cate.cateNameArray.count;
+    return self.cate.cateNameArray.count;
 }
 
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
 {
-    NSString * cateName = app.cate.cateNameArray[index];
+    NSString * cateName = self.cate.cateNameArray[index];
     // タブに表示するView、今回はUILabelを使用
     UILabel* label = [UILabel new];
     //label.text = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
@@ -90,10 +99,10 @@
     // タブ番号に対応するUIViewControllerを返す
     CategoryTableController * categoryTableController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryTableController"];
     // index番号のカテゴリ名を取得
-    NSString * cateName = [NSString stringWithString:app.cate.cateNameArray[index]];
+    NSString * cateName = [NSString stringWithString:self.cate.cateNameArray[index]];
     // アイテムをテーブルビューにコピー
     //categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:cateName]];
-    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.itemInCateDict objectForKey:cateName]];
+    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[self.cate.itemInCateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
     categoryTableController.cateName = [NSString stringWithString:cateName];
     // navigationItemのポインタを渡す
@@ -139,6 +148,13 @@
         default:
             return color;
     }
+}
+
+- (void)loadJson
+{
+    // JSONファイルを読み込む
+    //[self.cate loadJsonWithFileName:@"CateData"];
+    [self.cate loadJson:[app.netManager getItemListJson]];
 }
 
 // タブバーにツールバーを作成する

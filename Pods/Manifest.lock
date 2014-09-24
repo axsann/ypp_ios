@@ -1,36 +1,16 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - ICViewPager (1.5.1)
+  - SVProgressHUD (1.0)
   - TKRSegueOptions (0.1.2)
 
 DEPENDENCIES:
-  - AFNetworking
   - ICViewPager
+  - SVProgressHUD
   - TKRSegueOptions
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   ICViewPager: 213e2d0b69d6ca57e7e5791dedd57cda5321432a
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TKRSegueOptions: bf1313cfef720137083d4a31bd99233362c63a76
 
 COCOAPODS: 0.33.1
