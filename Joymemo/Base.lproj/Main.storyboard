@@ -91,6 +91,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BuyCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyCell" textLabel="t55-zM-prh" detailTextLabel="M5F-LP-BmM" style="IBUITableViewCellStyleSubtitle" id="frL-JC-jvt">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="frL-JC-jvt" id="LCZ-Du-jjL">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t55-zM-prh">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M5F-LP-BmM">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="zXq-qL-n2k" id="alb-uA-bxV"/>
                             <outlet property="delegate" destination="zXq-qL-n2k" id="KzI-Ul-4Ls"/>
@@ -108,7 +134,7 @@
         <!--Item Detail View Controller-->
         <scene sceneID="jww-yb-XUk">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="mdy-cP-QmU" customClass="ItemDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemDetailViewController" id="mdy-cP-QmU" customClass="ItemDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DAe-US-XBS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -127,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZq-8S-wBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="-125"/>
+            <point key="canvasLocation" x="2018" y="-162"/>
         </scene>
         <!--Mission Table Controller - Joymemo-->
         <scene sceneID="fFT-0I-Bvc">
@@ -195,11 +221,11 @@
             </objects>
             <point key="canvasLocation" x="2463" y="542"/>
         </scene>
-        <!--Navigation Controller - 買うもの-->
+        <!--Navigation Controller - 買うものリスト-->
         <scene sceneID="ZX6-1T-x31">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWh-6G-3Up" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="買うもの" image="TabBarBuyList" id="Mpc-LH-nea"/>
+                    <tabBarItem key="tabBarItem" title="買うものリスト" image="TabBarBuyList" id="Mpc-LH-nea"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwW-lc-Vzf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

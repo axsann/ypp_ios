@@ -19,9 +19,8 @@
 -(NSData *)getMissionDetailJson: (NSString*)missionId;
 -(NSData *)getBuyListJson;
 
-//-(NSData *)postMissionData: (NSString *)targetId Memo:(NSString *)memo IsAccepted:(BOOL)isAccepted itemIdArray:(NSArray *)itemIdArray;
--(NSData *)postMissionAcceptData: (NSString *)missionId;
--(NSData *)postBuyListData: (NSString *)itemId;
+-(void)postMissionData: (NSString *)targetId memoText:(NSString *)memoText itemIdArray:(NSArray *)itemIdArray;
+-(void)postBuyListData: (NSString *)itemId;
 
 -(NSData *)removeBuyListItemData: (NSString *)buyListId;
 

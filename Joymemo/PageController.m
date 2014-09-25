@@ -44,11 +44,13 @@
     self.delegate = self;
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
-    
+    // 遷移先のビューでの戻るボタンのラベルを設定
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    backButton.title = @"戻る";
+    self.navigationItem.backBarButtonItem = backButton;
     // cateを初期化
     self.cate = [[Cate alloc]init];
     [self loadJson];
-
 
     
     // タブバーにツールバーを設置する

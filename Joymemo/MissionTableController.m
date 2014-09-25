@@ -54,14 +54,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 2;
 }
@@ -74,6 +74,7 @@
     cell.dateLabel.text = @"9月16日に依頼";
     cell.titleLabel.text = @"Joyからのお使い依頼";
     cell.commentTextView.text = @"醤油とオリーブオイルに命かけてます。";
+    cell.commentTextView.editable = NO;
     cell.itemImageScrollVIew.contentSize = CGSizeMake(320, cell.itemImageScrollVIew.frame.size.height);
     UIImageView * itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 50, 50)];
     itemImageView.image = [UIImage imageNamed:@"joitest.jpg"];

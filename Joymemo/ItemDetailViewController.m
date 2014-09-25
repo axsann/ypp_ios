@@ -9,6 +9,10 @@
 #import "ItemDetailViewController.h"
 #import "TKRSegueOptions.h"
 #import "AppDelegate.h"
+#import "EditingItemDetailViewController.h"
+#import "UIImageView+WebCache.h"
+#import "SVProgressHUD.h"
+
 
 @interface ItemDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -49,16 +53,12 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    
-    
-    [super viewWillAppear:animated];
-}
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self refreshDataAndView];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(refreshDataAndView) withObject:nil afterDelay:0.1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,11 +69,10 @@
 
 - (void)addItemLargeImageView
 {
-    NSMutableArray * imageArray =  jsonDict[@"images"];
-    NSDictionary * image0Dict = imageArray[0];
-    UIImage * itemImage = [UIImage imageNamed:image0Dict[@"image"]];
+    
+    NSURL * itemImageUrl = [NSURL URLWithString:jsonDict[@"image"]];
     UIImageView * itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
-    [itemLargeImageView setImage:itemImage];
+    [itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     [self.scrollView addSubview:itemLargeImageView];
     
 }
@@ -86,7 +85,10 @@
     memoBgImageView.image = memoBgImage;
     [self.scrollView addSubview:memoBgImageView];
     
-    NSString * memoText = jsonDict[@"memo"];
+    NSString * memoText = jsonDict[@"memo"] ;
+    if (memoText == (id)[NSNull null]) {
+        memoText = @"No Text.";
+    }
     UITextView * memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(30, 344, 180, 128)];
     memoTextView.font = [UIFont systemFontOfSize:13];
     memoTextView.text = memoText;
@@ -107,10 +109,11 @@
 - (void)addCreatorImageViewAndCreatorNameLabel
 {
     NSDictionary * creatorDict = jsonDict[@"creator"];
-    UIImage * creatorImage = [UIImage imageNamed:creatorDict[@"icon"]];
+    NSURL * creatorImageUrl = [NSURL URLWithString:creatorDict[@"icon"]];
+    
+
     UIImageView * creatorImageView = [[UIImageView alloc]initWithFrame:CGRectMake(228, 335, 72, 72)];
-    // 作成者の画像をセット
-    creatorImageView.image = creatorImage;
+    [creatorImageView sd_setImageWithURL:creatorImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     
     // 円形に切り抜く
     creatorImageView.layer.cornerRadius = creatorImageView.frame.size.width * 0.5f;
@@ -126,38 +129,13 @@
     [self.scrollView addSubview:creatorNameLabel];
 }
 
-- (void)EnterExitEditItemMode
-{
-    editing = !editing; // 編集フラグをオン・オフ
-    if (editing) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(EnterExitEditItemMode)];
-        // 編集モードのビューのサイズを設定
-        editItemView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x,
-                                                                        self.view.frame.origin.y,
-                                                                        self.view.frame.size.width,
-                                                                        self.view.frame.size.height)];
-        editItemView.backgroundColor = app.bgColor; // 背景色を設定
-        self.navigationItem.title = @"アイテム編集"; // タイトルをアイテム編集にする
-        
-        [self.view addSubview:editItemView];
-    }
-    else {
-        [self refreshDataAndView];
-
-        [editItemView removeFromSuperview];
-    }
-
-}
-
 - (void)refreshDataAndView
 {
     for (UIView *view in self.scrollView.subviews) {
         [view removeFromSuperview];
     }
     
+    /*
     // 本来ならここでself.itemIdを渡して、それに合わせたJSONをもらう
     NSString * fileName = @"ItemDetailSample";
     // JSONファイルを読み込む
@@ -165,6 +143,8 @@
     NSData * jsonData = [NSData dataWithContentsOfFile:filePath];
      
     //NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
+    */
+    NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
     // 辞書データに変換する
     jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
                                                options:NSJSONReadingAllowFragments
@@ -174,13 +154,25 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"編集"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(EnterExitEditItemMode)];
-    [self addItemLargeImageView]; // Web上の画像に対応させる
+                                                                            action:@selector(EnterEditingItemDetailView)];
+    [self addItemLargeImageView];
     [self addMemoTextView];
-    [self addCreatorImageViewAndCreatorNameLabel]; // Web上の画像に対応させる
+    [self addCreatorImageViewAndCreatorNameLabel];
+    [SVProgressHUD dismiss];
 }
 
 
+ - (void)EnterEditingItemDetailView
+ {
+     EditingItemDetailViewController * editingItemDetailViewController = [EditingItemDetailViewController new];
+     editingItemDetailViewController.hidesBottomBarWhenPushed = YES;
+     editingItemDetailViewController.itemId = self.itemId;
+     [self.navigationController pushViewController:editingItemDetailViewController animated:NO];
+     
+
+     
+    }
+ 
 
 /*
 #pragma mark - Navigation

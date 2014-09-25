@@ -11,6 +11,9 @@
 #import "TKRSegueOptions.h"
 #import "Item.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
+#import "CreateMissionViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface CategoryTableController ()
@@ -24,9 +27,9 @@
 - (void)showHideCancelButton;
 - (void)showHideToolbar;
 - (void)addButtonToToolbar;
-- (void)addItemToMissionArray;
+- (void)addToMissionButtonTapped;
 - (void)removeButtonFromToolbar;
-- (void)addItemToBuyArray; // 買う物リストへ追加ボタンを押した時に実行されるメソッド
+- (void)addItemToBuyList; // 買う物リストへ追加ボタンを押した時に実行されるメソッド
 - (void)closeAlertAtTimerEnd:(NSTimer*)timer;
 - (void)ExitCheckMode;
 - (BOOL)isCheckModeOn;
@@ -36,7 +39,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-
+- (void)addThumbToCellImageView:(NSArray *)cellAndIndexPathAndThumbStrArray;
 @end
 
 @implementation CategoryTableController{
@@ -67,6 +70,7 @@
     self.tableView.backgroundColor = app.bgColor;
     // 空のセルを表示しない
     self.tableView.tableFooterView = [[UIView alloc] init];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -95,6 +99,9 @@
     }
     [super viewWillAppear:animated];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -130,13 +137,15 @@
     // 配列からアイテムを読み込む
     Item * item = self.itemArray[indexPath.row];
     
-    // 画像をセット
-    NSURL * thumbUrl = [NSURL URLWithString:item.thumb];
-    NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
-    cell.imageView.image = [UIImage imageWithData:thumbData];
-    
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
+    
+
+    // 画像をセット
+    NSURL * thumbUrl = [NSURL URLWithString:item.thumb];
+    //NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
+    //cell.imageView.image = [UIImage imageWithData:thumbData];
+    [cell.imageView sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     
     
     // imageView をタップしたときイベントが発生するようにする
@@ -146,7 +155,6 @@
     [tap setNumberOfTouchesRequired:1];
     [tap setNumberOfTapsRequired:1];
     [cell.imageView addGestureRecognizer:tap];
-    
 
     // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
     [self checkOnOffContainedInCheckArray:cell atIndexPath:indexPath];
@@ -209,6 +217,7 @@
     [self showHideCancelButton];
 }
 
+
 //-- 選択モード時にキャンセルボタンを表示する
 - (void)showHideCancelButton
 {
@@ -269,7 +278,7 @@
     UIButton *addToMissionButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addToMissionButton.frame = CGRectMake(0, 0, 119, 30);
     [addToMissionButton setImage:[UIImage imageNamed:@"addtomissionbutton.png"] forState:UIControlStateNormal];
-    [addToMissionButton addTarget:self action:@selector(addItemToMissionArray) forControlEvents:UIControlEventTouchUpInside];
+    [addToMissionButton addTarget:self action:@selector(addToMissionButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToMissionBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToMissionButton];
     
@@ -286,9 +295,19 @@
     [app.toolbar setItems:toolbarItems];
 }
 
-- (void)addItemToMissionArray
+
+
+- (void)addThumbToCellImageView:(NSArray *)cellAndIndexPathArray
 {
-    NSLog(@"addToMission");
+    UITableViewCell * cell = cellAndIndexPathArray[0];
+    NSIndexPath * indexPath = cellAndIndexPathArray[1];
+    // 配列からアイテムを読み込む
+    Item * item = self.itemArray[indexPath.row];
+    
+    // サムネイル画像をセット
+    NSURL * thumbUrl = [NSURL URLWithString:item.thumb];
+    NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
+    cell.imageView.image = [UIImage imageWithData:thumbData];
 }
 
 //-- 他のテーブルビューで追加したボタンをツールバーから削除する
@@ -302,29 +321,44 @@
 - (void)addToBuyButtonTapped
 {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(addItemToBuyArray) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(addItemToBuyList) withObject:nil afterDelay:0.1];
 }
 
-//-- postBuyListArrayにアイテムを追加する
-- (void)addItemToBuyArray
+- (void)addToMissionButtonTapped
 {
+    CreateMissionViewController * createMissionViewController = [CreateMissionViewController new];
+    // checkArrayをコピー
+    createMissionViewController.itemIdArray = [app.checkArray mutableCopy];
+    // チェックモードをオフにする
+    [self ExitCheckMode];
+    
+    createMissionViewController.hidesBottomBarWhenPushed = YES;
+    // アニメーションを作成
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromTop;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    // navigationControllerにアニメーションを設定
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    
+    [self.navigationController pushViewController:createMissionViewController animated:NO];
+}
+
+//-- サーバーの買う物リストにアイテムを追加する
+- (void)addItemToBuyList
+{
+    
     for (int i=0; i<app.checkArray.count; i++) {
         NSString * itemId = app.checkArray[i];
-        if (![app.postBuyListArray containsObject:itemId]) { // postBuyListArrayに追加済みでなければ
-            [app.postBuyListArray addObject:itemId]; // itemをpostBuyListArrayに追加する
-        }
+        [app.netManager postBuyListData:itemId];
     }
+    
     // 追加しましたメッセージ
     NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.checkArray.count];
     
     // チェックモードをオフにする
     [self ExitCheckMode];
-    
-    // postBuyListArrayの中のitemIdをサーバーにPOSTする
-    for (int i=0; i<app.postBuyListArray.count; i++) {
-        [app.netManager postBuyListData:app.postBuyListArray[i]];
-    }
-    [app.postBuyListArray removeAllObjects]; // POSTが完了したので、postBuyListArrayを空にする
     
     //アラートを作成
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
@@ -420,7 +454,6 @@
 //-- セクションのタイトル文字を設定
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    //return nil; // タイトル名を非表示にする
     return self.cateName; // タイトル名をカテゴリ名にする
 }
 

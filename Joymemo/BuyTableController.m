@@ -11,6 +11,8 @@
 #import "TKRSegueOptions.h"
 #import "Item.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface BuyTableController ()
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
@@ -25,7 +27,7 @@
 
 @implementation BuyTableController{
     AppDelegate * app;
-    NSMutableArray * buyListArray;
+    NSMutableArray * _buyListArray;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -41,7 +43,7 @@
 {
     [super viewDidLoad];
     // 再利用するセルを設定
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BuyCell"];
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
     // 境界線の色を設定
@@ -50,7 +52,10 @@
     self.tableView.backgroundColor = app.bgColor;
     // 空のセルを表示しない
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
+    // 遷移先のビューでの戻るボタンのラベルを設定
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    backButton.title = @"戻る";
+    self.navigationItem.backBarButtonItem = backButton;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -61,9 +66,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self loadJson];
-    // テーブルを更新する
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,20 +89,23 @@
 {
     // Return the number of rows in the section.
     //return app.buyArray.count;
-    return buyListArray.count;
+    return _buyListArray.count;
 }
 
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = @"BuyCell";
     // セルを準備する
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
+    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                                    reuseIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
     // 境界線を左端から表示
     cell.separatorInset = UIEdgeInsetsZero;
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     /*
      // buyArrayからアイテムを読み込む
      Item * item = app.buyArray[indexPath.row];
@@ -111,13 +118,18 @@
     
     */
     
-    NSDictionary * itemDict = buyListArray[indexPath.row];
-    
+    NSDictionary * itemDict = _buyListArray[indexPath.row];
+    NSDictionary * userDict = itemDict[@"user"];
     // テキストラベルをセット
     cell.textLabel.text = itemDict[@"item_name"];
     
-    // サムネイルをセット(未実装)
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", userDict[@"user_name"]];
     
+    // 画像をセット
+    NSURL * thumbUrl = [NSURL URLWithString:itemDict[@"thumb"]];
+    //NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
+    //cell.imageView.image = [UIImage imageWithData:thumbData];
+    [cell.imageView sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     
     // アクセサリービューにボタンを追加
     [self addBoughtButtonOnCell:cell];
@@ -127,10 +139,10 @@
 
 //-- セルが選択された時に呼び出される
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //Item * item = app.buyArray[indexPath.row];
-    //[self performSegueWithIdentifier:@"BuyTableToDetail" options:item.itemId];
-    NSDictionary * itemDict = buyListArray[indexPath.row];
-    [self performSegueWithIdentifier:@"BuyTableToDetail" options:itemDict[@"item_id"]];
+
+    NSDictionary * itemDict = _buyListArray[indexPath.row];
+    NSString * itemId = itemDict[@"item_id"];
+    [self performSegueWithIdentifier:@"BuyTableToDetail" options:itemId];
 }
 //-- 買ったボタンを設置する
 - (void)addBoughtButtonOnCell:(UITableViewCell *)cell
@@ -140,7 +152,7 @@
     float boughtButtonHeight = 52;
     [boughtButton setFrame:CGRectMake(cell.contentView.frame.size.width-97, 0, boughtButtonWidth, boughtButtonHeight)];
     [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton194x104.png"] forState:UIControlStateNormal];
-    [boughtButton setBackgroundColor:[UIColor clearColor]];
+    [boughtButton setBackgroundColor:[UIColor whiteColor]];
     [boughtButton addTarget:self action:@selector(boughtButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:boughtButton];
     
@@ -163,12 +175,12 @@
 //-- アクセサリーボタン(買ったボタン)をタップした時の処理
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    // サーバからアイテムを削除 未実装
-    NSDictionary * itemDict = buyListArray[indexPath.row];
+    NSDictionary * itemDict = _buyListArray[indexPath.row];
     NSString * buyListId = itemDict[@"buylist_id"];
-    [buyListArray removeObjectAtIndex:indexPath.row];
+    [_buyListArray removeObjectAtIndex:indexPath.row];
     NSArray * deleteArray = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:deleteArray withRowAnimation:UITableViewRowAnimationTop];
+    // サーバからアイテムを削除
     [self performSelectorInBackground:@selector(removeBuyListItem:) withObject:buyListId];
 }
 
@@ -178,13 +190,15 @@
 
 }
 
-- (void)loadJson
+- (void)loadJsonAndRefreshTable
 {
     NSData * buyListJsonData = [app.netManager getBuyListJson];
-    NSError * parseError;
-    buyListArray = [NSJSONSerialization JSONObjectWithData:buyListJsonData
+    _buyListArray = [NSJSONSerialization JSONObjectWithData:buyListJsonData
                                                    options:NSJSONReadingMutableContainers
-                                                     error:&parseError];
+                                                     error:nil];
+    // テーブルを更新する
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [SVProgressHUD dismiss];
 }
 
 //-- セルの高さを設定
@@ -196,7 +210,7 @@
 
 - (BOOL)isBuyListNone
 {
-    return buyListArray.count<=0;
+    return _buyListArray.count<=0;
 }
 
 /*
