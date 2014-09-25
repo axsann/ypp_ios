@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Item.h"
 #import "NetworkManager.h"
+#import "CameraViewController.h"
 
 @implementation AppDelegate
 
@@ -36,8 +37,13 @@
     //NSData * data = [networkManager getMissionsDetailJson:@"740553924"];
     //NSData * data = [networkManager getBuylistsListJson];
     
-    NSData * data = [networkManager addMissionJson];
+    //NSData * data = [networkManager getMissionJson];
     //NSData * data = [networkManager addBuyListsJson:@"26148495"];
+
+    CameraViewController *cameraViewController = [[CameraViewController alloc] init];
+    [self.window setRootViewController:cameraViewController];
+    
+    
     return YES;
 }
 						
