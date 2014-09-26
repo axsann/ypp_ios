@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface CameraViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-
 @end

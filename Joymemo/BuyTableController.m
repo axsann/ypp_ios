@@ -9,6 +9,7 @@
 #import "BuyTableController.h"
 #import "AppDelegate.h"
 #import "Item.h"
+#import "CameraViewController.h"
 
 @interface BuyTableController ()
 
@@ -112,6 +113,7 @@
 // 買ったボタンをタップした時の処理(tableView:accessoryButtonTappedForRowWithIndexPathに処理を流す)
 - (void)boughtButtonTapped:(UIControl *)button withEvent:(UIEvent *)event
 {
+
     NSSet *touches = [event allTouches];
     UITouch *touch = [touches anyObject];
     CGPoint currentTouchPosition = [touch locationInView:self.tableView];
