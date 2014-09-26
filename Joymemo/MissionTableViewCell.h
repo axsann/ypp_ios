@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
-@property (weak, nonatomic) IBOutlet UIScrollView *itemImageScrollVIew;
+@property (weak, nonatomic) IBOutlet UIScrollView *itemScrollView;
 
 
 @end

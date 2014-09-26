@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditingItemDetailViewController : UIViewController
+@interface EditingItemDetailViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic) NSString * itemId;
+@property (strong, nonatomic) UITextView * memoTextView;
 @end

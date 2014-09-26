@@ -163,53 +163,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="MissionCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MissionCell" rowHeight="250" id="XIa-Ih-5a1" customClass="MissionTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="250"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XIa-Ih-5a1" id="9mI-fR-jZp">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card.png" id="wA0-JF-lKl">
-                                            <rect key="frame" x="10" y="11" width="300" height="228"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eng-Zc-Vrw">
-                                            <rect key="frame" x="70" y="23" width="206" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yqa-E6-Mxf">
-                                            <rect key="frame" x="70" y="42" width="206" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="commentTextView" id="q4u-Wb-TBw">
-                                            <rect key="frame" x="56" y="62" width="240" height="65"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="JgX-i0-Ka0">
-                                            <rect key="frame" x="25" y="146" width="270" height="84"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </scrollView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="commentTextView" destination="q4u-Wb-TBw" id="4YQ-cG-f2G"/>
-                                    <outlet property="dateLabel" destination="yqa-E6-Mxf" id="djc-xH-Tjl"/>
-                                    <outlet property="itemImageScrollVIew" destination="JgX-i0-Ka0" id="8c6-Wl-Yrk"/>
-                                    <outlet property="titleLabel" destination="eng-Zc-Vrw" id="R6s-Nk-Wkf"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="wge-rq-gJb" id="fTn-Lg-PA1"/>
                             <outlet property="delegate" destination="wge-rq-gJb" id="8Di-vO-QVZ"/>
@@ -219,7 +172,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4b-Lo-i2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="542"/>
+            <point key="canvasLocation" x="2319" y="542"/>
         </scene>
         <!--Navigation Controller - 買うものリスト-->
         <scene sceneID="ZX6-1T-x31">
@@ -264,7 +217,6 @@
         <image name="TabBarBuyList" width="30" height="30"/>
         <image name="TabBarHome" width="30" height="30"/>
         <image name="TabBarMission" width="30" height="30"/>
-        <image name="card.png" width="560" height="448"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -272,6 +224,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="z6f-Hc-K1g"/>
+        <segue reference="GSN-Do-NhS"/>
     </inferredMetricsTieBreakers>
 </document>

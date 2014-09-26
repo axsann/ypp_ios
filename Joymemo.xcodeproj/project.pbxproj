@@ -16,6 +16,9 @@
 		B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */; };
 		B7649D6319D42FE700055680 /* otukaimemo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6219D42FE700055680 /* otukaimemo.png */; };
 		B7649D6519D4311100055680 /* otukaidekaumono.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6419D4311100055680 /* otukaidekaumono.png */; };
+		B7649D6719D50F2C00055680 /* postButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6619D50F2C00055680 /* postButton.png */; };
+		B7649D6919D5154100055680 /* select_user_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6819D5154100055680 /* select_user_circle.png */; };
+		B7649D6B19D5878C00055680 /* MissionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6A19D5878C00055680 /* MissionTableCell.xib */; };
 		B783A34919D291E8001E62B9 /* MissionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B783A34819D291E8001E62B9 /* MissionTableViewCell.m */; };
 		B783A34C19D292A3001E62B9 /* MissionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B783A34B19D292A3001E62B9 /* MissionTableController.m */; };
 		B783A34E19D2A867001E62B9 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = B783A34D19D2A867001E62B9 /* card.png */; };
@@ -74,6 +77,9 @@
 		B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otukaiiraiwoshitaihito.png; sourceTree = "<group>"; };
 		B7649D6219D42FE700055680 /* otukaimemo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otukaimemo.png; sourceTree = "<group>"; };
 		B7649D6419D4311100055680 /* otukaidekaumono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otukaidekaumono.png; sourceTree = "<group>"; };
+		B7649D6619D50F2C00055680 /* postButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postButton.png; sourceTree = "<group>"; };
+		B7649D6819D5154100055680 /* select_user_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select_user_circle.png; sourceTree = "<group>"; };
+		B7649D6A19D5878C00055680 /* MissionTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionTableCell.xib; sourceTree = "<group>"; };
 		B783A34719D291E8001E62B9 /* MissionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionTableViewCell.h; sourceTree = "<group>"; };
 		B783A34819D291E8001E62B9 /* MissionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionTableViewCell.m; sourceTree = "<group>"; };
 		B783A34A19D292A3001E62B9 /* MissionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionTableController.h; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				B783A34B19D292A3001E62B9 /* MissionTableController.m */,
 				B783A34719D291E8001E62B9 /* MissionTableViewCell.h */,
 				B783A34819D291E8001E62B9 /* MissionTableViewCell.m */,
+				B7649D6A19D5878C00055680 /* MissionTableCell.xib */,
 				B73016A719C95550009AA201 /* BuyTableController.h */,
 				B73016A819C95550009AA201 /* BuyTableController.m */,
 				B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */,
@@ -202,8 +209,10 @@
 				B793D6D919CF7D5000FE36EF /* NetworkManager.h */,
 				B793D6DB19CF8E8500FE36EF /* NetworkManager.m */,
 				B7D7CB7519CD540D00158B2E /* ItemDetailSample.json */,
+				B7649D6819D5154100055680 /* select_user_circle.png */,
 				B783A35519D2DE9D001E62B9 /* no_item_image.jpg */,
 				B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */,
+				B7649D6619D50F2C00055680 /* postButton.png */,
 				B7649D6219D42FE700055680 /* otukaimemo.png */,
 				B7649D6419D4311100055680 /* otukaidekaumono.png */,
 				B783A34D19D2A867001E62B9 /* card.png */,
@@ -335,12 +344,15 @@
 				B783A35019D2B049001E62B9 /* joitest.jpg in Resources */,
 				B7ECF5ED19CD132400575D35 /* addtomissionbutton.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
+				B7649D6B19D5878C00055680 /* MissionTableCell.xib in Resources */,
 				B783A35219D2C4AE001E62B9 /* kounyuuzumi194x104.png in Resources */,
 				B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */,
 				B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */,
+				B7649D6919D5154100055680 /* select_user_circle.png in Resources */,
 				B783A35619D2DE9D001E62B9 /* no_item_image.jpg in Resources */,
 				B7D7CB7619CD540D00158B2E /* ItemDetailSample.json in Resources */,
 				B7649D6319D42FE700055680 /* otukaimemo.png in Resources */,
+				B7649D6719D50F2C00055680 /* postButton.png in Resources */,
 				B7649D6519D4311100055680 /* otukaidekaumono.png in Resources */,
 				B783A34E19D2A867001E62B9 /* card.png in Resources */,
 				B783A35419D2C6F3001E62B9 /* boughtbutton194x104.png in Resources */,

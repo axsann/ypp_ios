@@ -122,31 +122,21 @@
     // Return the number of rows in the section.
     return self.itemArray.count;
 }
+
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"Cell";
     // セルを準備する
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // 境界線を左端から表示
-    cell.separatorInset = UIEdgeInsetsZero;
-    // セルの選択時にハイライトを行わない
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.separatorInset = UIEdgeInsetsZero; // 境界線を左端から表示
+    cell.selectionStyle = UITableViewCellSelectionStyleNone; // セルの選択時にハイライトを行わない
     // 配列からアイテムを読み込む
     Item * item = self.itemArray[indexPath.row];
-    
     // テキストラベルをセット
     cell.textLabel.text = item.itemName;
-    
-
     // 画像をセット
     NSURL * thumbUrl = [NSURL URLWithString:item.thumb];
-    //NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
-    //cell.imageView.image = [UIImage imageWithData:thumbData];
     [cell.imageView sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
-    
     
     // imageView をタップしたときイベントが発生するようにする
     [cell.imageView setUserInteractionEnabled:YES];
@@ -155,7 +145,6 @@
     [tap setNumberOfTouchesRequired:1];
     [tap setNumberOfTapsRequired:1];
     [cell.imageView addGestureRecognizer:tap];
-
     // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
     [self checkOnOffContainedInCheckArray:cell atIndexPath:indexPath];
     
@@ -186,7 +175,7 @@
 {
     Item * item = self.itemArray[indexPath.row];
     // アイテムがチェックアレイ内のものと一致していたら、チェックマークをつける
-    if ([app.checkArray containsObject:item]){
+    if ([app.checkArray containsObject:item.itemId]){
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self setCheckmarkOnCell:cell];
     }
@@ -203,13 +192,14 @@
     // チェックマークがなければ、チェックマークをつける
     if (cell.accessoryType == UITableViewCellAccessoryNone){
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self setCheckmarkOnCell:cell];
         [app.checkArray addObject:item.itemId];
+        [self setCheckmarkOnCell:cell];
     }
     else { // チェックマークがあれば、チェックマークを消す
         //cell.accessoryType = UITableViewCellAccessoryNone;
-        [self setNotCheckmarkOnCell:cell];
         [app.checkArray removeObject:item.itemId];
+        [self setNotCheckmarkOnCell:cell];
+
     }
     // 選択モード時にツールバーを表示する
     [self showHideToolbar];
@@ -377,6 +367,7 @@
 
 }
 
+
 //-- タイマー終了でアラートを閉じる
 - (void)closeAlertAtTimerEnd:(NSTimer*)timer
 {
@@ -421,8 +412,8 @@
         
         
     }
-
 }
+
 //-- セルのアクセサリービューにカスタム「チェックマーク」を入れる
 - (void)setCheckmarkOnCell:(UITableViewCell *)cell
 {
@@ -450,6 +441,8 @@
     // accessoryTypeをNoneにする。カスタム画像は維持される。
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
+
+
 
 //-- セクションのタイトル文字を設定
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

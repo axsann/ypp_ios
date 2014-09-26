@@ -25,7 +25,6 @@
     AppDelegate * app;
     NSDictionary * jsonDict;
     UIView * editItemView;
-    BOOL editing;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -87,7 +86,7 @@
     
     NSString * memoText = jsonDict[@"memo"] ;
     if (memoText == (id)[NSNull null]) {
-        memoText = @"No Text.";
+        memoText = @"アイテムのブランド名や特徴をメモしましょう。\n右上の編集ボタンで編集できます。";
     }
     UITextView * memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(30, 344, 180, 128)];
     memoTextView.font = [UIFont systemFontOfSize:13];

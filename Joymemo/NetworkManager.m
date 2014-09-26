@@ -18,12 +18,14 @@
 
 - (id) init {
     if (self = [super init]) {
+        // 本来なら、ユーザIDは初回起動時に生成されてローカルに保存される
         self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F";
+        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9";
         self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
     }
     return self;
 }
-
+// 後日オフライン時のエラー回避・例外処理を記述する
 //---------- 実際にURLからJSONを取得するメソッド ----------
 - (NSData *)getJsonFromServerWithSubDirName: (NSString *)subDirName fileName:(NSString*)fileName parameter:(NSString*)param
 {
@@ -180,7 +182,7 @@
     NSString * subSubDirName = @"add_mission";
     NSMutableString * itemIds = [NSMutableString stringWithString:@""];
     for (int i=0; i<itemIdArray.count; i++) {
-        [itemIds appendFormat:@"item_id[]=%@", itemIdArray[i]];
+        [itemIds appendFormat:@"item_ids[]=%@", itemIdArray[i]];
         if (i!=itemIdArray.count-1) {
             [itemIds appendString:@"&"];
         }
