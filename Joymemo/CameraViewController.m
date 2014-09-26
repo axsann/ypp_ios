@@ -104,11 +104,13 @@
     // update user_id param
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"user_id"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //　ここのuser_idを変更する
     [body appendData:[[NSString stringWithFormat:@"%@\r\n",@"88888D45-9C07-4B93-A5E0-82BED5A7864F"] dataUsingEncoding:NSUTF8StringEncoding]];
     
     // update item_id param
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"item_id"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // ここのitem_idの25を変える
     [body appendData:[[NSString stringWithFormat:@"%@\r\n",@"25"] dataUsingEncoding:NSUTF8StringEncoding]];
     
     // add image data
