@@ -83,9 +83,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJson];
-    [self refreshTable];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -213,6 +211,13 @@
     // テーブルビューを先頭に戻す
     //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+- (void)loadJsonAndRefreshTable
+{
+    [self loadJson];
+    [self refreshTable];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)loadJson

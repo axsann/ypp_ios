@@ -313,9 +313,8 @@
 - (void)addToBuyButtonTapped
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self addItemToBuyList];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [self ExitCheckMode];
+    [self performSelector:@selector(addItemToBuyList) withObject:nil afterDelay:0.001];
+
 }
 
 - (void)addToMissionButtonTapped
@@ -366,6 +365,9 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
     // アラートを表示する
     [alert show];
+    // チェックモードを終了する
+    [self ExitCheckMode];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

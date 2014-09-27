@@ -57,8 +57,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self refreshDataAndView];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(loadJsonAndRefreshView) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,21 +128,12 @@
     [self.scrollView addSubview:creatorNameLabel];
 }
 
-- (void)refreshDataAndView
+- (void)loadJsonAndRefreshView
 {
     for (UIView *view in self.scrollView.subviews) {
         [view removeFromSuperview];
     }
-    
-    /*
-    // 本来ならここでself.itemIdを渡して、それに合わせたJSONをもらう
-    NSString * fileName = @"ItemDetailSample";
-    // JSONファイルを読み込む
-    NSString * filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
-    NSData * jsonData = [NSData dataWithContentsOfFile:filePath];
-     
-    //NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
-    */
+
     NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
     // 辞書データに変換する
     jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -158,6 +148,7 @@
     [self addItemLargeImageView];
     [self addMemoTextView];
     [self addCreatorImageViewAndCreatorNameLabel];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

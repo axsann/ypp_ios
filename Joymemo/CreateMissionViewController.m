@@ -57,8 +57,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJsonAndRefreshViews];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(loadJsonAndRefreshViews) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +85,7 @@
     [self addMemoView];
     [self addItemView];
     [self addPostButton];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 // お使いを依頼したい人のビューを追加
@@ -215,8 +215,7 @@
 - (void)postButtonTapped:(UIButton *)button
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self postMissionData];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(postMissionData) withObject:nil afterDelay:0.001];
     
 }
 
@@ -235,6 +234,7 @@
                           ];
     // アラートを自動で閉じる秒数をセットするタイマー
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [alert show];
     [self backToCategory];
 }

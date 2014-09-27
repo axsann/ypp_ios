@@ -69,9 +69,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJsonAndRefreshTable];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-
+    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,7 +90,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //return app.buyArray.count;
     return _buyListArray.count;
 }
 
@@ -190,7 +187,7 @@
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     [self showHideBuyListEmptyImage];
-
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 //-- セルの高さを設定

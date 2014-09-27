@@ -56,8 +56,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self refreshDataAndView];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(loadJsonAndRefreshView) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -179,7 +178,7 @@
     
 }
 
-- (void)refreshDataAndView
+- (void)loadJsonAndRefreshView
 {
     for (UIView *view in self.view.subviews) {
         [view removeFromSuperview];
@@ -194,6 +193,7 @@
     [self addItemImageView];
     [self addMemoTextView];
     [self.view addSubview:self.scrollView];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 // メモのテキストビューを編集開始時に実行される

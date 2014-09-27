@@ -59,8 +59,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJsonAndRefreshTable];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,6 +142,7 @@
                                                       error:nil];
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 //-- セルの高さを設定
