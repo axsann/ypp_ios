@@ -83,7 +83,7 @@
 }
 
 // 編集したアイテムをPOSTするメソッド
-- (void)postEditItemDataToServerWithImage:(UIImage *)image itemId:(NSString *)itemId itemName:(NSString *)itemName memoText:(NSString *)memoText
+- (void)postEditItemDataToServerWithImage:(UIImage *)image itemId:(NSString *)itemId memoText:(NSString *)memoText
 {
     NSString * userId = self.userId;
     // URLを設定する
@@ -115,12 +115,6 @@
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"item_id"] dataUsingEncoding:NSUTF8StringEncoding]];
     // itemIdをデータに追加
     [body appendData:[[NSString stringWithFormat:@"%@\r\n", itemId] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // item_nameのパラメータを設定
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"item_name"] dataUsingEncoding:NSUTF8StringEncoding]];
-    // itemNameをデータに追加
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", itemName] dataUsingEncoding:NSUTF8StringEncoding]];
     
     // memoのパラメータを設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

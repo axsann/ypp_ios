@@ -19,6 +19,7 @@
 		B7587A5D19D6F17C00EEB7C3 /* icon-small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5A19D6F17C00EEB7C3 /* icon-small-40@2x.png */; };
 		B7587A5E19D6F17C00EEB7C3 /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5B19D6F17C00EEB7C3 /* icon-small@2x.png */; };
 		B7587A5F19D6F17C00EEB7C3 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5C19D6F17C00EEB7C3 /* icon-60@2x.png */; };
+		B7587A6519D7062100EEB7C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7587A6719D7062100EEB7C3 /* Localizable.strings */; };
 		B7649D5C19D3D30000055680 /* CreateMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5B19D3D30000055680 /* CreateMissionViewController.m */; };
 		B7649D5F19D3DE5C00055680 /* EditingItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5E19D3DE5C00055680 /* EditingItemDetailViewController.m */; };
 		B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */; };
@@ -95,6 +96,11 @@
 		B7587A5A19D6F17C00EEB7C3 /* icon-small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small-40@2x.png"; sourceTree = "<group>"; };
 		B7587A5B19D6F17C00EEB7C3 /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		B7587A5C19D6F17C00EEB7C3 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
+		B7587A6019D705B200EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		B7587A6119D705B200EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7587A6219D705B200EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7587A6619D7062100EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7587A6819D7062A00EEB7C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7649D5A19D3D30000055680 /* CreateMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionViewController.h; sourceTree = "<group>"; };
 		B7649D5B19D3D30000055680 /* CreateMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionViewController.m; sourceTree = "<group>"; };
 		B7649D5D19D3DE5C00055680 /* EditingItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingItemDetailViewController.h; sourceTree = "<group>"; };
@@ -285,6 +291,7 @@
 				B73016A519C84FF0009AA201 /* Item.m */,
 				B793D6D919CF7D5000FE36EF /* NetworkManager.h */,
 				B793D6DB19CF8E8500FE36EF /* NetworkManager.m */,
+				B7587A6719D7062100EEB7C3 /* Localizable.strings */,
 				B798CFA519D6679900AADD77 /* images */,
 				B7B4CCF419C495A80067EB59 /* Images.xcassets */,
 				B7B4CCE319C495A80067EB59 /* Supporting Files */,
@@ -382,6 +389,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = B7B4CCD019C495A80067EB59;
 			productRefGroup = B7B4CCDA19C495A80067EB59 /* Products */;
@@ -416,6 +424,7 @@
 				B7587A5919D6CCEA00EEB7C3 /* item_name_section.png in Resources */,
 				B786883F19D6770600540267 /* bath.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
+				B7587A6519D7062100EEB7C3 /* Localizable.strings in Resources */,
 				B786883B19D6770600540267 /* lavatory.png in Resources */,
 				B7649D6B19D5878C00055680 /* MissionTableCell.xib in Resources */,
 				B783A35219D2C4AE001E62B9 /* kounyuuzumi194x104.png in Resources */,
@@ -521,10 +530,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B7587A6719D7062100EEB7C3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7587A6619D7062100EEB7C3 /* ja */,
+				B7587A6819D7062A00EEB7C3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B7B4CCE519C495A80067EB59 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B7B4CCE619C495A80067EB59 /* en */,
+				B7587A6119D705B200EEB7C3 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -533,6 +552,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B7B4CCEF19C495A80067EB59 /* Base */,
+				B7587A6019D705B200EEB7C3 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -541,6 +561,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B7B4CD0519C495A80067EB59 /* en */,
+				B7587A6219D705B200EEB7C3 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

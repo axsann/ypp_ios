@@ -450,6 +450,14 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
+- (void)loadJsonAndRefreshTable
+{
+    // JSONファイルを読み込む
+    [app.cate loadJson:[app.netManager getItemListJson]];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
 //-- セルの高さを設定
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

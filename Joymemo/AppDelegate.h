@@ -21,5 +21,7 @@
 @property (strong, nonatomic) UIColor * tableCellSeparatorColor; // テーブルビューのセルの境界線の色
 @property (strong, nonatomic) UIColor * textViewBorderColor; // テキストビューのボーダーの色
 @property (strong, nonatomic) UIColor * bgColor; // 背景色
-@property (strong, nonatomic) NetworkManager * netManager;
+@property (strong, nonatomic) Cate * cate; // カテゴリー別のアイテムを読み込む
+@property (strong, nonatomic) NetworkManager * netManager; // サーバと通信を行う
+@property BOOL itemDetailChanged;
 @end

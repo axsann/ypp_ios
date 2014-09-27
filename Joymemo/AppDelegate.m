@@ -18,6 +18,7 @@
     self.netManager = [[NetworkManager alloc]init]; // netManagerを初期化
 
     self.postBuyListArray = [NSMutableArray array]; // buyArrayを初期化
+    self.cate = [[Cate alloc]init]; // cateを初期化
     self.checkArray = [NSMutableArray array]; // checkArrayを初期化
     // joymemoのテーマカラーを格納
     self.joymemoColor = [UIColor colorWithRed:(218.0f/255.0f) green: (80.0f/255.0f) blue:(14.0f/255.0f) alpha:1.0f];

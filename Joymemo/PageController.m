@@ -8,6 +8,7 @@
 #import "PageController.h"
 #import "AppDelegate.h"
 #import "CategoryTableController.h"
+#import "MBProgressHUD.h"
 
 
 @interface PageController ()
@@ -23,7 +24,7 @@
 
 @implementation PageController{
     AppDelegate * app;
-    
+    MBProgressHUD * _progressHUD;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,14 +48,26 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
     backButton.title = @"戻る";
     self.navigationItem.backBarButtonItem = backButton;
-    // cateを初期化
-    self.cate = [[Cate alloc]init];
-    [self loadJson];
-
+    _progressHUD = [[MBProgressHUD alloc]initWithView:self.view]; // 更新時のくるくるを初期化
+    [self.view addSubview:_progressHUD];
+    _progressHUD.labelText = @"アイテムを再読み込みしています";
+    
+    [self loadJson]; // カテゴリー別アイテムのJsonを読み込む
     
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    // アイテム詳細が変更されたときのみ、Jsonとビューを再読み込みする
+    if (app.itemDetailChanged) {
+        [_progressHUD show:YES];
+        [self performSelector:@selector(loadJsonAndRefreshView) withObject:nil afterDelay:0.001];
+        app.itemDetailChanged = NO;
+    }
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -73,12 +86,12 @@
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager
 {
     // タブの数
-    return self.cate.cateNameArray.count;
+    return app.cate.cateNameArray.count;
 }
 
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
 {
-    NSString * cateName = self.cate.cateNameArray[index];
+    NSString * cateName = app.cate.cateNameArray[index];
     // タブに表示するView、今回はUILabelを使用
     UILabel* label = [UILabel new];
     //label.text = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
@@ -94,17 +107,17 @@
     // タブ番号に対応するUIViewControllerを返す
     CategoryTableController * categoryTableController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryTableController"];
     // index番号のカテゴリ名を取得
-    NSString * cateName = [NSString stringWithString:self.cate.cateNameArray[index]];
+    NSString * cateName = [NSString stringWithString:app.cate.cateNameArray[index]];
     // アイテムをテーブルビューにコピー
     //categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cats.itemInCategoryDict objectForKey:cateName]];
-    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[self.cate.itemInCateDict objectForKey:cateName]];
+    categoryTableController.itemArray = [NSMutableArray arrayWithArray:[app.cate.itemInCateDict objectForKey:cateName]];
     // カテゴリ名をテーブルビューにコピー
     categoryTableController.cateName = [NSString stringWithString:cateName];
     // navigationItemのポインタを渡す
     categoryTableController.navItem = self.navigationItem;
     // ヘッダーのimageViewを作成
     UIImageView * headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 126.5)];
-    headerImageView.image = [UIImage imageNamed:self.cate.cateHeaderImageNameArray[index]];
+    headerImageView.image = [UIImage imageNamed:app.cate.cateHeaderImageNameArray[index]];
     // ヘッダーのイメージビューをテーブルビューにコピー
     categoryTableController.headerImageView = headerImageView;
     
@@ -156,7 +169,14 @@
 - (void)loadJson
 {
     // JSONファイルを読み込む
-    [self.cate loadJson:[app.netManager getItemListJson]];
+    [app.cate loadJson:[app.netManager getItemListJson]];
+}
+
+- (void)loadJsonAndRefreshView
+{
+    [self loadJson];
+    [self reloadData];
+    [_progressHUD hide:YES afterDelay:0.5];
 }
 
 // タブバーにツールバーを作成する
@@ -181,7 +201,6 @@
     app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, toolbarHeight);
     self.navigationItem.rightBarButtonItem = nil;
 }
-
 
 /*
 #pragma mark - Navigation

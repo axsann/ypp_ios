@@ -11,5 +11,5 @@
 
 @interface ItemDetailViewController : UIViewController
 @property (strong, nonatomic) NSString * itemId;
-
+@property (strong, nonatomic) UIImageView * itemLargeImageView;
 @end

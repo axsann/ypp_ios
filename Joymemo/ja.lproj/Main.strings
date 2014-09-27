@@ -1,0 +1,36 @@
+
+/* Class = "IBUITabBarItem"; title = "お知らせ"; ObjectID = "739-qx-a0h"; */
+"739-qx-a0h.title" = "お知らせ";
+
+/* Class = "IBUITabBarItem"; title = "ホーム"; ObjectID = "Hl0-Ds-7Vz"; */
+"Hl0-Ds-7Vz.title" = "ホーム";
+
+/* Class = "IBUINavigationItem"; title = "お知らせ一覧"; ObjectID = "IPp-2s-hqS"; */
+"IPp-2s-hqS.title" = "お知らせ一覧";
+
+/* Class = "IBUINavigationItem"; title = "Joymemo"; ObjectID = "KY8-2b-tUV"; */
+"KY8-2b-tUV.title" = "Joymemo";
+
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "M5F-LP-BmM"; */
+"M5F-LP-BmM.text" = "Subtitle";
+
+/* Class = "IBUINavigationItem"; title = "Joymemo"; ObjectID = "MZR-kO-zyI"; */
+"MZR-kO-zyI.title" = "Joymemo";
+
+/* Class = "IBUITabBarItem"; title = "買うものリスト"; ObjectID = "Mpc-LH-nea"; */
+"Mpc-LH-nea.title" = "買うものリスト";
+
+/* Class = "IBUINavigationItem"; title = "Joymemo"; ObjectID = "XQq-Sd-kQp"; */
+"XQq-Sd-kQp.title" = "Joymemo";
+
+/* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "hSY-31-LgW"; */
+"hSY-31-LgW.title" = "Item";
+
+/* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "i5K-os-jaK"; */
+"i5K-os-jaK.title" = "Item";
+
+/* Class = "IBUITabBarItem"; title = "おつかいリスト"; ObjectID = "oPf-M5-gSr"; */
+"oPf-M5-gSr.title" = "おつかいリスト";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "t55-zM-prh"; */
+"t55-zM-prh.text" = "Title";

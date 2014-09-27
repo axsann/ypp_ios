@@ -70,9 +70,9 @@
 {
     
     NSURL * itemImageUrl = [NSURL URLWithString:jsonDict[@"image"]];
-    UIImageView * itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
-    [itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
-    [self.scrollView addSubview:itemLargeImageView];
+    self.itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
+    [self.itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
+    [self.scrollView addSubview:self.itemLargeImageView];
     
 }
 
@@ -84,9 +84,11 @@
     memoBgImageView.image = memoBgImage;
     [self.scrollView addSubview:memoBgImageView];
     
-    NSString * memoText = jsonDict[@"memo"] ;
-    if (memoText == (id)[NSNull null]) {
+    NSString * memoText;
+    if (jsonDict[@"memo"] == (id)[NSNull null]) {
         memoText = @"アイテムのブランド名や特徴をメモしましょう。\n右上の編集ボタンで編集できます。";
+    } else {
+        memoText = jsonDict[@"memo"];
     }
     UITextView * memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(30, 344, 180, 128)];
     memoTextView.font = [UIFont systemFontOfSize:13];
@@ -157,9 +159,15 @@
      EditingItemDetailViewController * editingItemDetailViewController = [EditingItemDetailViewController new];
      editingItemDetailViewController.hidesBottomBarWhenPushed = YES;
      editingItemDetailViewController.itemId = self.itemId;
+     editingItemDetailViewController.itemName = jsonDict[@"item_name"];
+     if (jsonDict[@"memo"] == (id)[NSNull null]) {
+         editingItemDetailViewController.memoText = @"";
+     }
+     else {
+         editingItemDetailViewController.memoText = jsonDict[@"memo"];
+     }
+     editingItemDetailViewController.itemImage = self.itemLargeImageView.image;
      [self.navigationController pushViewController:editingItemDetailViewController animated:NO];
-     
-
      
     }
  

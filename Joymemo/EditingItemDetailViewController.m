@@ -17,8 +17,6 @@
 
 @implementation EditingItemDetailViewController {
     AppDelegate * app;
-    NSDictionary * _itemDict;
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,20 +41,18 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(backToItemDetail)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完了"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(doneButtonTapped)];
     self.navigationItem.title = @"アイテム編集";
     self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
     self.scrollView.contentSize = CGSizeMake(320, 700);
     // スクロールさせるとキーボードを閉じる
     self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    [self addView];
 
     // Do any additional setup after loading the view.
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self performSelector:@selector(loadJsonAndRefreshView) withObject:nil afterDelay:0.001];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +66,7 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+/* // 今回は利用しない
 - (void)addItemNameView
 {
     // アイテム名のセクションタイトル
@@ -79,7 +76,7 @@
     // アイテム名の入力欄
     self.itemNameTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 56, 300, 40)];
     self.itemNameTextView.font = [UIFont systemFontOfSize:19];
-    self.itemNameTextView.text = _itemDict[@"item_name"]; // アイテム名を入力しておく
+    self.itemNameTextView.text = self.itemName; // アイテム名を入力しておく
     // textView を角丸にする
     [[self.itemNameTextView layer] setCornerRadius:8.0];
     [self.itemNameTextView setClipsToBounds:YES];
@@ -88,24 +85,23 @@
     [[self.itemNameTextView layer] setBorderWidth:1.0];
 
     [self.scrollView addSubview:self.itemNameTextView];
-}
+}*/
 
 - (void)addItemImageView
 {
     //アイテム写真のセクションタイトル
-    UIImageView * itemPictureSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 111, 320, 30.5)];
+    UIImageView * itemPictureSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 15, 320, 30.5)];
     itemPictureSectionImageView.image = [UIImage imageNamed:@"item_picture_section.png"];
     [self.scrollView addSubview:itemPictureSectionImageView];
     // アイテム写真を表示
-    NSURL * itemImageUrl = [NSURL URLWithString:_itemDict[@"image"]];
-    UIImageView * itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(114, 157, 92, 92)];
-    [itemImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
-    [self.scrollView addSubview:itemImageView];
+    self.itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(114, 61, 92, 92)];
+    self.itemImageView.image = self.itemImage;
+    [self.scrollView addSubview:self.itemImageView];
     // 写真を変更するためのボタンを設置
     UIButton * changeItemImageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [changeItemImageButton setTitle:@"写真を変更する" forState:UIControlStateNormal];
     [changeItemImageButton sizeToFit]; // キャプションに合わせてサイズを設定する
-    changeItemImageButton.center = CGPointMake(160, 265);
+    changeItemImageButton.center = CGPointMake(160, 164);
     changeItemImageButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [changeItemImageButton addTarget:self action:@selector(changeItemImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:changeItemImageButton];
@@ -117,18 +113,14 @@
 - (void)addMemoTextView
 {
     // メモのセクションタイトル
-    UIImageView * memoSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 286, 320, 30.5)];
+    UIImageView * memoSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 190, 320, 30.5)];
     memoSectionImageView.image = [UIImage imageNamed:@"item_memo_section.png"];
     [self.scrollView addSubview:memoSectionImageView];
     // メモの編集欄を表示
-    NSString * memoText = _itemDict[@"memo"] ;
-    if (memoText == (id)[NSNull null]) {
-        memoText = @"";
-    }
-    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 332, 300, 140)];
+    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 236, 300, 140)];
     self.memoTextView.delegate = self; // メモテキストビューのデリゲートを渡す
     self.memoTextView.font = [UIFont systemFontOfSize:13];
-    self.memoTextView.text = memoText;
+    self.memoTextView.text = self.memoText;
     // textView を角丸にする
     [[self.memoTextView layer] setCornerRadius:8.0];
     [self.memoTextView setClipsToBounds:YES];
@@ -143,7 +135,7 @@
 {
     //アラートビューの生成と設定
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"写真を選択"
+                          initWithTitle:@"写真の選択"
                           message:nil
                           delegate:self
                           cancelButtonTitle:@"キャンセル" otherButtonTitles:nil];
@@ -162,14 +154,12 @@
             
         case 1:
             //2番目のボタン(カメラで撮影する)が押されたときのアクション
-            NSLog(@"2番目");
-            self.view.backgroundColor = [UIColor redColor];
+            [self callCamera];
             break;
             
         case 2:
             //3番目のボタン(ライブラリから選ぶ)が押されたときのアクション
-            NSLog(@"3番目");
-            self.view.backgroundColor = [UIColor blueColor];
+            [self callPhotoLibrary];
             break;
             
         default:
@@ -178,29 +168,71 @@
     
 }
 
-- (void)loadJsonAndRefreshView
+- (void)addView
 {
-    for (UIView *view in self.view.subviews) {
-        [view removeFromSuperview];
-    }
 
-    NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
-    // 辞書データに変換する
-    _itemDict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                               options:NSJSONReadingAllowFragments
-                                                 error:nil];
-    [self addItemNameView];
+    //[self addItemNameView]; // 今回は利用しない
     [self addItemImageView];
     [self addMemoTextView];
     [self.view addSubview:self.scrollView];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 // メモのテキストビューを編集開始時に実行される
 - (void) textViewDidBeginEditing: (UITextView*) textView
 {
     // 編集開始時の処理
-    [self.scrollView setContentOffset:CGPointMake(0, 220) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(0, 124) animated:YES];
+}
+
+- (void)callPhotoLibrary
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = sourceType;
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+    
+}
+
+- (void)callCamera
+{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = sourceType;
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+//カメラ撮影後のデリゲートメソッド
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //撮影した画像データをUIImageにセットする
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.itemImageView.image = pickedImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)doneButtonTapped
+{
+    app.itemDetailChanged = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self performSelector:@selector(postItemData) withObject:nil afterDelay:0.001];
+    [self backToItemDetail];
+}
+
+// アイテムデータをサーバにPOSTする
+- (void)postItemData
+{
+    [app.netManager postEditItemDataToServerWithImage:self.itemImageView.image
+                                               itemId:self.itemId
+                                             memoText:self.memoTextView.text];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 /*
