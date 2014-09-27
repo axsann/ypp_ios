@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-SDWebImage.xcscheme</key>
+		<key>Pods-ICViewPager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVProgressHUD.xcscheme</key>
+		<key>Pods-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>51B085D07A1B42239F56198E</key>
+		<key>347D1FBB22EC48AB8898A0C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A7AA2F820C6497AA14710C0</key>
+		<key>84588DAE294C4155A7154C5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5CE587779B641BA84DA45F5</key>
+		<key>94472BC149B1464A9726873E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FCD748DD4F2C4912B733A746</key>
+		<key>A9B156C3DC5245DB957870FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B450252EE5ED4C8BB07F760F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,7 +9,7 @@
 #import "MissionTableController.h"
 #import "MissionTableViewCell.h"
 #import "AppDelegate.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "TKRSegueOptions.h"
 
@@ -82,8 +82,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self loadJsonAndRefreshTable];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,8 +196,9 @@
 
 - (void)segmentedControlChanged
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self loadJsonAndRefreshTable];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     // テーブルビューを先頭に戻す
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -236,7 +238,6 @@
     }
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    [SVProgressHUD dismiss];
 }
 
 

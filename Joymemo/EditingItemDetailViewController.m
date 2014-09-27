@@ -9,7 +9,7 @@
 #import "EditingItemDetailViewController.h"
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 
 @interface EditingItemDetailViewController ()
 @property (strong, nonatomic) UIScrollView * scrollView;
@@ -55,8 +55,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(refreshDataAndView) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self refreshDataAndView];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,7 +115,6 @@
     [self addItemLargeImageView];
     [self addMemoTextView];
     [self.view addSubview:self.scrollView];
-    [SVProgressHUD dismiss];
 }
 
 // メモのテキストビューを編集開始時に実行される

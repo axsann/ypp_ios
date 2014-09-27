@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "TKRSegueOptions.h"
 #import "Item.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "CreateMissionViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -98,6 +98,7 @@
             [self checkOnOffContainedInCheckArray:cell atIndexPath:indexPath];
         }
     }
+    NSLog(@"viewWill");
     [super viewWillAppear:animated];
 }
 
@@ -312,8 +313,10 @@
 
 - (void)addToBuyButtonTapped
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(addItemToBuyList) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self addItemToBuyList];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self ExitCheckMode];
 }
 
 - (void)addToMissionButtonTapped
@@ -340,17 +343,17 @@
 //-- サーバーの買う物リストにアイテムを追加する
 - (void)addItemToBuyList
 {
-    
-    for (int i=0; i<app.checkArray.count; i++) {
-        NSString * itemId = app.checkArray[i];
+    app.postBuyListArray = [app.checkArray mutableCopy];
+
+
+    for (int i=0; i<app.postBuyListArray.count; i++) {
+        NSString * itemId = app.postBuyListArray[i];
         [app.netManager postBuyListData:itemId];
     }
     
     // 追加しましたメッセージ
-    NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.checkArray.count];
-    
-    // チェックモードをオフにする
-    [self ExitCheckMode];
+    NSString * addToBuyDoneMessage = [NSString stringWithFormat:@"%lu個のアイテムを追加しました！", (unsigned long)app.postBuyListArray.count];
+    [app.postBuyListArray removeAllObjects];
     
     //アラートを作成
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
@@ -360,13 +363,10 @@
                                            otherButtonTitles:nil
                           ];
     
-    
     // アラートを自動で閉じる秒数をセットするタイマー
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
-    [SVProgressHUD dismiss];
     // アラートを表示する
     [alert show];
-
 }
 
 
@@ -383,18 +383,24 @@
 {
     // チェックアレイから全てのオブジェクトを削除
     [app.checkArray removeAllObjects];
+    [self checkOffAllCell];
+    // ツールバーを非表示にしてタブバーを再表示させる
+    [self showHideToolbar];
+    [self showHideCancelButton];
+    
+}
+
+- (void)checkOffAllCell
+{
     for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
         for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:j];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            // checkArrayに含まれるものにチェックを入れ、そうでないもののチェックを外す
-            [self checkOnOffContainedInCheckArray:cell atIndexPath:indexPath];
+            [self setNotCheckmarkOnCell:cell];
         }
     }
-    // ツールバーを非表示にしてタブバーを再表示させる
-    [self showHideToolbar];
-    [self showHideCancelButton];
 }
+
 
 //-- チェックモードがオンならばYESを返す
 - (BOOL)isCheckModeOn
@@ -422,9 +428,8 @@
     UIImage * checkImage = [UIImage imageNamed:@"circlecheck.png"];
 
     UIImageView *checkImageView = [[UIImageView alloc] initWithImage:checkImage];
-    // 画像が大きい場合にはみ出さないようにViewの大きさを固定化
+    // Viewの大きさを固定化
     checkImageView.frame = CGRectMake(0, 0, 35, 30);
-    
     // アクセサリービューにイメージを設定
     cell.accessoryView = checkImageView;
     // accessoryTypeをCheckmarkにする。カスタム画像は維持される。
@@ -436,7 +441,7 @@
 {
     UIImage * notCheckImage = [UIImage imageNamed:@"circle.png"];
     UIImageView *notCheckImageView = [[UIImageView alloc] initWithImage:notCheckImage];
-    // 画像が大きい場合にはみ出さないようにViewの大きさを固定化
+    // Viewの大きさを固定化
     notCheckImageView.frame = CGRectMake(0, 0, 35, 30);
     // アクセサリービューにイメージを設定
     cell.accessoryView = notCheckImageView;

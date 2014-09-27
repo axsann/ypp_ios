@@ -1,3 +1,4 @@
 pod 'TKRSegueOptions'
-pod 'SVProgressHUD'
+pod 'MBProgressHUD'
 pod 'SDWebImage'
+pod 'ICViewPager'

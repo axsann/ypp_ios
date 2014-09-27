@@ -8,7 +8,7 @@
 
 #import "HistoryTableViewController.h"
 #import "AppDelegate.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "HistoryTableViewCell.h"
 
@@ -58,8 +58,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self loadJsonAndRefreshTable];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +143,6 @@
                                                       error:nil];
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    [SVProgressHUD dismiss];
 }
 
 //-- セルの高さを設定

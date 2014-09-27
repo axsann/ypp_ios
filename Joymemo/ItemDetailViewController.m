@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "EditingItemDetailViewController.h"
 #import "UIImageView+WebCache.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 
 
 @interface ItemDetailViewController ()
@@ -56,8 +56,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(refreshDataAndView) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self refreshDataAndView];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,7 +158,6 @@
     [self addItemLargeImageView];
     [self addMemoTextView];
     [self addCreatorImageViewAndCreatorNameLabel];
-    [SVProgressHUD dismiss];
 }
 
 

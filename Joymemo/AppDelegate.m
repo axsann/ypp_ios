@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Item.h"
-#import "SVProgressHUD.h"
 
 @implementation AppDelegate
 

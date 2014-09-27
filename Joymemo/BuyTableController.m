@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "TKRSegueOptions.h"
 #import "Item.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "ItemTableViewCell.h"
 
@@ -68,8 +68,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self loadJsonAndRefreshTable];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 
 }
 
@@ -188,7 +189,6 @@
                                                      error:nil];
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    [SVProgressHUD dismiss];
     [self showHideBuyListEmptyImage];
 
 }

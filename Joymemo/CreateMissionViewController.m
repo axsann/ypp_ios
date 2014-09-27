@@ -11,7 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "Item.h"
 #import "QuartzCore/CALayer.h"
-#import "SVProgressHUD.h"
+#import "MBProgressHUD.h"
 
 @interface CreateMissionViewController ()
 @property (strong, nonatomic) UIScrollView * scrollView;
@@ -56,8 +56,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(loadJsonAndAddViews) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self loadJsonAndRefreshViews];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,13 +80,12 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)loadJsonAndAddViews
+- (void)loadJsonAndRefreshViews
 {
     [self addUsersView];
     [self addMemoView];
     [self addItemView];
     [self addPostButton];
-    [SVProgressHUD dismiss];
 }
 
 // お使いを依頼したい人のビューを追加
@@ -214,8 +214,10 @@
 // 送信ボタンをタップしたときの処理
 - (void)postButtonTapped:(UIButton *)button
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [self performSelector:@selector(postMissionData) withObject:nil afterDelay:0.1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self postMissionData];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
 }
 
 - (void)postMissionData
@@ -233,7 +235,6 @@
                           ];
     // アラートを自動で閉じる秒数をセットするタイマー
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(closeAlertAtTimerEnd:) userInfo:alert repeats:NO];
-    [SVProgressHUD dismiss];
     [alert show];
     [self backToCategory];
 }
