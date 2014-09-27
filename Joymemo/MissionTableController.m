@@ -83,7 +83,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJsonAndRefreshTable];
+    [self loadJson];
+    [self refreshTable];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
@@ -106,7 +107,11 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.missionIdListArray.count;
+    if (_segmentedControl.selectedSegmentIndex==0) {
+        return self.toMeMissionIdListArray.count;
+    } else {
+        return self.toOtherMissionIdListArray.count;
+    }
 }
 
 
@@ -117,7 +122,15 @@
     
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSDictionary * missionDetailDict = self.missionDetailArray[indexPath.row];
+    
+    NSDictionary * missionDetailDict;
+    if (_segmentedControl.selectedSegmentIndex==0) {
+        missionDetailDict = self.toMeMissionDetailArray[indexPath.row];
+    }
+    else {
+        missionDetailDict = self.toOtherMissionDetailArray[indexPath.row];
+    }
+    
     NSArray * itemArray = missionDetailDict[@"items"];
     
     cell.backgroundColor = app.bgColor;
@@ -176,7 +189,7 @@
 
 -(void) itemThumbButtonTapped:(UIButton *)button
 {
-    NSString * itemId = [NSString stringWithFormat:@"%d", button.tag];
+    NSString * itemId = [NSString stringWithFormat:@"%ld", (long)button.tag];
     [self performSegueWithIdentifier:@"MissionTableToDetail" options:itemId];
 }
 
@@ -196,19 +209,18 @@
 
 - (void)segmentedControlChanged
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self loadJsonAndRefreshTable];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self refreshTable];
     // テーブルビューを先頭に戻す
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-
+    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
-- (void)loadJsonAndRefreshTable
+- (void)loadJson
 {
-    self.MissionIdListArray = [NSMutableArray array];
-    self.MissionDetailArray = [NSMutableArray array];
+    self.toMeMissionIdListArray = [NSMutableArray array];
+    self.toMeMissionDetailArray = [NSMutableArray array];
+    self.toOtherMissionIdListArray = [NSMutableArray array];
+    self.toOtherMissionDetailArray = [NSMutableArray array];
     NSData * missionListJsonData = [app.netManager getMissionListJson];
     NSArray * missionListArray = [NSJSONSerialization JSONObjectWithData:missionListJsonData
                                                                  options:NSJSONReadingAllowFragments
@@ -217,30 +229,39 @@
         NSDictionary * missionDict = missionListArray[i];
         NSDictionary * missionTargetDict = missionDict[@"target"];
         NSDictionary * missionSourceDict = missionDict[@"source"];
-        if (_segmentedControl.selectedSegmentIndex==0) { // 頼まれたものが選択されているとき
-            // 頼まれた人がユーザIDと一致していればmissionIdListArrayに追加
-            if ([missionTargetDict[@"user_id"] isEqualToString:app.netManager.userId]) {
-                [self.missionIdListArray addObject:missionDict[@"mission_id"]];
-            }
-        } else { // 頼んだものが選択されているとき
-            // 頼んだ人がユーザIDと一致していればmissionIdListArrayに追加
-            if ([missionSourceDict[@"user_id"] isEqualToString:app.netManager.userId]) {
-                [self.missionIdListArray addObject:missionDict[@"mission_id"]];
-            }
+        // 頼まれた人がユーザIDと一致していればtoMeMissionIdListArrayに追加
+        if ([missionTargetDict[@"user_id"] isEqualToString:app.netManager.userId]) {
+            [self.toMeMissionIdListArray addObject:missionDict[@"mission_id"]];
+        }
+        // 頼んだ人がユーザIDと一致していればtoOtherMissionIdListArrayに追加
+        if ([missionSourceDict[@"user_id"] isEqualToString:app.netManager.userId]) {
+            [self.toOtherMissionIdListArray addObject:missionDict[@"mission_id"]];
         }
     }
-    for (int i=0; i<self.missionIdListArray.count; i++) {
-        NSData * missionDetailJsonData = [app.netManager getMissionDetailJson:self.missionIdListArray[i]];
-        NSDictionary * missionDetailDict = [NSJSONSerialization JSONObjectWithData:missionDetailJsonData
+    
+    // 頼まれたものの詳細一覧を取得
+    for (int i=0; i<self.toMeMissionIdListArray.count; i++) {
+        NSData * toMeMissionDetailJsonData = [app.netManager getMissionDetailJson:self.toMeMissionIdListArray[i]];
+        NSDictionary * toMeMissionDetailDict = [NSJSONSerialization JSONObjectWithData:toMeMissionDetailJsonData
                                                                            options:NSJSONReadingAllowFragments
                                                                              error:nil];
-        [self.missionDetailArray addObject:missionDetailDict];
+        [self.toMeMissionDetailArray addObject:toMeMissionDetailDict];
     }
+    // 頼んだものの詳細一覧を取得
+    for (int i=0; i<self.toOtherMissionIdListArray.count; i++) {
+        NSData * toOtherMissionDetailJsonData = [app.netManager getMissionDetailJson:self.toOtherMissionIdListArray[i]];
+        NSDictionary * toOtherMissionDetailDict = [NSJSONSerialization JSONObjectWithData:toOtherMissionDetailJsonData
+                                                                               options:NSJSONReadingAllowFragments
+                                                                                 error:nil];
+        [self.toOtherMissionDetailArray addObject:toOtherMissionDetailDict];
+    }
+}
+
+- (void)refreshTable
+{
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
-
-
 
 //-- セクションのタイトルの高さを設定
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

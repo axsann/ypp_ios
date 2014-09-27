@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MissionTableController : UITableViewController
-@property (strong, nonatomic) NSMutableArray * missionIdListArray;
-@property (strong, nonatomic) NSMutableArray * missionDetailArray;
+@property (strong, nonatomic) NSMutableArray * toMeMissionIdListArray;
+@property (strong, nonatomic) NSMutableArray * toOtherMissionIdListArray;
+@property (strong, nonatomic) NSMutableArray * toMeMissionDetailArray;
+@property (strong, nonatomic) NSMutableArray * toOtherMissionDetailArray;
+
 @end
