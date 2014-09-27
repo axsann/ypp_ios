@@ -206,7 +206,7 @@
 {
     if ([self isBuyListNone]) {
         UIView * bgView = [[UIView alloc]initWithFrame:self.tableView.frame];
-        UIImageView * buyListEmptyImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 331)];
+        UIImageView * buyListEmptyImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, 320, 331)];
         buyListEmptyImageView.image = [UIImage imageNamed:@"empty_buylist.png"];
         [bgView addSubview:buyListEmptyImageView];
         self.tableView.backgroundView = bgView;
