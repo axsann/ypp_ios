@@ -10,6 +10,7 @@
 
 @interface Cate : NSObject
 @property (strong, nonatomic) NSMutableArray * cateNameArray; // カテゴリ名を格納した配列
+@property (strong, nonatomic) NSMutableArray * cateHeaderImageNameArray; //ヘッダーの画像ファイル名を格納
 @property (strong, nonatomic) NSMutableDictionary * itemInCateDict; // カテゴリ名をKeyとしてアイテムの配列を格納
 -(void)loadJsonWithFileName:(NSString *)fileName; //テスト用
 - (void)loadJson: (NSData *)jsonData;

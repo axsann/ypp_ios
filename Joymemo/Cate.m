@@ -20,6 +20,8 @@
 {
     // カテゴリ名は固定なので予め同じものを用意する
     self.cateNameArray = [NSMutableArray arrayWithObjects:@"キッチン", @"リビング", @"お風呂", @"トイレ", @"洗面所", @"その他", nil];
+    self.cateHeaderImageNameArray = [NSMutableArray arrayWithObjects:@"kitchen.png", @"living.png", @"bath.png", @"toilet.png", @"lavatory.png", @"others.png", nil];
+    
     self.itemInCateDict = [NSMutableDictionary dictionary];
 
     // JSONを配列に変換する

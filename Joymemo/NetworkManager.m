@@ -19,13 +19,13 @@
 - (id) init {
     if (self = [super init]) {
         // 本来なら、ユーザIDは初回起動時に生成されてローカルに保存される
-        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F";
-        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9";
+        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F"; // サザエのユーザID
+        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9"; // タラオのユーザID
         self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
     }
     return self;
 }
-// 後日オフライン時のエラー回避・例外処理を記述する
+// オフライン時のエラー回避・例外処理を記述する必要がある
 //---------- 実際にURLからJSONを取得するメソッド ----------
 - (NSData *)getJsonFromServerWithSubDirName: (NSString *)subDirName fileName:(NSString*)fileName parameter:(NSString*)param
 {
@@ -172,6 +172,17 @@
     NSData *jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
     return jsonData;
 }
+
+// お知らせ一覧を取得するメソッド
+- (NSData *)getHistoryListJson
+{
+    NSString * subDirName = @"histories";
+    NSString * fileName = @"list";
+    NSString * param = [NSString stringWithFormat:@"user_id=%@", self.userId];
+    NSData * jsonData = [self getJsonFromServerWithSubDirName:subDirName fileName:fileName parameter:param];
+    return jsonData;
+}
+
 //---------- ここまで個別のgetメソッド ----------
 
 //---------- ここから個別のpostメソッド ----------
@@ -199,13 +210,7 @@
     [self postDataToServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
 }
 
-- (void)postItemImage: (NSString *)itemId imageData:(NSData *)imageData memoText:(NSString *)memoText
-{
-    NSString * subDirName = @"buylists";
-    NSString * subSubDirName = @"add_buylist";
-    NSString * param = [NSString stringWithFormat:@"user_id=%@&item_id=%@", self.userId, itemId];
-    [self postDataToServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
-}
+
 //---------- ここまで個別のpostメソッド ----------
 
 //---------- ここから個別のremoveメソッド ----------

@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import "CreateMissionViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ItemTableViewCell.h"
 
 
 @interface CategoryTableController ()
@@ -36,8 +37,6 @@
 - (void)imageViewTapped:(UITapGestureRecognizer*)sender;
 - (void)setCheckmarkOnCell:(UITableViewCell *)cell;
 - (void)setNotCheckmarkOnCell:(UITableViewCell *)cell;
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)addThumbToCellImageView:(NSArray *)cellAndIndexPathAndThumbStrArray;
 @end
@@ -59,7 +58,7 @@
 {
     [super viewDidLoad];
     // 再利用するセルを設定
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:@"Cell"];
 
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
@@ -70,6 +69,8 @@
     self.tableView.backgroundColor = app.bgColor;
     // 空のセルを表示しない
     self.tableView.tableFooterView = [[UIView alloc] init];
+    // ヘッダービューを画像にする
+    self.tableView.tableHeaderView = self.headerImageView;
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -127,7 +128,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"Cell";
     // セルを準備する
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.separatorInset = UIEdgeInsetsZero; // 境界線を左端から表示
     cell.selectionStyle = UITableViewCellSelectionStyleNone; // セルの選択時にハイライトを行わない
     // 配列からアイテムを読み込む
@@ -258,16 +259,16 @@
     //                                                                                action:@selector(addItemToBuyArray)];
     // 買う物リストに追加ボタンを作る
     UIButton *addToBuyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    addToBuyButton.frame = CGRectMake(0, 0, 119, 30);
-    [addToBuyButton setImage:[UIImage imageNamed:@"addtobuybutton.png"] forState:UIControlStateNormal];
+    addToBuyButton.frame = CGRectMake(0, 0, 126.5, 32);
+    [addToBuyButton setImage:[UIImage imageNamed:@"addtobuy.png"] forState:UIControlStateNormal];
     [addToBuyButton addTarget:self action:@selector(addToBuyButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToBuyBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToBuyButton];
 
     
     UIButton *addToMissionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    addToMissionButton.frame = CGRectMake(0, 0, 119, 30);
-    [addToMissionButton setImage:[UIImage imageNamed:@"addtomissionbutton.png"] forState:UIControlStateNormal];
+    addToMissionButton.frame = CGRectMake(0, 0, 126.5, 32);
+    [addToMissionButton setImage:[UIImage imageNamed:@"addtomission.png"] forState:UIControlStateNormal];
     [addToMissionButton addTarget:self action:@selector(addToMissionButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     // 買う物リストに追加ボタンをUIBarButtonItemに変換する
     UIBarButtonItem *addToMissionBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addToMissionButton];
@@ -299,6 +300,7 @@
     NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
     cell.imageView.image = [UIImage imageWithData:thumbData];
 }
+
 
 //-- 他のテーブルビューで追加したボタンをツールバーから削除する
 - (void)removeButtonFromToolbar
@@ -440,20 +442,6 @@
     cell.accessoryView = notCheckImageView;
     // accessoryTypeをNoneにする。カスタム画像は維持される。
     cell.accessoryType = UITableViewCellAccessoryNone;
-}
-
-
-
-//-- セクションのタイトル文字を設定
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    return self.cateName; // タイトル名をカテゴリ名にする
-}
-
-//-- セクションのタイトルの高さを設定
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    //return 0; // セクションのタイトルを非表示にする
-    return 40;
 }
 
 //-- セルの高さを設定

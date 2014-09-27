@@ -1,32 +1,28 @@
 //
-//  PageController.m
-//  Joymemo
+//  PagingViewController.m
+//  
 //
-//  Created by kanta on 2014/09/14.
-//  Copyright (c) 2014年 kanta. All rights reserved.
+//  Created by kanta on 2014/09/27.
 //
-#import "PageController.h"
+//
+
+#import "PagingViewController.h"
+#import "TTScrollSlidingPagesController.h"
+#import "TTSlidingPage.h"
+#import "TTSlidingPageTitle.h"
 #import "AppDelegate.h"
 #import "CategoryTableController.h"
 #import "SVProgressHUD.h"
 
 
-@interface PageController ()
-- (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager;
-- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index;
-- (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index;
-- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value;
-- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color;
-- (void)makeToolbarAboveTabbar;
-- (void)checkModeOff;
+@interface PagingViewController ()
+@property (strong, nonatomic) TTScrollSlidingPagesController *slider;
 
 @end
 
-@implementation PageController{
+@implementation PagingViewController {
     AppDelegate * app;
-    
 }
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,11 +35,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.dataSource = self;
-    self.delegate = self;
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+
+    //initial setup of the TTScrollSlidingPagesController.
+    self.slider = [[TTScrollSlidingPagesController alloc] init];
+    self.slider.titleScrollerTextFont = [UIFont boldSystemFontOfSize:17];
+    self.slider.titleScrollerTextColour = app.joymemoColor;
+    self.slider.titleScrollerInActiveTextColour = [UIColor grayColor];
+    self.slider.titleScrollerBottomEdgeColour = app.tableCellSeparatorColor;
+    self.slider.titleScrollerBottomEdgeHeight = 10;
+    self.slider.titleScrollerHidden = NO;
+    self.slider.titleScrollerHeight = 54;
+    self.slider.titleScrollerItemWidth=106;
+    self.slider.disableUIPageControl = NO;
+    self.slider.titleScrollerBackgroundColour = [UIColor whiteColor];
+    self.slider.triangleBackgroundColour = app.tableCellSeparatorColor;
+    self.slider.disableTitleScrollerShadow = YES;
+    self.slider.zoomOutAnimationDisabled = YES;
+    self.slider.disableTitleShadow = YES;
+
+    //set the datasource.
+    self.slider.dataSource = self;
+    // 背景色を設定
+    self.slider.view.backgroundColor = app.bgColor;
+
+    int uiPagerControlHeight = 20; //TTScrollSlidingPagesControllerで固定した高さ
+    // スライダービューのフレームサイズを設定
+    self.slider.view.frame = CGRectMake(0, -uiPagerControlHeight, 320, self.view.bounds.size.height-self.tabBarController.tabBar.bounds.size.height+uiPagerControlHeight);
+    [self.view addSubview:self.slider.view];
+    [self addChildViewController:self.slider];
+    
     // 遷移先のビューでの戻るボタンのラベルを設定
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
     backButton.title = @"戻る";
@@ -51,17 +73,17 @@
     // cateを初期化
     self.cate = [[Cate alloc]init];
     [self loadJson];
-
     
     // タブバーにツールバーを設置する
     [self makeToolbarAboveTabbar];
     
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(loadJsonAndRefreshPages) withObject:nil afterDelay:0.1];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -77,27 +99,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager
-{
+#pragma mark TTSlidingPagesDataSource methods
+-(int)numberOfPagesForSlidingPagesViewController:(TTScrollSlidingPagesController *)source{
     // タブの数
     return self.cate.cateNameArray.count;
 }
 
-- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
-{
-    NSString * cateName = self.cate.cateNameArray[index];
-    // タブに表示するView、今回はUILabelを使用
-    UILabel* label = [UILabel new];
-    //label.text = [NSString stringWithFormat:@"Tab #%lu", (unsigned long)index];
-    //label.text = [NSString stringWithString:catNameArray[index]];
-    //label.textColor = [UIColor redColor];
-    label.text = [NSString stringWithString:cateName];
-    [label sizeToFit];
-    return label;
-}
-
-- (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index
-{
+-(TTSlidingPage *)pageForSlidingPagesViewController:(TTScrollSlidingPagesController*)source atIndex:(int)index{
     // タブ番号に対応するUIViewControllerを返す
     CategoryTableController * categoryTableController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryTableController"];
     // index番号のカテゴリ名を取得
@@ -109,54 +117,39 @@
     categoryTableController.cateName = [NSString stringWithString:cateName];
     // navigationItemのポインタを渡す
     categoryTableController.navItem = self.navigationItem;
+    // ヘッダーのimageViewを作成
+    UIImageView * headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 126.5)];
+    headerImageView.image = [UIImage imageNamed:self.cate.cateHeaderImageNameArray[index]];
+    // ヘッダーのイメージビューをテーブルビューにコピー
+    categoryTableController.headerImageView = headerImageView;
     
-    return categoryTableController;
+    return [[TTSlidingPage alloc] initWithContentViewController:categoryTableController];
 }
 
-// 上部タブのサイズを変更
-- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value
-{
-    switch (option) {
-        case ViewPagerOptionTabHeight:
-            return 44.0;
-        case ViewPagerOptionTabOffset:
-            return 1.0;
-        case ViewPagerOptionTabWidth:
-            return 106.0;
-        case ViewPagerOptionTabLocation:
-            return 1.0;
-        case ViewPagerOptionStartFromSecondTab:
-            return 0.0;
-        case ViewPagerOptionCenterCurrentTab:
-            return 1.0;
-        case ViewPagerOptionFixFormerTabsPositions:
-            return 0.0;
-        case ViewPagerOptionFixLatterTabsPositions:
-            return 0.0;
-        default:
-            return NAN;
-    }
+-(TTSlidingPageTitle *)titleForSlidingPagesViewController:(TTScrollSlidingPagesController *)source atIndex:(int)index{
+    NSString * cateName = self.cate.cateNameArray[index];
+    TTSlidingPageTitle *title = [[TTSlidingPageTitle alloc] initWithHeaderText:cateName];
+    
+    return title;
 }
 
-// 上部タブのインディケーターの色を変更
-- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color
+#pragma mark - delegate
+-(void)didScrollToViewAtIndex:(NSUInteger)index
 {
-    
-    switch (component) {
-        case ViewPagerIndicator:
-            return [app.joymemoColor colorWithAlphaComponent:0.64];
-        case ViewPagerContent:
-            return app.bgColor; // 背景色を設定
-        default:
-            return color;
-    }
+    NSLog(@"scrolled to view");
 }
 
 - (void)loadJson
 {
     // JSONファイルを読み込む
-    //[self.cate loadJsonWithFileName:@"CateData"];
     [self.cate loadJson:[app.netManager getItemListJson]];
+}
+
+-(void)loadJsonAndRefreshPages
+{
+    [self loadJson];
+    [self.slider reloadPages];
+    [SVProgressHUD dismiss];
 }
 
 // タブバーにツールバーを作成する
@@ -185,16 +178,5 @@
     
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

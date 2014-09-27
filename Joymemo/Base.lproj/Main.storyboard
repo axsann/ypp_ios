@@ -5,12 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Page Controller - Joymemo-->
+        <!--Paging View Controller - Joymemo-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="PageController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="PagingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.85490196080000003" green="0.31372549020000001" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -20,7 +20,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="285"/>
+            <point key="canvasLocation" x="1537" y="285"/>
         </scene>
         <!--Category Table Controller - Item-->
         <scene sceneID="s1u-8f-7Te">
@@ -42,7 +42,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tch-dI-UJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1383" y="285"/>
+            <point key="canvasLocation" x="1909" y="285"/>
         </scene>
         <!--Navigation Controller - ホーム-->
         <scene sceneID="DcN-1A-Yk2">
@@ -50,7 +50,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AHV-vG-iFx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ホーム" image="TabBarHome" id="Hl0-Ds-7Vz"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vea-yS-q6n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Vea-yS-q6n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -61,7 +61,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJq-GS-e5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="285"/>
+            <point key="canvasLocation" x="1030" y="285"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZB2-kA-PjT">
@@ -72,11 +72,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="EMt-Xj-Zng">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="AHV-vG-iFx" kind="relationship" relationship="viewControllers" id="Uze-Sz-018"/>
                         <segue destination="AWh-6G-3Up" kind="relationship" relationship="viewControllers" id="Vne-nR-82a"/>
                         <segue destination="Cgi-ZM-iEO" kind="relationship" relationship="viewControllers" id="OHd-kt-q7q"/>
+                        <segue destination="dY9-Dd-ani" kind="relationship" relationship="viewControllers" id="Ssy-2P-9Ys"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ3-cd-Flr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,12 +90,12 @@
             <objects>
                 <tableViewController storyboardIdentifier="BuyTableController" id="zXq-qL-n2k" customClass="BuyTableController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iuu-tu-aLP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="BuyCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyCell" textLabel="t55-zM-prh" detailTextLabel="M5F-LP-BmM" style="IBUITableViewCellStyleSubtitle" id="frL-JC-jvt">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="frL-JC-jvt" id="LCZ-Du-jjL">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -136,11 +138,11 @@
             <objects>
                 <viewController storyboardIdentifier="ItemDetailViewController" id="mdy-cP-QmU" customClass="ItemDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DAe-US-XBS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="u6X-jr-CV4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
@@ -160,7 +162,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="MissionTableController" id="wge-rq-gJb" customClass="MissionTableController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="240" sectionHeaderHeight="22" sectionFooterHeight="22" id="sEJ-lD-GYb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -169,10 +171,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Joymemo" id="KY8-2b-tUV"/>
+                    <connections>
+                        <segue destination="mdy-cP-QmU" kind="push" identifier="MissionTableToDetail" id="Cfn-Py-iun"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4b-Lo-i2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="542"/>
+            <point key="canvasLocation" x="2845" y="542"/>
         </scene>
         <!--Navigation Controller - 買うものリスト-->
         <scene sceneID="ZX6-1T-x31">
@@ -180,7 +185,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWh-6G-3Up" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="買うものリスト" image="TabBarBuyList" id="Mpc-LH-nea"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwW-lc-Vzf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="rwW-lc-Vzf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -199,7 +204,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cgi-ZM-iEO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="おつかいリスト" image="TabBarMission" id="oPf-M5-gSr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0ts-kD-RIR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0ts-kD-RIR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -210,11 +215,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jku-57-zv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="542"/>
+            <point key="canvasLocation" x="2463" y="542"/>
+        </scene>
+        <!--Navigation Controller - お知らせ-->
+        <scene sceneID="M3G-kp-IG9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dY9-Dd-ani" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="お知らせ" image="TabBarHistory" id="739-qx-a0h"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="czd-as-cb0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5ls-p7-uFN" kind="relationship" relationship="rootViewController" id="rH6-cp-0v3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GaU-gS-63N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="21" y="587"/>
+        </scene>
+        <!--History Table View Controller - お知らせ一覧-->
+        <scene sceneID="IAq-YQ-XQZ">
+            <objects>
+                <tableViewController storyboardIdentifier="HistoryTableViewController" id="5ls-p7-uFN" customClass="HistoryTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="m2k-sG-8Xx">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="5ls-p7-uFN" id="2hG-MF-UB7"/>
+                            <outlet property="delegate" destination="5ls-p7-uFN" id="EGQ-76-PhU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="お知らせ一覧" id="IPp-2s-hqS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bEp-6a-tCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="432" y="587"/>
         </scene>
     </scenes>
     <resources>
         <image name="TabBarBuyList" width="30" height="30"/>
+        <image name="TabBarHistory" width="30" height="30"/>
         <image name="TabBarHome" width="30" height="30"/>
         <image name="TabBarMission" width="30" height="30"/>
     </resources>
@@ -224,6 +268,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GSN-Do-NhS"/>
+        <segue reference="z6f-Hc-K1g"/>
     </inferredMetricsTieBreakers>
 </document>

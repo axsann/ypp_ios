@@ -74,7 +74,7 @@
 {
     
     NSURL * itemImageUrl = [NSURL URLWithString:jsonDict[@"image"]];
-    UIImageView * itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 67, 320.0, 320.0)];
+    UIImageView * itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
     [itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     [self.scrollView addSubview:itemLargeImageView];
     
@@ -86,7 +86,7 @@
     if (memoText == (id)[NSNull null]) {
         memoText = @"";
     }
-    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(20, 394, 280, 80)];
+    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(20, 327, 280, 80)];
     self.memoTextView.delegate = self; // メモテキストビューのデリゲートを渡す
     self.memoTextView.font = [UIFont systemFontOfSize:13];
     self.memoTextView.text = memoText;

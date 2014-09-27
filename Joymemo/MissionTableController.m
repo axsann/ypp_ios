@@ -11,14 +11,18 @@
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
+#import "TKRSegueOptions.h"
+
 
 
 @interface MissionTableController ()
-
+@property (strong, nonatomic) UISegmentedControl * segmentedControl;
+@property (strong, nonatomic) UIView * segmentedView;
 @end
 
-@implementation MissionTableController{
+@implementation MissionTableController {
     AppDelegate * app;
+
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -39,6 +43,17 @@
     self.tableView.separatorColor = [UIColor clearColor];
     // 背景色を設定
     self.tableView.backgroundColor = app.bgColor;
+    // 遷移先のビューでの戻るボタンのラベルを設定
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    backButton.title = @"戻る";
+    self.navigationItem.backBarButtonItem = backButton;
+    // segmentedControllerを初期化する
+    [self segmentedViewInit];
+    
+
+    //self.tableView.tableHeaderView = _segmentedControl;
+    //self.navigationItem.titleView = _segmentedControl;
+    
     
     // tableViewにcustomCellのクラスを登録
     UINib *nib = [UINib nibWithNibName:@"MissionTableCell" bundle:nil];
@@ -50,16 +65,25 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)segmentedViewInit
+{
+    _segmentedView = [[UIView alloc]init];
+    _segmentedView.backgroundColor = [UIColor whiteColor];
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"頼まれたもの", @"頼んだもの"]];
+    _segmentedControl.frame = CGRectMake(30, 10, 260, 30);
+    _segmentedControl.selectedSegmentIndex = 0; //頼まれたものを選択
+    // セグメンテッドコントロールの色を変える
+    _segmentedControl.tintColor = app.joymemoColor;
+    //値が変更された時にloadJsonAndRefreshTableメソッドを呼び出す
+    [_segmentedControl addTarget:self action:@selector(segmentedControlChanged)
+                forControlEvents:UIControlEventValueChanged];
+    [_segmentedView addSubview:_segmentedControl];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
-    
-    // Update cells
-    NSMutableArray *cells = [NSMutableArray arrayWithArray:[self.tableView visibleCells]];
-    for (UITableViewCell *cell in cells) {
-        [self updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +105,7 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.myMissionIdListArray.count;
+    return self.missionIdListArray.count;
 }
 
 
@@ -92,18 +116,16 @@
     
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSDictionary * missionDetailDict = self.myMissionDetailArray[indexPath.row];
-    NSDictionary * sourceUserDict = missionDetailDict[@"source"];
+    NSDictionary * missionDetailDict = self.missionDetailArray[indexPath.row];
     NSArray * itemArray = missionDetailDict[@"items"];
     
     cell.backgroundColor = app.bgColor;
+    NSDictionary * sourceUserDict = missionDetailDict[@"source"];
+    NSDictionary * targetUserDict = missionDetailDict[@"target"];
 
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@からのおつかい依頼", sourceUserDict[@"user_name"]];
-    NSString * dateStr = [self changeDateFormat:missionDetailDict[@"request_time"]];
-    cell.dateLabel.text = [NSString stringWithFormat:@"%@に依頼", dateStr]; // 日付と時間をセット
-    cell.commentTextView.editable = NO;
-    cell.commentTextView.text = missionDetailDict[@"memo"];
     
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@から%@へのおつかい依頼", sourceUserDict[@"user_name"], targetUserDict[@"user_name"]];
+
     // おつかいを頼んだ人のアイコン画像をセットする
     UIImageView * creatorImageView = [[UIImageView alloc]initWithFrame:CGRectMake(24, 24, 36, 36)];
     NSURL * creatorImageUrl = [NSURL URLWithString:sourceUserDict[@"icon"]];
@@ -111,6 +133,11 @@
     creatorImageView.layer.cornerRadius = creatorImageView.frame.size.width * 0.5f;
     creatorImageView.clipsToBounds = YES;
     [cell.contentView addSubview:creatorImageView];
+    
+    NSString * dateStr = [self changeDateFormat:missionDetailDict[@"request_time"]];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@に依頼", dateStr]; // 日付と時間をセット
+    cell.commentTextView.editable = NO;
+    cell.commentTextView.text = missionDetailDict[@"memo"];
     
     // itemScrollViewのコンテンツサイズを設定
     cell.itemScrollView.contentSize = CGSizeMake(itemArray.count*60, cell.itemScrollView.frame.size.height);
@@ -122,6 +149,7 @@
     for (int i=0; i<itemArray.count; i++) {
         NSDictionary * itemDict = itemArray[i];
         NSString * itemName = itemDict[@"item_name"];
+        NSString * itemId = itemDict[@"item_id"];
         NSURL * itemThumbImageUrl = [NSURL URLWithString:itemDict[@"thumb"]];
         CGFloat itemThumbWidthHeight = 50;
         CGRect itemThumbFrame = CGRectMake(60*i, 5, itemThumbWidthHeight, itemThumbWidthHeight);
@@ -129,7 +157,7 @@
         [itemThumbImageView sd_setImageWithURL:itemThumbImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
         UIButton * itemThumbButton = [[UIButton alloc]initWithFrame:itemThumbFrame];
         [itemThumbButton addTarget:self action:@selector(itemThumbButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        itemThumbButton.tag = i+1; // userIconButtonのタグをi+1に設定
+        itemThumbButton.tag = itemId.intValue; // userIconButtonのタグをitem_idに設定
         // アイテム名のラベルを設定
         UILabel * itemNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60*i, 60, itemThumbWidthHeight, 30)];
         itemNameLabel.text = itemName;
@@ -145,29 +173,11 @@
     return cell;
 }
 
-- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    // Here you can update cell. This method is called from both when the cell is created
-    // and and when viewWillAppear is called. When the user changed the cell value in detailed
-    // view and come back to this view, the value of the cell changed appropriately.
-    // Watch "viewWillAppear:" method.
-    
-    // Usually, you set the cell with the data from an array or a model manager.
-    // This is just a sample, so I directly set the content here.
-    
-    // cast
-    MissionTableViewCell * missionCell;
-    missionCell = (MissionTableViewCell *)cell;
-    
-    
-}
-
 -(void) itemThumbButtonTapped:(UIButton *)button
 {
-    
+    NSString * itemId = [NSString stringWithFormat:@"%d", button.tag];
+    [self performSegueWithIdentifier:@"MissionTableToDetail" options:itemId];
 }
-
-
 
 // 日付の形を変換する
 - (NSString *)changeDateFormat:(NSString *)dateStr
@@ -183,10 +193,20 @@
     return newDateStr;
 }
 
+- (void)segmentedControlChanged
+{
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+    // テーブルビューを先頭に戻す
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
+}
+
 - (void)loadJsonAndRefreshTable
 {
-    self.myMissionIdListArray = [NSMutableArray array];
-    self.myMissionDetailArray = [NSMutableArray array];
+    self.MissionIdListArray = [NSMutableArray array];
+    self.MissionDetailArray = [NSMutableArray array];
     NSData * missionListJsonData = [app.netManager getMissionListJson];
     NSArray * missionListArray = [NSJSONSerialization JSONObjectWithData:missionListJsonData
                                                                  options:NSJSONReadingAllowFragments
@@ -194,20 +214,43 @@
     for (int i=0; i<missionListArray.count; i++) {
         NSDictionary * missionDict = missionListArray[i];
         NSDictionary * missionTargetDict = missionDict[@"target"];
-        if ([missionTargetDict[@"user_id"] isEqualToString:app.netManager.userId]) {
-            [self.myMissionIdListArray addObject:missionDict[@"mission_id"]];
+        NSDictionary * missionSourceDict = missionDict[@"source"];
+        if (_segmentedControl.selectedSegmentIndex==0) { // 頼まれたものが選択されているとき
+            // 頼まれた人がユーザIDと一致していればmissionIdListArrayに追加
+            if ([missionTargetDict[@"user_id"] isEqualToString:app.netManager.userId]) {
+                [self.missionIdListArray addObject:missionDict[@"mission_id"]];
+            }
+        } else { // 頼んだものが選択されているとき
+            // 頼んだ人がユーザIDと一致していればmissionIdListArrayに追加
+            if ([missionSourceDict[@"user_id"] isEqualToString:app.netManager.userId]) {
+                [self.missionIdListArray addObject:missionDict[@"mission_id"]];
+            }
         }
     }
-    for (int i=0; i<self.myMissionIdListArray.count; i++) {
-        NSData * missionDetailJsonData = [app.netManager getMissionDetailJson:self.myMissionIdListArray[i]];
+    for (int i=0; i<self.missionIdListArray.count; i++) {
+        NSData * missionDetailJsonData = [app.netManager getMissionDetailJson:self.missionIdListArray[i]];
         NSDictionary * missionDetailDict = [NSJSONSerialization JSONObjectWithData:missionDetailJsonData
                                                                            options:NSJSONReadingAllowFragments
                                                                              error:nil];
-        [self.myMissionDetailArray addObject:missionDetailDict];
+        [self.missionDetailArray addObject:missionDetailDict];
     }
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     [SVProgressHUD dismiss];
+}
+
+
+
+//-- セクションのタイトルの高さを設定
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    //return 0; // セクションのタイトルを非表示にする
+    return 50;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+
+    return _segmentedView;
 }
 
 /*

@@ -192,7 +192,7 @@
 
 - (void)addPostButton
 {
-    UIButton * postButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 419, 280, 34)];
+    UIButton * postButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 419, 280, 34.5)];
     postButton.backgroundColor = [UIColor clearColor];
     [postButton setImage:[UIImage imageNamed:@"postButton.png"] forState:UIControlStateNormal];
     [postButton addTarget:self action:@selector(postButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -250,7 +250,7 @@
 - (void) textViewDidBeginEditing: (UITextView*) textView
 {
     // 編集開始時の処理
-    [self.scrollView setContentOffset:CGPointMake(0, 20) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(0, 83) animated:YES];
 }
 
 

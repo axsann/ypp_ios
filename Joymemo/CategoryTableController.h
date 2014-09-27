@@ -12,4 +12,5 @@
 @property (strong, nonatomic) NSMutableArray * itemArray;
 @property (strong, nonatomic) NSString * cateName;
 @property (strong, nonatomic) UINavigationItem * navItem;
+@property (strong, nonatomic) UIImageView * headerImageView;
 @end

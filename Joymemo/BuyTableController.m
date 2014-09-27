@@ -12,6 +12,7 @@
 #import "Item.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
+#import "ItemTableViewCell.h"
 
 
 @interface BuyTableController ()
@@ -43,7 +44,8 @@
 {
     [super viewDidLoad];
     // 再利用するセルを設定
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BuyCell"];
+    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:@"Cell"];
+
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
     // 境界線の色を設定
@@ -68,6 +70,7 @@
 {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     [self performSelector:@selector(loadJsonAndRefreshTable) withObject:nil afterDelay:0.1];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,29 +97,17 @@
 
 //-- 表示するセル
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"BuyCell";
+    NSString *cellIdentifier = @"Cell";
     // セルを準備する
-    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                    reuseIdentifier:cellIdentifier];
+    ItemTableViewCell * cell = [[ItemTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[ItemTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
+    
     // 境界線を左端から表示
     cell.separatorInset = UIEdgeInsetsZero;
     // セルの選択時にハイライトを行わない
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    /*
-     // buyArrayからアイテムを読み込む
-     Item * item = app.buyArray[indexPath.row];
-     
-     
-    // テキストラベルをセット
-    cell.textLabel.text = item.itemName;
-    // 画像をセット
-    cell.imageView.image = [UIImage imageNamed:item.thumb];
-    
-    */
     
     NSDictionary * itemDict = _buyListArray[indexPath.row];
     NSDictionary * userDict = itemDict[@"user"];
@@ -127,8 +118,6 @@
     
     // 画像をセット
     NSURL * thumbUrl = [NSURL URLWithString:itemDict[@"thumb"]];
-    //NSData * thumbData = [NSData dataWithContentsOfURL:thumbUrl];
-    //cell.imageView.image = [UIImage imageWithData:thumbData];
     [cell.imageView sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     
     // アクセサリービューにボタンを追加
@@ -180,6 +169,7 @@
     [_buyListArray removeObjectAtIndex:indexPath.row];
     NSArray * deleteArray = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:deleteArray withRowAnimation:UITableViewRowAnimationTop];
+    [self showHideBuyListEmptyImage];
     // サーバからアイテムを削除
     [self performSelectorInBackground:@selector(removeBuyListItem:) withObject:buyListId];
 }
@@ -199,6 +189,8 @@
     // テーブルを更新する
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     [SVProgressHUD dismiss];
+    [self showHideBuyListEmptyImage];
+
 }
 
 //-- セルの高さを設定
@@ -211,6 +203,20 @@
 - (BOOL)isBuyListNone
 {
     return _buyListArray.count<=0;
+}
+
+- (void)showHideBuyListEmptyImage
+{
+    if ([self isBuyListNone]) {
+        UIView * bgView = [[UIView alloc]initWithFrame:self.tableView.frame];
+        UIImageView * buyListEmptyImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 331)];
+        buyListEmptyImageView.image = [UIImage imageNamed:@"empty_buylist.png"];
+        [bgView addSubview:buyListEmptyImageView];
+        self.tableView.backgroundView = bgView;
+    }
+    else {
+        self.tableView.backgroundView = nil;
+    }
 }
 
 /*

@@ -6,12 +6,6 @@
 // project.
 
 
-// ICViewPager
-#define COCOAPODS_POD_AVAILABLE_ICViewPager
-#define COCOAPODS_VERSION_MAJOR_ICViewPager 1
-#define COCOAPODS_VERSION_MINOR_ICViewPager 5
-#define COCOAPODS_VERSION_PATCH_ICViewPager 1
-
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

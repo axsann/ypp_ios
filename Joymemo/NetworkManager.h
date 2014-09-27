@@ -18,6 +18,7 @@
 -(NSData *)getMissionListJson;
 -(NSData *)getMissionDetailJson: (NSString*)missionId;
 -(NSData *)getBuyListJson;
+-(NSData *)getHistoryListJson;
 
 -(void)postMissionData: (NSString *)targetId memoText:(NSString *)memoText itemIdArray:(NSArray *)itemIdArray;
 -(void)postBuyListData: (NSString *)itemId;
