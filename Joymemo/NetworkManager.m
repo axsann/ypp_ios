@@ -19,8 +19,9 @@
 - (id) init {
     if (self = [super init]) {
         // 本来なら、ユーザIDは初回起動時に生成されてローカルに保存される
-        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F"; // サザエのユーザID
-        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9"; // タラオのユーザID
+        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F"; // さとみのユーザID
+        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9"; // ベイビーのユーザID
+        //self.userId = @"B3B04AD0-E39E-4A6E-A433-DE1AF077E0B9"; // 一郎のユーザID
         self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
     }
     return self;
