@@ -11,4 +11,5 @@
 @interface EditingItemDetailViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic) NSString * itemId;
 @property (strong, nonatomic) UITextView * memoTextView;
+@property (strong, nonatomic) UITextView * itemNameTextView;
 @end

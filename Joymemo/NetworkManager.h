@@ -20,6 +20,7 @@
 -(NSData *)getBuyListJson;
 -(NSData *)getHistoryListJson;
 
+- (void)postEditItemDataToServerWithImage:(UIImage *)image itemId:(NSString *)itemId itemName:(NSString *)itemName memoText:(NSString *)memoText;
 -(void)postMissionData: (NSString *)targetId memoText:(NSString *)memoText itemIdArray:(NSArray *)itemIdArray;
 -(void)postBuyListData: (NSString *)itemId;
 

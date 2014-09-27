@@ -17,7 +17,7 @@
 
 @implementation EditingItemDetailViewController {
     AppDelegate * app;
-    NSDictionary * jsonDict;
+    NSDictionary * _itemDict;
 
 }
 
@@ -39,7 +39,7 @@
     self.view.backgroundColor = app.bgColor;
     
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(backToItemDetail)];
@@ -71,23 +71,62 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)addItemLargeImageView
+- (void)addItemNameView
 {
-    
-    NSURL * itemImageUrl = [NSURL URLWithString:jsonDict[@"image"]];
-    UIImageView * itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
-    [itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
-    [self.scrollView addSubview:itemLargeImageView];
-    
+    // アイテム名のセクションタイトル
+    UIImageView * itemNameSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 10, 320, 30.5)];
+    itemNameSectionImageView.image = [UIImage imageNamed:@"item_name_section.png"];
+    [self.scrollView addSubview:itemNameSectionImageView];
+    // アイテム名の入力欄
+    self.itemNameTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 56, 300, 40)];
+    self.itemNameTextView.font = [UIFont systemFontOfSize:19];
+    self.itemNameTextView.text = _itemDict[@"item_name"]; // アイテム名を入力しておく
+    // textView を角丸にする
+    [[self.itemNameTextView layer] setCornerRadius:8.0];
+    [self.itemNameTextView setClipsToBounds:YES];
+    // textView に枠線を付ける
+    [[self.itemNameTextView layer] setBorderColor:[[UIColor colorWithRed:(236.0f/255.0f) green: (231.0f/255.0f) blue:(224.0f/255.0f) alpha:1.0f] CGColor]];
+    [[self.itemNameTextView layer] setBorderWidth:1.0];
+
+    [self.scrollView addSubview:self.itemNameTextView];
 }
+
+- (void)addItemImageView
+{
+    //アイテム写真のセクションタイトル
+    UIImageView * itemPictureSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 111, 320, 30.5)];
+    itemPictureSectionImageView.image = [UIImage imageNamed:@"item_picture_section.png"];
+    [self.scrollView addSubview:itemPictureSectionImageView];
+    // アイテム写真を表示
+    NSURL * itemImageUrl = [NSURL URLWithString:_itemDict[@"image"]];
+    UIImageView * itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(114, 157, 92, 92)];
+    [itemImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
+    [self.scrollView addSubview:itemImageView];
+    // 写真を変更するためのボタンを設置
+    UIButton * changeItemImageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [changeItemImageButton setTitle:@"写真を変更する" forState:UIControlStateNormal];
+    [changeItemImageButton sizeToFit]; // キャプションに合わせてサイズを設定する
+    changeItemImageButton.center = CGPointMake(160, 265);
+    changeItemImageButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [changeItemImageButton addTarget:self action:@selector(changeItemImageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:changeItemImageButton];
+}
+
+
+
 
 - (void)addMemoTextView
 {
-    NSString * memoText = jsonDict[@"memo"] ;
+    // メモのセクションタイトル
+    UIImageView * memoSectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 286, 320, 30.5)];
+    memoSectionImageView.image = [UIImage imageNamed:@"item_memo_section.png"];
+    [self.scrollView addSubview:memoSectionImageView];
+    // メモの編集欄を表示
+    NSString * memoText = _itemDict[@"memo"] ;
     if (memoText == (id)[NSNull null]) {
         memoText = @"";
     }
-    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(20, 327, 280, 80)];
+    self.memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 332, 300, 140)];
     self.memoTextView.delegate = self; // メモテキストビューのデリゲートを渡す
     self.memoTextView.font = [UIFont systemFontOfSize:13];
     self.memoTextView.text = memoText;
@@ -101,6 +140,45 @@
     [self.scrollView addSubview:self.memoTextView];
 }
 
+- (void)changeItemImageButtonTapped:(UIButton *)button
+{
+    //アラートビューの生成と設定
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"写真を選択"
+                          message:nil
+                          delegate:self
+                          cancelButtonTitle:@"キャンセル" otherButtonTitles:nil];
+    [alert addButtonWithTitle:@"カメラで撮影する"];
+    [alert addButtonWithTitle:@"ライブラリから選ぶ"];
+    [alert show];
+}
+
+// アラートビューのデリゲートメソッド
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            //1番目のボタン（cancelButtonTitle）が押されたときのアクション
+            break;
+            
+        case 1:
+            //2番目のボタン(カメラで撮影する)が押されたときのアクション
+            NSLog(@"2番目");
+            self.view.backgroundColor = [UIColor redColor];
+            break;
+            
+        case 2:
+            //3番目のボタン(ライブラリから選ぶ)が押されたときのアクション
+            NSLog(@"3番目");
+            self.view.backgroundColor = [UIColor blueColor];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
 - (void)refreshDataAndView
 {
     for (UIView *view in self.view.subviews) {
@@ -109,10 +187,11 @@
 
     NSData * jsonData = [app.netManager getItemDetailJson:self.itemId];
     // 辞書データに変換する
-    jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
+    _itemDict = [NSJSONSerialization JSONObjectWithData:jsonData
                                                options:NSJSONReadingAllowFragments
                                                  error:nil];
-    [self addItemLargeImageView];
+    [self addItemNameView];
+    [self addItemImageView];
     [self addMemoTextView];
     [self.view addSubview:self.scrollView];
 }

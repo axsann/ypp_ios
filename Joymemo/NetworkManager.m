@@ -82,6 +82,78 @@
     return jsonData;
 }
 
+// 編集したアイテムをPOSTするメソッド
+- (void)postEditItemDataToServerWithImage:(UIImage *)image itemId:(NSString *)itemId itemName:(NSString *)itemName memoText:(NSString *)memoText
+{
+    NSString * userId = self.userId;
+    // URLを設定する
+    NSURL* url = [NSURL URLWithString:@"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com/items/edit_item"];
+    
+    // リクエストを作成する
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setHTTPShouldHandleCookies:NO];
+    [request setTimeoutInterval:30];
+    [request setHTTPMethod:@"POST"];
+    
+    // HTTPヘッダのContent-Typeを設定する
+    NSString *boundary = @"0xKhTmLbOuNdArY"; // 境界線を示す文字列
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    // postするbodyデータ
+    NSMutableData *body = [NSMutableData data];
+    
+    // user_idのパラメータを設定
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"user_id"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //　userIdをデータに追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", userId] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // item_idのパラメータを設定
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"item_id"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // itemIdをデータに追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", itemId] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // item_nameのパラメータを設定
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"item_name"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // itemNameをデータに追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", itemName] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // memoのパラメータを設定
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"memo"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // memoTextをデータに追加
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", memoText] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // 画像データをデータに追加
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.4); //40%の画質に設定してイメージデータを作成
+    if (imageData) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        // imageのパラメータを設定
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",@"image"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:imageData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // POST用のリクエストにbodyデータをセット
+    [request setHTTPBody:body];
+    
+    // リクエストにURLをセット
+    [request setURL:url];
+    
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", returnString);
+
+
+}
+
 
  
 //---------- 実際にサーバからデータを削除するメソッド ----------
@@ -209,6 +281,8 @@
     NSString * param = [NSString stringWithFormat:@"user_id=%@&item_id=%@", self.userId, itemId];
     [self postDataToServerWithSubDirName:subDirName subSubDirName:subSubDirName parameter:param];
 }
+
+
 
 
 //---------- ここまで個別のpostメソッド ----------

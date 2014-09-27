@@ -12,7 +12,10 @@
 		B73016A919C95550009AA201 /* BuyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73016A819C95550009AA201 /* BuyTableController.m */; };
 		B756228819D1A39100B74894 /* fukidashi.png in Resources */ = {isa = PBXBuildFile; fileRef = B756228719D1A39100B74894 /* fukidashi.png */; };
 		B7587A4919D6C0A200EEB7C3 /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7587A4819D6C0A200EEB7C3 /* PageController.m */; };
-		B7587A4B19D6C65F00EEB7C3 /* others.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A4A19D6C65F00EEB7C3 /* others.png */; };
+		B7587A4D19D6C8CA00EEB7C3 /* others.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A4C19D6C8CA00EEB7C3 /* others.png */; };
+		B7587A5519D6CB5E00EEB7C3 /* item_picture_section.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5419D6CB5D00EEB7C3 /* item_picture_section.png */; };
+		B7587A5719D6CB7A00EEB7C3 /* item_memo_section.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5619D6CB7A00EEB7C3 /* item_memo_section.png */; };
+		B7587A5919D6CCEA00EEB7C3 /* item_name_section.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5819D6CCEA00EEB7C3 /* item_name_section.png */; };
 		B7649D5C19D3D30000055680 /* CreateMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5B19D3D30000055680 /* CreateMissionViewController.m */; };
 		B7649D5F19D3DE5C00055680 /* EditingItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5E19D3DE5C00055680 /* EditingItemDetailViewController.m */; };
 		B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */; };
@@ -82,7 +85,10 @@
 		B756228719D1A39100B74894 /* fukidashi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fukidashi.png; sourceTree = "<group>"; };
 		B7587A4719D6C0A200EEB7C3 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		B7587A4819D6C0A200EEB7C3 /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
-		B7587A4A19D6C65F00EEB7C3 /* others.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = others.png; sourceTree = "<group>"; };
+		B7587A4C19D6C8CA00EEB7C3 /* others.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = others.png; sourceTree = "<group>"; };
+		B7587A5419D6CB5D00EEB7C3 /* item_picture_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_picture_section.png; sourceTree = "<group>"; };
+		B7587A5619D6CB7A00EEB7C3 /* item_memo_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_memo_section.png; sourceTree = "<group>"; };
+		B7587A5819D6CCEA00EEB7C3 /* item_name_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_name_section.png; sourceTree = "<group>"; };
 		B7649D5A19D3D30000055680 /* CreateMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionViewController.h; sourceTree = "<group>"; };
 		B7649D5B19D3D30000055680 /* CreateMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionViewController.m; sourceTree = "<group>"; };
 		B7649D5D19D3DE5C00055680 /* EditingItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingItemDetailViewController.h; sourceTree = "<group>"; };
@@ -173,11 +179,14 @@
 		B798CFA519D6679900AADD77 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B7587A5819D6CCEA00EEB7C3 /* item_name_section.png */,
+				B7587A5419D6CB5D00EEB7C3 /* item_picture_section.png */,
+				B7587A5619D6CB7A00EEB7C3 /* item_memo_section.png */,
 				B786883419D6770600540267 /* lavatory.png */,
 				B786883619D6770600540267 /* source.png */,
 				B786883719D6770600540267 /* toilet.png */,
 				B786883819D6770600540267 /* bath.png */,
-				B7587A4A19D6C65F00EEB7C3 /* others.png */,
+				B7587A4C19D6C8CA00EEB7C3 /* others.png */,
 				B786883919D6770600540267 /* kitchen.png */,
 				B786883A19D6770600540267 /* living.png */,
 				B786883219D671D100540267 /* empty_buylist.png */,
@@ -385,13 +394,16 @@
 				B786884019D6770600540267 /* kitchen.png in Resources */,
 				B7ECF5DD19CC169700575D35 /* circle.png in Resources */,
 				B786883D19D6770600540267 /* source.png in Resources */,
+				B7587A5719D6CB7A00EEB7C3 /* item_memo_section.png in Resources */,
 				B786883319D671D100540267 /* empty_buylist.png in Resources */,
-				B7587A4B19D6C65F00EEB7C3 /* others.png in Resources */,
+				B7587A4D19D6C8CA00EEB7C3 /* others.png in Resources */,
 				B786883E19D6770600540267 /* toilet.png in Resources */,
+				B7587A5519D6CB5E00EEB7C3 /* item_picture_section.png in Resources */,
 				B798CFA419D6666D00AADD77 /* addtobuy.png in Resources */,
 				B756228819D1A39100B74894 /* fukidashi.png in Resources */,
 				B786884119D6770600540267 /* living.png in Resources */,
 				B783A35019D2B049001E62B9 /* joitest.jpg in Resources */,
+				B7587A5919D6CCEA00EEB7C3 /* item_name_section.png in Resources */,
 				B786883F19D6770600540267 /* bath.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
 				B786883B19D6770600540267 /* lavatory.png in Resources */,

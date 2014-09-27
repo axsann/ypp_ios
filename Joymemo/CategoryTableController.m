@@ -98,7 +98,6 @@
             [self checkOnOffContainedInCheckArray:cell atIndexPath:indexPath];
         }
     }
-    NSLog(@"viewWill");
     [super viewWillAppear:animated];
 }
 

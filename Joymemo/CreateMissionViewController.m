@@ -175,14 +175,14 @@
                                         options:NSJSONReadingAllowFragments
                                           error:nil];
         NSString * itemName = itemDict[@"item_name"];
-        NSURL * itemImageUrl = [NSURL URLWithString:itemDict[@"image"]];
-        UIImageView * itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(70*i, 0, 60, 60)];
-        [itemImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
+        NSURL * itemThumbImageUrl = [NSURL URLWithString:itemDict[@"thumb"]];
+        UIImageView * itemThumbImageView = [[UIImageView alloc]initWithFrame:CGRectMake(70*i, 0, 60, 60)];
+        [itemThumbImageView sd_setImageWithURL:itemThumbImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
         UILabel * itemNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(70*i, 60, 60, 30)];
         itemNameLabel.text = itemName;
         itemNameLabel.textAlignment = NSTextAlignmentCenter;
         itemNameLabel.font = [UIFont systemFontOfSize:11.0f];
-        [itemScrollView addSubview:itemImageView];
+        [itemScrollView addSubview:itemThumbImageView];
         [itemScrollView addSubview:itemNameLabel];
         
     }
