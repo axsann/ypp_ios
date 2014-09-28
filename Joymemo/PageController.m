@@ -45,8 +45,6 @@
     self.delegate = self;
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
-    // タイトルロゴを設定
-    self.navigationItem.titleView = app.logoView;
     // 遷移先のビューでの戻るボタンのラベルを設定
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
     backButton.title = @"戻る";

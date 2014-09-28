@@ -135,7 +135,7 @@
     myIconImageView.clipsToBounds = YES;
     [headerView addSubview:myIconImageView];
     // 自分のユーザ名をセットする
-    UILabel * myNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 55, 75, 27)];
+    UILabel * myNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 55, 200, 27)];
     myNameLabel.textAlignment = NSTextAlignmentCenter;
     myNameLabel.font = [UIFont systemFontOfSize:25];
     myNameLabel.text = myDict[@"user_name"];

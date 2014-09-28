@@ -39,8 +39,6 @@
     [super viewDidLoad];
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
-    // タイトルロゴを設定
-    self.navigationItem.titleView = app.logoView;
     // 境界線の色を透明に設定
     self.tableView.separatorColor = [UIColor clearColor];
     // 背景色を設定

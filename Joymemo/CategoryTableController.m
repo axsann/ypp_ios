@@ -81,9 +81,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
-    // Toolbarの表示をONにする
-    //[self.navigationController setToolbarHidden:NO animated:NO];
     // 他のテーブルビューによって追加されたボタンを削除
     [self removeButtonFromToolbar];
     // ボタンを追加する

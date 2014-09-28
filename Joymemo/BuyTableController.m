@@ -48,8 +48,7 @@
 
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
-    // タイトルロゴを設定
-    self.navigationItem.titleView = app.logoView;
+
     // 境界線の色を設定
     self.tableView.separatorColor = app.tableCellSeparatorColor;
     // 背景色を設定
@@ -66,7 +65,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
