@@ -32,6 +32,15 @@
     // テキストビューのボーダーの色を格納
     self.textViewBorderColor = [UIColor colorWithRed:244/255.0 green:196/255.0 blue:173/255.0 alpha:1.0];
     
+    // タイトルロゴのビューを作成
+    UIImageView * logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 34)];
+    logoImageView.image = [UIImage imageNamed:@"logotype_Joymemo500x171.png"];
+    logoImageView.backgroundColor = [UIColor clearColor];
+    [logoImageView setContentMode:UIViewContentModeScaleAspectFit];
+    self.logoView = [[UIView alloc]initWithFrame:logoImageView.frame];
+    self.logoView.backgroundColor = [UIColor clearColor];
+    [self.logoView addSubview:logoImageView];
+    
     // タブバーの選択時のハイライト色を変更
     [[UITabBar appearance] setTintColor:self.joymemoColor];
 

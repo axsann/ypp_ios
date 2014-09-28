@@ -48,6 +48,8 @@
 
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    // タイトルロゴを設定
+    self.navigationItem.titleView = app.logoView;
     // 境界線の色を設定
     self.tableView.separatorColor = app.tableCellSeparatorColor;
     // 背景色を設定
@@ -138,7 +140,7 @@
     float boughtButtonWidth = 97;
     float boughtButtonHeight = 52;
     [boughtButton setFrame:CGRectMake(cell.contentView.frame.size.width-97, 0, boughtButtonWidth, boughtButtonHeight)];
-    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbutton194x104.png"] forState:UIControlStateNormal];
+    [boughtButton setBackgroundImage:[UIImage imageNamed:@"boughtbuttonorange194x104.png"] forState:UIControlStateNormal];
     [boughtButton setBackgroundColor:[UIColor whiteColor]];
     [boughtButton addTarget:self action:@selector(boughtButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:boughtButton];

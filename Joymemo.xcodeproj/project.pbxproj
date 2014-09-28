@@ -25,6 +25,8 @@
 		B7587A8019D7B86F00EEB7C3 /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A7D19D7B86F00EEB7C3 /* icon-small@2x.png */; };
 		B7587A8119D7B86F00EEB7C3 /* icon-small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A7E19D7B86F00EEB7C3 /* icon-small-40@2x.png */; };
 		B7587A8219D7B86F00EEB7C3 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A7F19D7B86F00EEB7C3 /* icon-60@2x.png */; };
+		B7587A8419D7BA6B00EEB7C3 /* boughtbuttonorange194x104.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A8319D7BA6B00EEB7C3 /* boughtbuttonorange194x104.png */; };
+		B7587A8619D7BC2800EEB7C3 /* logotype_Joymemo500x171.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A8519D7BC2800EEB7C3 /* logotype_Joymemo500x171.png */; };
 		B7649D5C19D3D30000055680 /* CreateMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5B19D3D30000055680 /* CreateMissionViewController.m */; };
 		B7649D5F19D3DE5C00055680 /* EditingItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5E19D3DE5C00055680 /* EditingItemDetailViewController.m */; };
 		B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */; };
@@ -113,6 +115,8 @@
 		B7587A7D19D7B86F00EEB7C3 /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		B7587A7E19D7B86F00EEB7C3 /* icon-small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small-40@2x.png"; sourceTree = "<group>"; };
 		B7587A7F19D7B86F00EEB7C3 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
+		B7587A8319D7BA6B00EEB7C3 /* boughtbuttonorange194x104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boughtbuttonorange194x104.png; sourceTree = "<group>"; };
+		B7587A8519D7BC2800EEB7C3 /* logotype_Joymemo500x171.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logotype_Joymemo500x171.png; sourceTree = "<group>"; };
 		B7649D5A19D3D30000055680 /* CreateMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionViewController.h; sourceTree = "<group>"; };
 		B7649D5B19D3D30000055680 /* CreateMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionViewController.m; sourceTree = "<group>"; };
 		B7649D5D19D3DE5C00055680 /* EditingItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingItemDetailViewController.h; sourceTree = "<group>"; };
@@ -203,7 +207,9 @@
 		B798CFA519D6679900AADD77 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B7587A8519D7BC2800EEB7C3 /* logotype_Joymemo500x171.png */,
 				B7587A7D19D7B86F00EEB7C3 /* icon-small@2x.png */,
+				B7587A8319D7BA6B00EEB7C3 /* boughtbuttonorange194x104.png */,
 				B7587A7E19D7B86F00EEB7C3 /* icon-small-40@2x.png */,
 				B7587A7F19D7B86F00EEB7C3 /* icon-60@2x.png */,
 				B7587A7919D7B6A100EEB7C3 /* launch_image@r4.png */,
@@ -432,6 +438,7 @@
 				B786883D19D6770600540267 /* source.png in Resources */,
 				B7587A7C19D7B6A100EEB7C3 /* launch_image@2x.png in Resources */,
 				B7587A5719D6CB7A00EEB7C3 /* item_memo_section.png in Resources */,
+				B7587A8619D7BC2800EEB7C3 /* logotype_Joymemo500x171.png in Resources */,
 				B786883319D671D100540267 /* empty_buylist.png in Resources */,
 				B7587A4D19D6C8CA00EEB7C3 /* others.png in Resources */,
 				B786883E19D6770600540267 /* toilet.png in Resources */,
@@ -444,6 +451,7 @@
 				B7587A5919D6CCEA00EEB7C3 /* item_name_section.png in Resources */,
 				B7587A8219D7B86F00EEB7C3 /* icon-60@2x.png in Resources */,
 				B786883F19D6770600540267 /* bath.png in Resources */,
+				B7587A8419D7BA6B00EEB7C3 /* boughtbuttonorange194x104.png in Resources */,
 				B7B4CCE719C495A80067EB59 /* InfoPlist.strings in Resources */,
 				B7587A6519D7062100EEB7C3 /* Localizable.strings in Resources */,
 				B786883B19D6770600540267 /* lavatory.png in Resources */,

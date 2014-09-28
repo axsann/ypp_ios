@@ -39,6 +39,8 @@
     [super viewDidLoad];
     // AppDelegateをインスタンス化
     app = [[UIApplication sharedApplication] delegate];
+    // タイトルロゴを設定
+    self.navigationItem.titleView = app.logoView;
     // 境界線の色を透明に設定
     self.tableView.separatorColor = [UIColor clearColor];
     // 背景色を設定
@@ -49,11 +51,6 @@
     self.navigationItem.backBarButtonItem = backButton;
     // segmentedControllerを初期化する
     [self segmentedViewInit];
-    
-
-    //self.tableView.tableHeaderView = _segmentedControl;
-    //self.navigationItem.titleView = _segmentedControl;
-    
     
     // tableViewにcustomCellのクラスを登録
     UINib *nib = [UINib nibWithNibName:@"MissionTableCell" bundle:nil];

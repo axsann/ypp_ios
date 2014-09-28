@@ -23,5 +23,6 @@
 @property (strong, nonatomic) UIColor * bgColor; // 背景色
 @property (strong, nonatomic) Cate * cate; // カテゴリー別のアイテムを読み込む
 @property (strong, nonatomic) NetworkManager * netManager; // サーバと通信を行う
+@property (strong, nonatomic) UIView * logoView; // タイトルロゴ
 @property BOOL itemDetailChanged;
 @end
