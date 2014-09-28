@@ -68,12 +68,10 @@
 
 - (void)addItemLargeImageView
 {
-    
     NSURL * itemImageUrl = [NSURL URLWithString:jsonDict[@"image"]];
     self.itemLargeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 320.0)];
     [self.itemLargeImageView sd_setImageWithURL:itemImageUrl placeholderImage:[UIImage imageNamed:@"no_item_image.jpg"] options:SDWebImageCacheMemoryOnly];
     [self.scrollView addSubview:self.itemLargeImageView];
-    
 }
 
 - (void)addMemoTextView
@@ -84,25 +82,21 @@
     memoBgImageView.image = memoBgImage;
     [self.scrollView addSubview:memoBgImageView];
     
+    UITextView * memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(30, 344, 180, 128)];
     NSString * memoText;
-    if (jsonDict[@"memo"] == (id)[NSNull null]) {
+    if (jsonDict[@"memo"] == (id)[NSNull null] || [jsonDict[@"memo"] isEqualToString:@""]) {
         memoText = @"アイテムのブランド名や特徴をメモしましょう。\n右上の編集ボタンで編集できます。";
+        memoTextView.textColor = [UIColor colorWithRed:(236.0f/255.0f) green: (231.0f/255.0f) blue:(224.0f/255.0f) alpha:1.0f];
     } else {
         memoText = jsonDict[@"memo"];
+        memoTextView.textColor = [UIColor blackColor];
     }
-    UITextView * memoTextView = [[UITextView alloc]initWithFrame:CGRectMake(30, 344, 180, 128)];
     memoTextView.font = [UIFont systemFontOfSize:13];
     memoTextView.text = memoText;
     // 編集を無効にする
     memoTextView.editable = NO;
     // textViewのpaddingを0に設定
     memoTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    // textView を角丸にする
-    //[[memoTextView layer] setCornerRadius:8.0];
-    //[memoTextView setClipsToBounds:YES];
-    // textView に黒色の枠線を付ける
-    //[[memoTextView layer] setBorderColor:[app.separatorColor CGColor]];
-    //[[memoTextView layer] setBorderWidth:1.0];
     
     [self.scrollView addSubview:memoTextView];
 }
