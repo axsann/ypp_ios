@@ -8,6 +8,7 @@
 #import "PageController.h"
 #import "AppDelegate.h"
 #import "CategoryTableController.h"
+#import "AccountTableViewController.h"
 #import "MBProgressHUD.h"
 
 
@@ -51,6 +52,7 @@
     _progressHUD = [[MBProgressHUD alloc]initWithView:self.view]; // 更新時のくるくるを初期化
     [self.view addSubview:_progressHUD];
     _progressHUD.labelText = @"アイテムを再読み込みしています";
+    [self addAccountButton];
     
     [self loadJson]; // カテゴリー別アイテムのJsonを読み込む
     
@@ -200,6 +202,29 @@
     // ツールバーを非表示にしてタブバーを再表示させる
     app.toolbar.frame = CGRectMake(0.0f, screenHeight, 320.0f, toolbarHeight);
     self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)addAccountButton
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"アカウント"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(accountButtonTapped)];
+}
+
+- (void)accountButtonTapped
+{
+    AccountTableViewController * accountTableViewController = [AccountTableViewController new];
+    accountTableViewController.hidesBottomBarWhenPushed = YES; // 遷移先でタブバーを隠す
+    // アニメーションを作成
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromTop;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    // navigationControllerにアニメーションを設定
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:accountTableViewController animated:NO];
 }
 
 /*

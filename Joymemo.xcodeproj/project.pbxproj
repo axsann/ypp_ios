@@ -20,6 +20,9 @@
 		B7587A5E19D6F17C00EEB7C3 /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5B19D6F17C00EEB7C3 /* icon-small@2x.png */; };
 		B7587A5F19D6F17C00EEB7C3 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A5C19D6F17C00EEB7C3 /* icon-60@2x.png */; };
 		B7587A6519D7062100EEB7C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7587A6719D7062100EEB7C3 /* Localizable.strings */; };
+		B7587A6B19D7A0F500EEB7C3 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7587A6A19D7A0F500EEB7C3 /* AccountTableViewController.m */; };
+		B7587A6D19D7A1BA00EEB7C3 /* account_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B7587A6C19D7A1BA00EEB7C3 /* account_bg.png */; };
+		B7587A7019D7A42A00EEB7C3 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7587A6F19D7A42A00EEB7C3 /* AccountTableViewCell.m */; };
 		B7649D5C19D3D30000055680 /* CreateMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5B19D3D30000055680 /* CreateMissionViewController.m */; };
 		B7649D5F19D3DE5C00055680 /* EditingItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7649D5E19D3DE5C00055680 /* EditingItemDetailViewController.m */; };
 		B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */ = {isa = PBXBuildFile; fileRef = B7649D6019D42B4800055680 /* otukaiiraiwoshitaihito.png */; };
@@ -101,6 +104,11 @@
 		B7587A6219D705B200EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B7587A6619D7062100EEB7C3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7587A6819D7062A00EEB7C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7587A6919D7A0F500EEB7C3 /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewController.h; sourceTree = "<group>"; };
+		B7587A6A19D7A0F500EEB7C3 /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
+		B7587A6C19D7A1BA00EEB7C3 /* account_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_bg.png; sourceTree = "<group>"; };
+		B7587A6E19D7A42A00EEB7C3 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewCell.h; sourceTree = "<group>"; };
+		B7587A6F19D7A42A00EEB7C3 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewCell.m; sourceTree = "<group>"; };
 		B7649D5A19D3D30000055680 /* CreateMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionViewController.h; sourceTree = "<group>"; };
 		B7649D5B19D3D30000055680 /* CreateMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionViewController.m; sourceTree = "<group>"; };
 		B7649D5D19D3DE5C00055680 /* EditingItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingItemDetailViewController.h; sourceTree = "<group>"; };
@@ -192,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				B7587A5A19D6F17C00EEB7C3 /* icon-small-40@2x.png */,
+				B7587A6C19D7A1BA00EEB7C3 /* account_bg.png */,
 				B7587A5B19D6F17C00EEB7C3 /* icon-small@2x.png */,
 				B7587A5C19D6F17C00EEB7C3 /* icon-60@2x.png */,
 				B7587A5819D6CCEA00EEB7C3 /* item_name_section.png */,
@@ -277,6 +286,10 @@
 				B73016A819C95550009AA201 /* BuyTableController.m */,
 				B7587A4719D6C0A200EEB7C3 /* PageController.h */,
 				B7587A4819D6C0A200EEB7C3 /* PageController.m */,
+				B7587A6919D7A0F500EEB7C3 /* AccountTableViewController.h */,
+				B7587A6A19D7A0F500EEB7C3 /* AccountTableViewController.m */,
+				B7587A6E19D7A42A00EEB7C3 /* AccountTableViewCell.h */,
+				B7587A6F19D7A42A00EEB7C3 /* AccountTableViewCell.m */,
 				B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */,
 				B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */,
 				B7649D7819D5D6AA00055680 /* ItemTableViewCell.h */,
@@ -429,6 +442,7 @@
 				B7649D6B19D5878C00055680 /* MissionTableCell.xib in Resources */,
 				B783A35219D2C4AE001E62B9 /* kounyuuzumi194x104.png in Resources */,
 				B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */,
+				B7587A6D19D7A1BA00EEB7C3 /* account_bg.png in Resources */,
 				B7649D6119D42B4800055680 /* otukaiiraiwoshitaihito.png in Resources */,
 				B7649D6919D5154100055680 /* select_user_circle.png in Resources */,
 				B783A35619D2DE9D001E62B9 /* no_item_image.jpg in Resources */,
@@ -497,6 +511,7 @@
 				B7649D7A19D5D6AA00055680 /* ItemTableViewCell.m in Sources */,
 				B7587A4919D6C0A200EEB7C3 /* PageController.m in Sources */,
 				B798CF9D19D64FBC00AADD77 /* HistoryTableViewController.m in Sources */,
+				B7587A7019D7A42A00EEB7C3 /* AccountTableViewCell.m in Sources */,
 				B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
@@ -504,6 +519,7 @@
 				B798CFA019D65CE800AADD77 /* HistoryTableViewCell.m in Sources */,
 				B726114719CB174300F65AA8 /* Cate.m in Sources */,
 				B783A34919D291E8001E62B9 /* MissionTableViewCell.m in Sources */,
+				B7587A6B19D7A0F500EEB7C3 /* AccountTableViewController.m in Sources */,
 				B73016A619C84FF0009AA201 /* Item.m in Sources */,
 				B7649D5C19D3D30000055680 /* CreateMissionViewController.m in Sources */,
 				B793D6DC19CF8E8500FE36EF /* NetworkManager.m in Sources */,

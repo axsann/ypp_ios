@@ -41,7 +41,7 @@
     self.view.backgroundColor = app.bgColor;
     
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"キャンセル"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(backToCategory)];
