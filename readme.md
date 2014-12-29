@@ -11,6 +11,7 @@ Joymemoのディレクトリにcdで移動し、
 $ pod setup  
 $ pod update  
 3. 実行する  
+xworkspaceファイルを開く。  
 実行ボタン・停止ボタン右の欄からiPhone 5Sを選択する。  
 実行ボタンをクリックするとシミュレータ上でアプリが起動する。  
 
