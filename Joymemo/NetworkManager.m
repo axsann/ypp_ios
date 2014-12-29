@@ -18,16 +18,22 @@
 
 - (id) init {
     if (self = [super init]) {
-        // 本来なら、ユーザIDは初回起動時に生成されてローカルに保存される
-        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F"; // さとみのユーザID (自分) (IP059)
-        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9"; // 一郎のユーザID (庄田さんのiPhone)
-        //self.userId = @"36D813FB-5495-45CA-B468-06F6EFB82A92"; // 子ども1のユーザID (りょうしゅん) (RSDI116)
-        //self.userId = @"63F1A4AB-C574-4654-9272-56E2FB598095"; // 子ども2のユーザID (ホワイティ) (RSDI094)
-        //self.userId = @"B3B04AD0-E39E-4A6E-A433-DE1AF077E0B9"; // 子ども3のユーザID (リーダー) (IP044)
-        //self.userId = @"C5D03527-EA0A-41B8-B774-DDB4476C38AE"; // 子ども4のユーザID (IP058)
-        //self.userId = @"CD1335A9-FBD9-4CCA-AC9E-F097E5DE1FEB"; // 子ども5のユーザID (庄田さん2のiPhone)
+        // 本当なら、ユーザIDは初回起動時に生成されてローカルに保存される
+        self.userId = @"88888D45-9C07-4B93-A5E0-82BED5A7864F"; // さとみのユーザID
+        //self.userId = @"037B06D1-BBF5-48CF-BD4E-26D0C44EB6A9"; // 一郎のユーザID
+        //self.userId = @"36D813FB-5495-45CA-B468-06F6EFB82A92"; // 子ども1のユーザID
+        //self.userId = @"63F1A4AB-C574-4654-9272-56E2FB598095"; // 子ども2のユーザID
+        //self.userId = @"B3B04AD0-E39E-4A6E-A433-DE1AF077E0B9"; // 子ども3のユーザID
+        //self.userId = @"C5D03527-EA0A-41B8-B774-DDB4476C38AE"; // 子ども4のユーザID
+        //self.userId = @"CD1335A9-FBD9-4CCA-AC9E-F097E5DE1FEB"; // 子ども5のユーザID
+        //self.userId = @"DD1335A9-FBD9-4CCA-AC9E-F097E5DE1FEB"; // 子ども6のユーザID
+        //self.userId = @"DE1335A9-FBD9-4CCA-AC9E-F097E5DE1FEB"; // 子ども7のユーザID
+        //self.userId = @"DF1335A9-FBD9-4CCA-AC9E-F097E5DE1FEB"; // 子ども8のユーザID
         
-        self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
+        
+        
+        //self.rootUrl = @"http://ec2-54-64-76-200.ap-northeast-1.compute.amazonaws.com";
+        self.rootUrl = @"http://yy-sn.com/joymemo/";
     }
     return self;
 }

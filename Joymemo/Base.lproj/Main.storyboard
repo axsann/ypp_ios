@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ers-rm-xM8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ers-rm-xM8">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Page Controller - Joymemo-->
+        <!--Joymemo-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PageController" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="1537" y="285"/>
         </scene>
-        <!--Category Table Controller - Item-->
+        <!--Item-->
         <scene sceneID="s1u-8f-7Te">
             <objects>
                 <tableViewController storyboardIdentifier="CategoryTableController" id="E69-kE-m9E" customClass="CategoryTableController" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="1909" y="285"/>
         </scene>
-        <!--Navigation Controller - ホーム-->
+        <!--ホーム-->
         <scene sceneID="DcN-1A-Yk2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AHV-vG-iFx" sceneMemberID="viewController">
@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="-34" y="-125"/>
         </scene>
-        <!--Buy Table Controller - Joymemo-->
+        <!--Joymemo-->
         <scene sceneID="1kN-Jb-Bi5">
             <objects>
                 <tableViewController storyboardIdentifier="BuyTableController" id="zXq-qL-n2k" customClass="BuyTableController" sceneMemberID="viewController">
@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="1922" y="-492"/>
         </scene>
-        <!--Mission Table Controller - Joymemo-->
+        <!--Joymemo-->
         <scene sceneID="fFT-0I-Bvc">
             <objects>
                 <tableViewController storyboardIdentifier="MissionTableController" id="wge-rq-gJb" customClass="MissionTableController" sceneMemberID="viewController">
@@ -180,7 +180,7 @@
             </objects>
             <point key="canvasLocation" x="2845" y="542"/>
         </scene>
-        <!--Navigation Controller - 買うものリスト-->
+        <!--買うものリスト-->
         <scene sceneID="ZX6-1T-x31">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWh-6G-3Up" sceneMemberID="viewController">
@@ -200,7 +200,7 @@
             </objects>
             <point key="canvasLocation" x="504" y="-440"/>
         </scene>
-        <!--Navigation Controller - おつかいリスト-->
+        <!--おつかいリスト-->
         <scene sceneID="13d-af-zXR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cgi-ZM-iEO" sceneMemberID="viewController">
@@ -220,7 +220,7 @@
             </objects>
             <point key="canvasLocation" x="2463" y="542"/>
         </scene>
-        <!--Navigation Controller - お知らせ-->
+        <!--お知らせ-->
         <scene sceneID="M3G-kp-IG9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dY9-Dd-ani" sceneMemberID="viewController">
@@ -240,7 +240,7 @@
             </objects>
             <point key="canvasLocation" x="21" y="587"/>
         </scene>
-        <!--History Table View Controller - お知らせ一覧-->
+        <!--お知らせ一覧-->
         <scene sceneID="IAq-YQ-XQZ">
             <objects>
                 <tableViewController storyboardIdentifier="HistoryTableViewController" id="5ls-p7-uFN" customClass="HistoryTableViewController" sceneMemberID="viewController">
