@@ -69,7 +69,6 @@
 		B7B4CD0619C495A80067EB59 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7B4CD0419C495A80067EB59 /* InfoPlist.strings */; };
 		B7B4CD0819C495A80067EB59 /* JoymemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD0719C495A80067EB59 /* JoymemoTests.m */; };
 		B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */; };
-		B7E38B721A51D0160081BE65 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = B7E38B711A51D0160081BE65 /* readme.md */; };
 		B7ECF5D919CC13B400575D35 /* circlecheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5D819CC13B400575D35 /* circlecheck.png */; };
 		B7ECF5DD19CC169700575D35 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ECF5DC19CC169700575D35 /* circle.png */; };
 		B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ECF5E419CD008000575D35 /* ItemDetailViewController.m */; };
@@ -173,7 +172,6 @@
 		B7B4CD0719C495A80067EB59 /* JoymemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoymemoTests.m; sourceTree = "<group>"; };
 		B7B4CD1A19C49A020067EB59 /* CategoryTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableController.h; sourceTree = "<group>"; };
 		B7B4CD1B19C49A020067EB59 /* CategoryTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableController.m; sourceTree = "<group>"; };
-		B7E38B711A51D0160081BE65 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		B7ECF5D819CC13B400575D35 /* circlecheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circlecheck.png; sourceTree = "<group>"; };
 		B7ECF5DC19CC169700575D35 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		B7ECF5E319CD008000575D35 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 		B7B4CCE219C495A80067EB59 /* Joymemo */ = {
 			isa = PBXGroup;
 			children = (
-				B7E38B711A51D0160081BE65 /* readme.md */,
 				B7B4CCEB19C495A80067EB59 /* AppDelegate.h */,
 				B7B4CCEC19C495A80067EB59 /* AppDelegate.m */,
 				B7B4CCEE19C495A80067EB59 /* Main.storyboard */,
@@ -545,7 +542,6 @@
 				B798CF9D19D64FBC00AADD77 /* HistoryTableViewController.m in Sources */,
 				B7587A7019D7A42A00EEB7C3 /* AccountTableViewCell.m in Sources */,
 				B7ECF5E519CD008000575D35 /* ItemDetailViewController.m in Sources */,
-				B7E38B721A51D0160081BE65 /* readme.md in Sources */,
 				B7B4CD1C19C49A020067EB59 /* CategoryTableController.m in Sources */,
 				B73016A919C95550009AA201 /* BuyTableController.m in Sources */,
 				B7B4CCED19C495A80067EB59 /* AppDelegate.m in Sources */,
