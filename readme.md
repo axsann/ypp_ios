@@ -7,6 +7,6 @@ iOSデベロッパーアカウント： 実機テストをする場合は必要
 1. Cocoapodsをインストール  
 $ sudo gem install cocoapods  
 2. ライブラリをインストール
-Joymemoのディレクトリにcdで移動し、  
+Joymemoのディレクトリにcdで移動し、    
 $ pod setup  
 $ pod update
